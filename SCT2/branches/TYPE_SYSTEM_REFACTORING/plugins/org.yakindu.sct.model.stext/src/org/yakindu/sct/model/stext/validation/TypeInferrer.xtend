@@ -54,7 +54,6 @@ import java.util.ArrayList
 import java.util.Set
 import java.util.HashSet
 import org.eclipse.emf.ecore.util.EcoreUtil
-import org.yakindu.base.types.PrimitiveType
 import org.yakindu.sct.model.sgraph.Declaration
 import org.yakindu.sct.model.stext.validation.TypeCheckException
 import org.yakindu.sct.model.stext.stext.VariableDefinition
@@ -119,7 +118,7 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	def dispatch Collection<? extends Type> inferType(EventRaisingExpression eventRaising){
 		var eventTypes = eventRaising.event.getTypes
 		if(eventRaising.value == null){
-			if(getVoidTypes(eventTypes).empty){
+			if(eventTypes.filter(t | isVoid(t)).empty){
 				error("Need to assign a value to an event of type " + eventTypes.map(t | t.name).join(","));
 				return <Type>newArrayList() 
 			}
@@ -167,7 +166,7 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 		val leftTypes = expression.leftOperand.getTypes
 		val rightTypes = expression.rightOperand.getTypes
 		val combined = combine(leftTypes, rightTypes)
-		if(!getBooleanTypes(combined).empty){
+		if(!combined.filter(t | isBoolean(t)).empty){
 			//If both types are boolean, only relational operators Equals and not_Equals are allowed
 			if(expression.operator != RelationalOperator::EQUALS && expression.operator != RelationalOperator::NOT_EQUALS){
 				error("operator '" + expression.operator?.literal + "' can not be applied to boolean values!")
@@ -318,37 +317,37 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	}
 	
 	def Collection<? extends Type> assertIntegerTypes(Collection<? extends Type> types, String operator){
-		var integerTypes = getIntegerTypes(types)
+		var integerTypes = types.filter(t | isInteger(t))
 		if(integerTypes.empty){
 			error("operator '" +operator+"' can only be applied to integer values!")
 		}
-		return integerTypes
+		return integerTypes.toList
 	}
 	
 	def Collection<? extends Type> assertRealTypes(Collection<? extends Type> types, String operator){
-		var realTypes = getRealTypes(types)
+		var realTypes = types.filter(t | isReal(t))
 		if(realTypes.empty){
 			error("operator '" +operator+"' can only be applied to real values!")
 		}
-		return types
+		return types.toList
 	}
 	
 	def Collection<? extends Type> assertNumericalTypes(Collection<? extends Type> types, String operator){
 		var numberTypes = <Type>newArrayList()
-		numberTypes.addAll(getIntegerTypes(types))
-		numberTypes.addAll(getRealTypes(types))
+		numberTypes.addAll(types.filter(t | isInteger(t)))
+		numberTypes.addAll(types.filter(t | isReal(t)))
 		if(numberTypes.empty){
 			error("operator '" +operator+"' can only be applied to numbers!")
 		}
-		return numberTypes
+		return numberTypes.toList
 	}
 	
 	def Collection<? extends Type> assertBooleanTypes(Collection<? extends Type> types, String operator){
-		var booleanTypes = getBooleanTypes(types);
+		var booleanTypes = types.filter(t | isBoolean(t));
 		if(booleanTypes.empty){
 			error("operator '" + operator + "' can only be applied to boolean values!")
 		}
-		return booleanTypes
+		return booleanTypes.toList
 	}
 	 
 	def error(String msg){
@@ -356,23 +355,23 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	}
 	
 	def Collection<? extends Type> getVoidTypes(){
-		ts.primitiveTypes.filter(t | ts.isVoid(t)).toList
+		ts.primitiveTypes.filter(t | isVoid(t)).toList
 	}
 	
 	def Collection<? extends Type> getBooleanTypes(){
-		ts.primitiveTypes.filter(t | ts.isBoolean(t)).toList
+		ts.primitiveTypes.filter(t | isBoolean(t)).toList
 	}
 	
 	def Collection<? extends Type> getIntegerTypes(){
-		ts.primitiveTypes.filter(t | ts.isInteger(t)).toList
+		ts.primitiveTypes.filter(t | isInteger(t)).toList
 	}
 	
 	def Collection<? extends Type> getRealTypes(){
-		ts.primitiveTypes.filter(t | ts.isReal(t)).toList
+		ts.primitiveTypes.filter(t | isReal(t)).toList
 	}
 	
 	def Collection<? extends Type> getStringTypes(){
-		ts.primitiveTypes.filter(t | ts.isString(t)).toList
+		ts.primitiveTypes.filter(t | isString(t)).toList
 	}
 	
 	def Collection<Type> assign(Collection<? extends Type> leftTypes, Collection<? extends Type> rightTypes) {
@@ -408,8 +407,8 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	
 		// we may add all void types (in case both lists contain any) as they
 		// are all assumed to be compatible
-		val List<PrimitiveType> leftVoids = getVoidTypes(leftBacklog);
-		val List<PrimitiveType> rightVoids = getVoidTypes(rightBacklog);
+		val List<Type> leftVoids = leftBacklog.filter(t | isVoid(t)).toList
+		val List<Type> rightVoids = rightBacklog.filter(t | isVoid(t)).toList
 		if (!leftVoids.isEmpty() && !rightVoids.isEmpty()) {
 			resultTypes.addAll(leftVoids);
 			resultTypes.addAll(rightVoids);
@@ -419,8 +418,8 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	
 		// we may add all boolean types (in case both lists contain any) as they
 		// are all assumed to be compatible
-		val List<PrimitiveType> leftBooleans = getBooleanTypes(leftBacklog);
-		val List<PrimitiveType> rightBooleans = getBooleanTypes(rightBacklog);
+		val List<Type> leftBooleans = leftBacklog.filter(t | isBoolean(t)).toList
+		val List<Type> rightBooleans = rightBacklog.filter(t | isBoolean(t)).toList
 		if (!leftBooleans.isEmpty() && !rightBooleans.isEmpty()) {
 			resultTypes.addAll(leftBooleans);
 			resultTypes.addAll(rightBooleans);
@@ -430,8 +429,8 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	
 		// we may add all string types (in case both lists contain any) as they
 		// are all assumed to be compatible
-		val List<PrimitiveType> leftStrings = getStringTypes(leftBacklog);
-		val List<PrimitiveType> rightStrings = getStringTypes(rightBacklog);
+		val List<Type> leftStrings = leftBacklog.filter(t | isString(t)).toList
+		val List<Type> rightStrings = rightBacklog.filter(t | isString(t)).toList
 		if (!leftStrings.isEmpty() && !rightStrings.isEmpty()) {
 			resultTypes.addAll(leftStrings);
 			resultTypes.addAll(rightStrings);
@@ -444,15 +443,15 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 		val List<Type> leftNumericals = getNumericalTypes(leftBacklog);
 		val List<Type> rightNumericals = getNumericalTypes(rightBacklog);
 		if (!leftNumericals.isEmpty() && !rightNumericals.isEmpty()) {
-			val List<PrimitiveType> leftReals = getRealTypes(leftNumericals);
-			val List<PrimitiveType> rightReals = getRealTypes(rightNumericals);
+			val List<Type> leftReals = leftNumericals.filter(t | isReal(t)).toList;
+			val List<Type> rightReals = rightNumericals.filter(t | isReal(t)).toList;
 			// if we have reals, we have to use the real types
 			if (!leftReals.isEmpty() || !rightReals.isEmpty()) {
 				resultTypes.addAll(leftReals);
 				resultTypes.addAll(rightReals);
 			} else {
-				val List<PrimitiveType> leftIntegers = getIntegerTypes(leftNumericals);
-				val List<PrimitiveType> rightIntegers = getIntegerTypes(rightNumericals);
+				val List<Type> leftIntegers = leftNumericals.filter(t | isInteger(t)).toList;
+				val List<Type> rightIntegers = leftNumericals.filter(t | isInteger(t)).toList;
 				// integer and hex types
 				if (!leftIntegers.isEmpty() && !rightIntegers.isEmpty()) {
 					resultTypes.addAll(leftIntegers);

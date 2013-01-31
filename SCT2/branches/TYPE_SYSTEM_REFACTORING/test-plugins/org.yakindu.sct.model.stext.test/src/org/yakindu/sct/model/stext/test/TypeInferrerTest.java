@@ -13,7 +13,9 @@ package org.yakindu.sct.model.stext.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.InjectWith;
@@ -23,6 +25,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.yakindu.base.types.ITypeSystemAccess;
+import org.yakindu.base.types.PrimitiveType;
 import org.yakindu.base.types.Type;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.Statement;
@@ -52,31 +55,31 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	@Rule
 	public ExpectedException exception = ExpectedException.none();
 	@Inject
-	private ITypeSystemAccess ts;
+	public ITypeSystemAccess ts;
 
 	// Unary
 	@Test
 	public void testUnarySuccess() {
 		// int
-		assertTrue(!ts.getIntegerTypes(getTypes("1")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("-1")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("-1")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt")).isEmpty());
 		// real
-		assertTrue(!ts.getRealTypes(getTypes("1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("-1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("0.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("myReal")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("-1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("0.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("myReal")).isEmpty());
 		// string
-		assertTrue(!ts.getStringTypes(getTypes("'42'")).isEmpty());
-		assertTrue(!ts.getStringTypes(getTypes("myString")).isEmpty());
+		assertTrue(!getStringTypes(getTypes("'42'")).isEmpty());
+		assertTrue(!getStringTypes(getTypes("myString")).isEmpty());
 		// boolean
-		assertTrue(!ts.getBooleanTypes(getTypes("true")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("false")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("myBool")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("false")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("myBool")).isEmpty());
 		// event
-		assertTrue(!ts.getBooleanTypes(getTypes("event1")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("event1")).isEmpty());
 	}
 
 	// Add
@@ -85,16 +88,16 @@ public class TypeInferrerTest extends AbstractSTextTest {
 		Statement statement = (Statement) super.parseExpression("1+2",
 				super.internalScope(), Expression.class.getSimpleName());
 		analyzer.getTypes(statement);
-		assertTrue(!ts.getIntegerTypes(analyzer.getTypes(statement)).isEmpty());
+		assertTrue(!getIntegerTypes(analyzer.getTypes(statement)).isEmpty());
 
-		assertTrue(!ts.getIntegerTypes(getTypes("1 + 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("1 + 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F + 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt + 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt + 2")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1.1 + 2")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("2 + 1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1 + 2 + 3.0")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 + 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 + 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F + 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt + 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt + 2")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1.1 + 2")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("2 + 1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1 + 2 + 3.0")).isEmpty());
 	}
 
 	@Test
@@ -148,15 +151,15 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	// substract
 	@Test
 	public void testSubstractSuccess() {
-		assertTrue(!ts.getIntegerTypes(getTypes("1 - 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F - 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F - 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F- myInt")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt - 2")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1.0 - 2")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("2 - 1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("myReal - 1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1 - 2 - 3.0")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 - 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F - 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F - 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F- myInt")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt - 2")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1.0 - 2")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("2 - 1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("myReal - 1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1 - 2 - 3.0")).isEmpty());
 	}
 
 	@Test
@@ -210,13 +213,13 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	// multiply
 	@Test
 	public void testMultiplySuccess() {
-		assertTrue(!ts.getIntegerTypes(getTypes("1 * 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("1 * 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F * myInt")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("myInt * myReal")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1.0 * 2")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("2 * 1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1 * 2 * 3.0")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 * 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 * 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F * myInt")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("myInt * myReal")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1.0 * 2")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("2 * 1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1 * 2 * 3.0")).isEmpty());
 	}
 
 	@Test
@@ -270,14 +273,14 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	// divide
 	@Test
 	public void testDivideSuccess() {
-		assertTrue(!ts.getIntegerTypes(getTypes("1 / 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("1 / myInt")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("1 / 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F / 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt / 0x0F")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1.0 / 2")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("2 / 1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1 / 2 / 3.0")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 / 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 / myInt")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 / 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F / 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt / 0x0F")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1.0 / 2")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("2 / 1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1 / 2 / 3.0")).isEmpty());
 	}
 
 	@Test
@@ -331,14 +334,14 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	// mod
 	@Test
 	public void testModSuccess() {
-		assertTrue(!ts.getIntegerTypes(getTypes("1 % 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("1 % 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("0x0F % 0x0F")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt % 0x0F")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1.0 % 2")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("2 % 1.0")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("2 % myReal")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("1 % 2 % 3.0")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 % 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("1 % 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("0x0F % 0x0F")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt % 0x0F")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1.0 % 2")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("2 % 1.0")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("2 % myReal")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("1 % 2 % 3.0")).isEmpty());
 	}
 
 	@Test
@@ -398,16 +401,16 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	// Logical And Or Not
 	@Test
 	public void testLogicalSuccess() {
-		assertTrue(!ts.getBooleanTypes(getTypes("true || false")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true || myBool")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true || false && true")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true || true &&( false || true)")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("!true")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("!myBool")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("!event1")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("!true && !false")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("event1 && !event1")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("event1 || event1")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true || false")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true || myBool")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true || false && true")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true || true &&( false || true)")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("!true")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("!myBool")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("!event1")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("!true && !false")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("event1 && !event1")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("event1 || event1")).isEmpty());
 	}
 
 	@Test
@@ -479,29 +482,29 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	// LogicalRelation
 	@Test
 	public void testLogicalRelationSuccess() {
-		assertTrue(!ts.getBooleanTypes(getTypes("5 < 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 < 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 < myInt")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5 < 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 < 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 < myInt")).isEmpty());
 
-		assertTrue(!ts.getBooleanTypes(getTypes("5 <= 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 <= 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 <= myInt")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5 <= 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 <= 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 <= myInt")).isEmpty());
 
-		assertTrue(!ts.getBooleanTypes(getTypes("5 > 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 >= 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 >= myInt")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5 > 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 >= 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 >= myInt")).isEmpty());
 
-		assertTrue(!ts.getBooleanTypes(getTypes("5 == 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("'string' == 'string'")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 == 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true == myBool")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true == event1")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5 == 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("'string' == 'string'")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 == 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true == myBool")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true == event1")).isEmpty());
 
-		assertTrue(!ts.getBooleanTypes(getTypes("5 != 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("'string' != 'string'")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("5.0 != 3")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true != myBool")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true != event1")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5 != 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("'string' != 'string'")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("5.0 != 3")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true != myBool")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true != event1")).isEmpty());
 	}
 
 	@Test
@@ -666,14 +669,14 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void testAssignmentSuccess() {
-		assertTrue(!ts.getIntegerTypes(getTypes("ABC.myInt = 42")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt = 5 * 3")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt = 0x0F * 3")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt = myInt * 0x0F")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("myBool = true || false")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("myBool = event1")).isEmpty());
-		assertTrue(!ts.getStringTypes(getTypes("myString = 'string'")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("myReal = 2.0 - 7")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("ABC.myInt = 42")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt = 5 * 3")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt = 0x0F * 3")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt = myInt * 0x0F")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("myBool = true || false")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("myBool = event1")).isEmpty());
+		assertTrue(!getStringTypes(getTypes("myString = 'string'")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("myReal = 2.0 - 7")).isEmpty());
 	}
 
 	@Test
@@ -698,11 +701,11 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	 */
 	@Test
 	public void testActiveSuccess() throws Exception {
-		assertTrue(!ts.getBooleanTypes(getTypes("active(chart.r1.A)")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("!active(chart.r1.A)")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("true || active(chart.r1.A)")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("active(chart.r1.A) && false")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("myBool = active(chart.r1.A)")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("active(chart.r1.A)")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("!active(chart.r1.A)")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("true || active(chart.r1.A)")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("active(chart.r1.A) && false")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("myBool = active(chart.r1.A)")).isEmpty());
 	}
 
 	@Test
@@ -755,14 +758,14 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void testBitwiseLogicalRelationSuccess() {
-		assertTrue(!ts.getIntegerTypes(getTypes(" 5 & 3")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes(" 5 | 3")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes(" 5 ^ 3")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes(" ~3")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("3 << 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("5 >> 2")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt << 4")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("myInt >> 4")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes(" 5 & 3")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes(" 5 | 3")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes(" 5 ^ 3")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes(" ~3")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("3 << 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("5 >> 2")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt << 4")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("myInt >> 4")).isEmpty());
 	}
 
 	@Test
@@ -875,9 +878,9 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void testComplexExpressionsSuccess() {
-		assertTrue(!ts.getBooleanTypes(getTypes("((((3 * myInt) + 5) % 2) > 97) || false")).isEmpty());
-		assertTrue(!ts.getBooleanTypes(getTypes("!true != myBool && (3 > (myReal * 5 + 3))")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("3 * 3 + 7 / (3 * myInt % 8)")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("((((3 * myInt) + 5) % 2) > 97) || false")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("!true != myBool && (3 > (myReal * 5 + 3))")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("3 * 3 + 7 / (3 * myInt % 8)")).isEmpty());
 	}
 
 	@Test
@@ -913,25 +916,25 @@ public class TypeInferrerTest extends AbstractSTextTest {
 		// int events
 		EObject statement = super.parseExpression("valueof(intEvent)", context,
 				EventValueReferenceExpression.class.getSimpleName());
-		assertTrue(!ts.getIntegerTypes(analyzer.getTypes((Statement) statement)).isEmpty());
+		assertTrue(!getIntegerTypes(analyzer.getTypes((Statement) statement)).isEmpty());
 		// bool events
 		statement = super.parseExpression("valueof(boolEvent)", context,
 				EventValueReferenceExpression.class.getSimpleName());
-		assertTrue(!ts.getBooleanTypes(analyzer.getTypes((Statement) statement)).isEmpty());
+		assertTrue(!getBooleanTypes(analyzer.getTypes((Statement) statement)).isEmpty());
 		// real events
 		statement = super.parseExpression("valueof(realEvent)", context,
 				EventValueReferenceExpression.class.getSimpleName());
-		assertTrue(!ts.getRealTypes(analyzer.getTypes((Statement) statement)).isEmpty());
+		assertTrue(!getRealTypes(analyzer.getTypes((Statement) statement)).isEmpty());
 		// string events
 		statement = super.parseExpression("valueof(stringEvent)", context,
 				EventValueReferenceExpression.class.getSimpleName());
-		assertTrue(!ts.getStringTypes(analyzer.getTypes((Statement) statement)).isEmpty());
+		assertTrue(!getStringTypes(analyzer.getTypes((Statement) statement)).isEmpty());
 		// void events
 		statement = super.parseExpression("valueof(voidEvent)", context,
 				EventValueReferenceExpression.class.getSimpleName());
-		assertTrue(!ts.getVoidTypes(analyzer.getTypes((Statement) statement)).isEmpty());
+		assertTrue(!getVoidTypes(analyzer.getTypes((Statement) statement)).isEmpty());
 		// interface events
-		assertTrue(!ts.getIntegerTypes(getTypes("valueof(ABC.myIntEvent)")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("valueof(ABC.myIntEvent)")).isEmpty());
 	}
 
 	@Test
@@ -942,7 +945,7 @@ public class TypeInferrerTest extends AbstractSTextTest {
 		
 		statement = super.parseExpression("ABC.myBool = ABC.event2",
 				interfaceScope(), Expression.class.getSimpleName());
-		assertTrue(!ts.getBooleanTypes(analyzer.getTypes((Statement) statement)).isEmpty());
+		assertTrue(!getBooleanTypes(analyzer.getTypes((Statement) statement)).isEmpty());
 	}
 
 	@Test
@@ -997,10 +1000,10 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void parenthesizedExpression() {
-		assertTrue(!ts.getBooleanTypes(getTypes("( true || false )")).isEmpty());
-		assertTrue(!ts.getIntegerTypes(getTypes("( 5 )")).isEmpty());
-		assertTrue(!ts.getRealTypes(getTypes("( 7.5 / 1.2 )")).isEmpty());
-		assertTrue(!ts.getStringTypes(getTypes("( 'abc' )")).isEmpty());
+		assertTrue(!getBooleanTypes(getTypes("( true || false )")).isEmpty());
+		assertTrue(!getIntegerTypes(getTypes("( 5 )")).isEmpty());
+		assertTrue(!getRealTypes(getTypes("( 7.5 / 1.2 )")).isEmpty());
+		assertTrue(!getStringTypes(getTypes("( 'abc' )")).isEmpty());
 	}
 
 	/**
@@ -1110,4 +1113,68 @@ public class TypeInferrerTest extends AbstractSTextTest {
 		return analyzer.getTypes((Statement) statement);
 	}
 
+	public List<PrimitiveType> getBooleanTypes(Collection<? extends Type> types) {
+		List<PrimitiveType> newTypes = new ArrayList<PrimitiveType>();
+		for (Type t : types) {
+			if (t instanceof PrimitiveType && ts.isBoolean(t)) {
+				newTypes.add((PrimitiveType) t);
+			}
+		}
+		return newTypes;
+	}
+
+	public List<Type> getNumericalTypes(Collection<? extends Type> types) {
+		List<Type> newTypes = new ArrayList<Type>();
+		for (Type t : types) {
+			if (t instanceof PrimitiveType && (ts.isReal(t) || ts.isInteger(t))) {
+				newTypes.add(t);
+			}
+		}
+		return newTypes;
+	}
+
+	
+	public List<PrimitiveType> getVoidTypes(Collection<? extends Type> types) {
+		List<PrimitiveType> newTypes = new ArrayList<PrimitiveType>();
+		for (Type t : types) {
+			if (t instanceof PrimitiveType && ts.isVoid(t)) {
+				newTypes.add((PrimitiveType) t);
+			}
+		}
+		return newTypes;
+	}
+
+	
+	public List<PrimitiveType> getIntegerTypes(Collection<? extends Type> types) {
+		List<PrimitiveType> newTypes = new ArrayList<PrimitiveType>();
+		for (Type t : types) {
+			if (t instanceof PrimitiveType && ts.isInteger(t)) {
+				newTypes.add((PrimitiveType) t);
+			}
+		}
+		return newTypes;
+	}
+
+	
+	public List<PrimitiveType> getRealTypes(Collection<? extends Type> types) {
+		List<PrimitiveType> newTypes = new ArrayList<PrimitiveType>();
+		for (Type t : types) {
+			if (t instanceof PrimitiveType && ts.isReal(t)) {
+				newTypes.add((PrimitiveType) t);
+			}
+		}
+		return newTypes;
+	}
+
+	
+	public List<PrimitiveType> getStringTypes(Collection<? extends Type> types) {
+		List<PrimitiveType> newTypes = new ArrayList<PrimitiveType>();
+		for (Type t : types) {
+			if (t instanceof PrimitiveType && ts.isString(t)) {
+				newTypes.add((PrimitiveType) t);
+			}
+		}
+		return newTypes;
+	}
+	
 }

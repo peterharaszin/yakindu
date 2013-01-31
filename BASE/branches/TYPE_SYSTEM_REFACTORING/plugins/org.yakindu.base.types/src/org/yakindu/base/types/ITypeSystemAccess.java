@@ -11,7 +11,6 @@
  */
 package org.yakindu.base.types;
 
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,7 +21,7 @@ import java.util.List;
 public interface ITypeSystemAccess {
 
 	public List<EnumerationType> getEnumerationTypes();
-	
+
 	public List<PrimitiveType> getPrimitiveTypes();
 
 	public List<DataType> getDataTypes();
@@ -38,26 +37,13 @@ public interface ITypeSystemAccess {
 	public boolean isReal(Type type);
 
 	public boolean isString(Type type);
-	
-	public List<PrimitiveType> getVoidTypes(Collection<? extends Type> types);
-
-	public List<PrimitiveType> getStringTypes(Collection<? extends Type> types);
-
-	public List<PrimitiveType> getIntegerTypes(Collection<? extends Type> types);
-
-	public List<PrimitiveType> getRealTypes(Collection<? extends Type> types);
-
-	public List<PrimitiveType> getBooleanTypes(Collection<? extends Type> types);
-	
 
 	/**
-	 * TODO: Refactor this
-	 * 
 	 * Returns the target language specific type name
 	 * 
 	 * @param type
 	 * @return
 	 */
 	public String getTargetLanguageTypeName(Type type);
-	
+
 }

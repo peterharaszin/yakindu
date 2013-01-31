@@ -15,6 +15,7 @@ import java.util.Collection;
 
 import org.eclipse.xtext.util.OnChangeEvictingCache;
 import org.yakindu.base.types.Type;
+import org.yakindu.sct.model.sgraph.Declaration;
 import org.yakindu.sct.model.sgraph.Statement;
 
 import com.google.inject.Inject;
@@ -26,7 +27,9 @@ public class TypeInferrerCache {
 		 * calculate the type of the statement. This method is not directly
 		 * cached, but could delegate caches for subsequent elements
 		 */
-		public Collection<? extends Type> inferType(Statement stmt);
+		public Collection<? extends Type> analyze(Statement stmt);
+		
+		public Collection<? extends Type> analyze(Declaration decl);
 	}
 
 	@Inject
@@ -35,7 +38,15 @@ public class TypeInferrerCache {
 	public Collection<? extends Type> get(final Statement stmt, final ICacheableTypeAnalyzer analyzer) {
 		return cache.get(stmt, stmt.eResource(), new Provider<Collection<? extends Type>>() {
 			public Collection<? extends Type> get() {
-				return analyzer.inferType(stmt);
+				return analyzer.analyze(stmt);
+			}
+		});
+	}
+	
+	public Collection<? extends Type> get(final Declaration decl, final ICacheableTypeAnalyzer analyzer) {
+		return cache.get(decl, decl.eResource(), new Provider<Collection<? extends Type>>() {
+			public Collection<? extends Type> get() {
+				return analyzer.analyze(decl);
 			}
 		});
 	}

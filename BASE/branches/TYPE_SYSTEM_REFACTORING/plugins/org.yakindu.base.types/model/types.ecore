@@ -6,8 +6,8 @@
         eType="#//TypeConstraint" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Feature" abstract="true" eSuperTypes="#//TypedElement base.ecore#//NamedElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//DataType"
-        eOpposite="#//DataType/features"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="owningType" eType="#//ComplexType"
+        eOpposite="#//ComplexType/features"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operation" eSuperTypes="#//Feature">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
@@ -29,11 +29,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="PrimitiveType" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="baseType" eType="#//PrimitiveType"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataType" eSuperTypes="#//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="ComplexType" eSuperTypes="#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
         eType="#//Feature" containment="true" eOpposite="#//Feature/owningType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superTypes" upperBound="-1"
-        eType="#//DataType"/>
+        eType="#//ComplexType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Enumerator" eSuperTypes="base.ecore#//NamedElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="owningEnumeration" eType="#//EnumerationType"

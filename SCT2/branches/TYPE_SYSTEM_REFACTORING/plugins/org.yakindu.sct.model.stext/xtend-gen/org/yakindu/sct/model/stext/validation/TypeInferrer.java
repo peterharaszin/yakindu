@@ -6,8 +6,11 @@ import com.google.inject.Inject;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -18,6 +21,7 @@ import org.yakindu.base.types.ITypeSystemAccess;
 import org.yakindu.base.types.PrimitiveType;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.Type;
+import org.yakindu.sct.model.sgraph.Declaration;
 import org.yakindu.sct.model.sgraph.Statement;
 import org.yakindu.sct.model.stext.stext.ActiveStateReferenceExpression;
 import org.yakindu.sct.model.stext.stext.AdditiveOperator;
@@ -53,6 +57,7 @@ import org.yakindu.sct.model.stext.stext.ShiftExpression;
 import org.yakindu.sct.model.stext.stext.ShiftOperator;
 import org.yakindu.sct.model.stext.stext.StringLiteral;
 import org.yakindu.sct.model.stext.stext.UnaryOperator;
+import org.yakindu.sct.model.stext.stext.VariableDefinition;
 import org.yakindu.sct.model.stext.validation.ITypeInferrer;
 import org.yakindu.sct.model.stext.validation.TypeCheckException;
 import org.yakindu.sct.model.stext.validation.TypeInferrerCache;
@@ -85,16 +90,50 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     return _xblockexpression;
   }
   
-  protected Collection<? extends Type> _inferType(final Expression expr) {
-    String _plus = ("Unsupported expression type" + expr);
-    RuntimeException _runtimeException = new RuntimeException(_plus);
-    throw _runtimeException;
+  public Collection<? extends Type> getTypes(final Declaration decl) {
+    Collection<? extends Type> _xblockexpression = null;
+    {
+      boolean _equals = Objects.equal(decl, null);
+      if (_equals) {
+        return CollectionLiterals.<Type>newArrayList();
+      }
+      Collection<? extends Type> _get = this.cache.get(decl, this);
+      _xblockexpression = (_get);
+    }
+    return _xblockexpression;
   }
   
-  protected Collection<? extends Type> _inferType(final Statement stmt) {
-    String _plus = ("Unsupported statement type" + stmt);
-    RuntimeException _runtimeException = new RuntimeException(_plus);
-    throw _runtimeException;
+  protected Collection<? extends Type> _inferType(final VariableDefinition definition) {
+    Expression _initialValue = definition.getInitialValue();
+    boolean _equals = Objects.equal(_initialValue, null);
+    if (_equals) {
+      Type _type = definition.getType();
+      return CollectionLiterals.<Type>newArrayList(_type);
+    } else {
+      Expression _initialValue_1 = definition.getInitialValue();
+      final Collection<? extends Type> valTypes = this.getTypes(_initialValue_1);
+      Type _type_1 = definition.getType();
+      ArrayList<Type> _newArrayList = CollectionLiterals.<Type>newArrayList(_type_1);
+      final Collection<Type> types = this.assign(_newArrayList, valTypes);
+      boolean _isEmpty = types.isEmpty();
+      if (_isEmpty) {
+        final Function1<Type,String> _function = new Function1<Type,String>() {
+            public String apply(final Type t) {
+              String _name = t.getName();
+              return _name;
+            }
+          };
+        Iterable<String> _map = IterableExtensions.map(valTypes, _function);
+        String _join = IterableExtensions.join(_map, ",");
+        String _plus = ("Can not assign a value of type " + _join);
+        String _plus_1 = (_plus + " to a variable of type ");
+        Type _type_2 = definition.getType();
+        String _name = _type_2.getName();
+        String _plus_2 = (_plus_1 + _name);
+        this.error(_plus_2);
+      }
+      return types;
+    }
   }
   
   protected Collection<? extends Type> _inferType(final AssignmentExpression assignment) {
@@ -102,7 +141,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     Collection<? extends Type> valueTypes = this.getTypes(_expression);
     Expression _varRef = assignment.getVarRef();
     Collection<? extends Type> varTypes = this.getTypes(_varRef);
-    Collection<Type> types = this.ts.assign(varTypes, valueTypes);
+    Collection<Type> types = this.assign(varTypes, valueTypes);
     boolean _isEmpty = types.isEmpty();
     if (_isEmpty) {
       final Function1<Type,String> _function = new Function1<Type,String>() {
@@ -158,7 +197,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     }
     Expression _value_1 = eventRaising.getValue();
     Collection<? extends Type> valueTypes = this.getTypes(_value_1);
-    Collection<Type> types = this.ts.assign(eventTypes, valueTypes);
+    Collection<Type> types = this.assign(eventTypes, valueTypes);
     boolean _isEmpty_1 = types.isEmpty();
     if (_isEmpty_1) {
       final Function1<Type,String> _function_1 = new Function1<Type,String>() {
@@ -205,7 +244,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
   public Collection<Type> assertBooleanTypes(final Collection<? extends Type> left, final Collection<? extends Type> right, final String operator) {
     Collection<? extends Type> _assertBooleanTypes = this.assertBooleanTypes(left, operator);
     Collection<? extends Type> _assertBooleanTypes_1 = this.assertBooleanTypes(right, operator);
-    return this.ts.combine(_assertBooleanTypes, _assertBooleanTypes_1);
+    return this.combine(_assertBooleanTypes, _assertBooleanTypes_1);
   }
   
   protected Collection<? extends Type> _inferType(final LogicalNotExpression expression) {
@@ -221,7 +260,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     Expression _rightOperand = expression.getRightOperand();
     Collection<? extends Type> _types_1 = this.getTypes(_rightOperand);
     Collection<? extends Type> _assertIntegerTypes_1 = this.assertIntegerTypes(_types_1, "&");
-    return this.ts.combine(_assertIntegerTypes, _assertIntegerTypes_1);
+    return this.combine(_assertIntegerTypes, _assertIntegerTypes_1);
   }
   
   protected Collection<? extends Type> _inferType(final BitwiseOrExpression expression) {
@@ -231,7 +270,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     Expression _rightOperand = expression.getRightOperand();
     Collection<? extends Type> _types_1 = this.getTypes(_rightOperand);
     Collection<? extends Type> _assertIntegerTypes_1 = this.assertIntegerTypes(_types_1, "|");
-    return this.ts.combine(_assertIntegerTypes, _assertIntegerTypes_1);
+    return this.combine(_assertIntegerTypes, _assertIntegerTypes_1);
   }
   
   protected Collection<? extends Type> _inferType(final BitwiseXorExpression expression) {
@@ -241,7 +280,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     Expression _rightOperand = expression.getRightOperand();
     Collection<? extends Type> _types_1 = this.getTypes(_rightOperand);
     Collection<? extends Type> _assertIntegerTypes_1 = this.assertIntegerTypes(_types_1, "^");
-    return this.ts.combine(_assertIntegerTypes, _assertIntegerTypes_1);
+    return this.combine(_assertIntegerTypes, _assertIntegerTypes_1);
   }
   
   protected Collection<? extends Type> _inferType(final LogicalRelationExpression expression) {
@@ -249,8 +288,8 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     final Collection<? extends Type> leftTypes = this.getTypes(_leftOperand);
     Expression _rightOperand = expression.getRightOperand();
     final Collection<? extends Type> rightTypes = this.getTypes(_rightOperand);
-    final Collection<Type> combined = this.ts.combine(leftTypes, rightTypes);
-    Collection<? extends Type> _booleanTypes = this.getBooleanTypes(combined);
+    final Collection<Type> combined = this.combine(leftTypes, rightTypes);
+    List<PrimitiveType> _booleanTypes = this.ts.getBooleanTypes(combined);
     boolean _isEmpty = _booleanTypes.isEmpty();
     boolean _not = (!_isEmpty);
     if (_not) {
@@ -311,7 +350,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
   public Collection<Type> assertNumericalTypes(final Collection<? extends Type> left, final Collection<? extends Type> right, final String operator) {
     Collection<? extends Type> _assertNumericalTypes = this.assertNumericalTypes(left, operator);
     Collection<? extends Type> _assertNumericalTypes_1 = this.assertNumericalTypes(right, operator);
-    return this.ts.combine(_assertNumericalTypes, _assertNumericalTypes_1);
+    return this.combine(_assertNumericalTypes, _assertNumericalTypes_1);
   }
   
   protected Collection<? extends Type> _inferType(final NumericalAddSubtractExpression expression) {
@@ -369,7 +408,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     ShiftOperator _operator_1 = expression.getOperator();
     String _literal_1 = _operator_1.getLiteral();
     final Collection<? extends Type> rightTypes = this.assertIntegerTypes(_types_1, _literal_1);
-    return this.ts.combine(leftTypes, rightTypes);
+    return this.combine(leftTypes, rightTypes);
   }
   
   protected Collection<? extends Type> _inferType(final ConditionalExpression expression) {
@@ -380,7 +419,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     final Collection<? extends Type> trueTypes = this.getTypes(_trueCase);
     Expression _falseCase = expression.getFalseCase();
     final Collection<? extends Type> falseTypes = this.getTypes(_falseCase);
-    final Collection<Type> types = this.ts.combine(trueTypes, falseTypes);
+    final Collection<Type> types = this.combine(trueTypes, falseTypes);
     boolean _isEmpty = types.isEmpty();
     if (_isEmpty) {
       this.error("True and false case of a conditional have to be of compatible types!");
@@ -516,7 +555,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
   }
   
   public Collection<? extends Type> assertIntegerTypes(final Collection<? extends Type> types, final String operator) {
-    Collection<? extends Type> integerTypes = this.getIntegerTypes(types);
+    List<PrimitiveType> integerTypes = this.ts.getIntegerTypes(types);
     boolean _isEmpty = integerTypes.isEmpty();
     if (_isEmpty) {
       String _plus = ("operator \'" + operator);
@@ -527,7 +566,7 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
   }
   
   public Collection<? extends Type> assertRealTypes(final Collection<? extends Type> types, final String operator) {
-    Collection<? extends Type> realTypes = this.getRealTypes(types);
+    List<PrimitiveType> realTypes = this.ts.getRealTypes(types);
     boolean _isEmpty = realTypes.isEmpty();
     if (_isEmpty) {
       String _plus = ("operator \'" + operator);
@@ -539,9 +578,9 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
   
   public Collection<? extends Type> assertNumericalTypes(final Collection<? extends Type> types, final String operator) {
     ArrayList<Type> numberTypes = CollectionLiterals.<Type>newArrayList();
-    Collection<? extends Type> _integerTypes = this.getIntegerTypes(types);
+    List<PrimitiveType> _integerTypes = this.ts.getIntegerTypes(types);
     Iterables.<Type>addAll(numberTypes, _integerTypes);
-    Collection<? extends Type> _realTypes = this.getRealTypes(types);
+    List<PrimitiveType> _realTypes = this.ts.getRealTypes(types);
     Iterables.<Type>addAll(numberTypes, _realTypes);
     boolean _isEmpty = numberTypes.isEmpty();
     if (_isEmpty) {
@@ -553,63 +592,12 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
   }
   
   public Collection<? extends Type> assertBooleanTypes(final Collection<? extends Type> types, final String operator) {
-    Collection<? extends Type> booleanTypes = this.getBooleanTypes(types);
+    List<PrimitiveType> booleanTypes = this.ts.getBooleanTypes(types);
     boolean _isEmpty = booleanTypes.isEmpty();
     if (_isEmpty) {
       String _plus = ("operator \'" + operator);
       String _plus_1 = (_plus + "\' can only be applied to boolean values!");
       this.error(_plus_1);
-    }
-    return booleanTypes;
-  }
-  
-  public Collection<? extends Type> getNumericalTypes(final Collection<? extends Type> types) {
-    ArrayList<Type> integerTypes = CollectionLiterals.<Type>newArrayList();
-    for (final Type t : types) {
-      boolean _or = false;
-      boolean _isInteger = this.ts.isInteger(t);
-      if (_isInteger) {
-        _or = true;
-      } else {
-        boolean _isReal = this.ts.isReal(t);
-        _or = (_isInteger || _isReal);
-      }
-      if (_or) {
-        integerTypes.add(t);
-      }
-    }
-    return integerTypes;
-  }
-  
-  public Collection<? extends Type> getRealTypes(final Collection<? extends Type> types) {
-    ArrayList<Type> realTypes = CollectionLiterals.<Type>newArrayList();
-    for (final Type t : types) {
-      boolean _isReal = this.ts.isReal(t);
-      if (_isReal) {
-        realTypes.add(t);
-      }
-    }
-    return realTypes;
-  }
-  
-  public Collection<? extends Type> getIntegerTypes(final Collection<? extends Type> types) {
-    ArrayList<Type> integerTypes = CollectionLiterals.<Type>newArrayList();
-    for (final Type t : types) {
-      boolean _isInteger = this.ts.isInteger(t);
-      if (_isInteger) {
-        integerTypes.add(t);
-      }
-    }
-    return integerTypes;
-  }
-  
-  public Collection<? extends Type> getBooleanTypes(final Collection<? extends Type> types) {
-    ArrayList<Type> booleanTypes = CollectionLiterals.<Type>newArrayList();
-    for (final Type t : types) {
-      boolean _isBoolean = this.ts.isBoolean(t);
-      if (_isBoolean) {
-        booleanTypes.add(t);
-      }
     }
     return booleanTypes;
   }
@@ -684,54 +672,216 @@ public class TypeInferrer implements ITypeInferrer, ICacheableTypeAnalyzer {
     return _list;
   }
   
-  public Collection<? extends Type> inferType(final Statement expression) {
-    if (expression instanceof ActiveStateReferenceExpression) {
-      return _inferType((ActiveStateReferenceExpression)expression);
-    } else if (expression instanceof AssignmentExpression) {
-      return _inferType((AssignmentExpression)expression);
-    } else if (expression instanceof BitwiseAndExpression) {
-      return _inferType((BitwiseAndExpression)expression);
-    } else if (expression instanceof BitwiseOrExpression) {
-      return _inferType((BitwiseOrExpression)expression);
-    } else if (expression instanceof BitwiseXorExpression) {
-      return _inferType((BitwiseXorExpression)expression);
-    } else if (expression instanceof ConditionalExpression) {
-      return _inferType((ConditionalExpression)expression);
-    } else if (expression instanceof ElementReferenceExpression) {
-      return _inferType((ElementReferenceExpression)expression);
-    } else if (expression instanceof EventRaisingExpression) {
-      return _inferType((EventRaisingExpression)expression);
-    } else if (expression instanceof EventValueReferenceExpression) {
-      return _inferType((EventValueReferenceExpression)expression);
-    } else if (expression instanceof FeatureCall) {
-      return _inferType((FeatureCall)expression);
-    } else if (expression instanceof LogicalAndExpression) {
-      return _inferType((LogicalAndExpression)expression);
-    } else if (expression instanceof LogicalNotExpression) {
-      return _inferType((LogicalNotExpression)expression);
-    } else if (expression instanceof LogicalOrExpression) {
-      return _inferType((LogicalOrExpression)expression);
-    } else if (expression instanceof LogicalRelationExpression) {
-      return _inferType((LogicalRelationExpression)expression);
-    } else if (expression instanceof NumericalAddSubtractExpression) {
-      return _inferType((NumericalAddSubtractExpression)expression);
-    } else if (expression instanceof NumericalMultiplyDivideExpression) {
-      return _inferType((NumericalMultiplyDivideExpression)expression);
-    } else if (expression instanceof NumericalUnaryExpression) {
-      return _inferType((NumericalUnaryExpression)expression);
-    } else if (expression instanceof ParenthesizedExpression) {
-      return _inferType((ParenthesizedExpression)expression);
-    } else if (expression instanceof PrimitiveValueExpression) {
-      return _inferType((PrimitiveValueExpression)expression);
-    } else if (expression instanceof ShiftExpression) {
-      return _inferType((ShiftExpression)expression);
-    } else if (expression instanceof Expression) {
-      return _inferType((Expression)expression);
-    } else if (expression != null) {
-      return _inferType(expression);
+  public Collection<Type> assign(final Collection<? extends Type> leftTypes, final Collection<? extends Type> rightTypes) {
+    final Collection<Type> combined = this.combine(leftTypes, rightTypes);
+    ArrayList<Type> _arrayList = new ArrayList<Type>();
+    final List<Type> matched = _arrayList;
+    for (final Type t1 : leftTypes) {
+      for (final Type t2 : combined) {
+        boolean _equals = EcoreUtil.equals(t1, t2);
+        if (_equals) {
+          matched.add(t1);
+        }
+      }
+    }
+    return matched;
+  }
+  
+  public Collection<Type> combine(final Collection<? extends Type> leftTypes, final Collection<? extends Type> rightTypes) {
+    HashSet<Type> _hashSet = new HashSet<Type>();
+    final Set<Type> resultTypes = _hashSet;
+    for (final Type t1 : leftTypes) {
+      for (final Type t2 : rightTypes) {
+        boolean _equals = EcoreUtil.equals(t1, t2);
+        if (_equals) {
+          resultTypes.add(t1);
+        }
+      }
+    }
+    HashSet<Type> _hashSet_1 = new HashSet<Type>();
+    final Set<Type> leftBacklog = _hashSet_1;
+    leftBacklog.addAll(leftTypes);
+    leftBacklog.removeAll(resultTypes);
+    HashSet<Type> _hashSet_2 = new HashSet<Type>();
+    final Set<Type> rightBacklog = _hashSet_2;
+    rightBacklog.addAll(rightTypes);
+    rightBacklog.removeAll(resultTypes);
+    final List<PrimitiveType> leftVoids = this.ts.getVoidTypes(leftBacklog);
+    final List<PrimitiveType> rightVoids = this.ts.getVoidTypes(rightBacklog);
+    boolean _and = false;
+    boolean _isEmpty = leftVoids.isEmpty();
+    boolean _not = (!_isEmpty);
+    if (!_not) {
+      _and = false;
+    } else {
+      boolean _isEmpty_1 = rightVoids.isEmpty();
+      boolean _not_1 = (!_isEmpty_1);
+      _and = (_not && _not_1);
+    }
+    if (_and) {
+      resultTypes.addAll(leftVoids);
+      resultTypes.addAll(rightVoids);
+      leftBacklog.removeAll(leftVoids);
+      rightBacklog.removeAll(rightVoids);
+    }
+    final List<PrimitiveType> leftBooleans = this.ts.getBooleanTypes(leftBacklog);
+    final List<PrimitiveType> rightBooleans = this.ts.getBooleanTypes(rightBacklog);
+    boolean _and_1 = false;
+    boolean _isEmpty_2 = leftBooleans.isEmpty();
+    boolean _not_2 = (!_isEmpty_2);
+    if (!_not_2) {
+      _and_1 = false;
+    } else {
+      boolean _isEmpty_3 = rightBooleans.isEmpty();
+      boolean _not_3 = (!_isEmpty_3);
+      _and_1 = (_not_2 && _not_3);
+    }
+    if (_and_1) {
+      resultTypes.addAll(leftBooleans);
+      resultTypes.addAll(rightBooleans);
+      leftBacklog.removeAll(leftBooleans);
+      rightBacklog.removeAll(rightBooleans);
+    }
+    final List<PrimitiveType> leftStrings = this.ts.getStringTypes(leftBacklog);
+    final List<PrimitiveType> rightStrings = this.ts.getStringTypes(rightBacklog);
+    boolean _and_2 = false;
+    boolean _isEmpty_4 = leftStrings.isEmpty();
+    boolean _not_4 = (!_isEmpty_4);
+    if (!_not_4) {
+      _and_2 = false;
+    } else {
+      boolean _isEmpty_5 = rightStrings.isEmpty();
+      boolean _not_5 = (!_isEmpty_5);
+      _and_2 = (_not_4 && _not_5);
+    }
+    if (_and_2) {
+      resultTypes.addAll(leftStrings);
+      resultTypes.addAll(rightStrings);
+      leftBacklog.removeAll(leftStrings);
+      rightBacklog.removeAll(rightStrings);
+    }
+    final List<Type> leftNumericals = this.getNumericalTypes(leftBacklog);
+    final List<Type> rightNumericals = this.getNumericalTypes(rightBacklog);
+    boolean _and_3 = false;
+    boolean _isEmpty_6 = leftNumericals.isEmpty();
+    boolean _not_6 = (!_isEmpty_6);
+    if (!_not_6) {
+      _and_3 = false;
+    } else {
+      boolean _isEmpty_7 = rightNumericals.isEmpty();
+      boolean _not_7 = (!_isEmpty_7);
+      _and_3 = (_not_6 && _not_7);
+    }
+    if (_and_3) {
+      final List<PrimitiveType> leftReals = this.ts.getRealTypes(leftNumericals);
+      final List<PrimitiveType> rightReals = this.ts.getRealTypes(rightNumericals);
+      boolean _or = false;
+      boolean _isEmpty_8 = leftReals.isEmpty();
+      boolean _not_8 = (!_isEmpty_8);
+      if (_not_8) {
+        _or = true;
+      } else {
+        boolean _isEmpty_9 = rightReals.isEmpty();
+        boolean _not_9 = (!_isEmpty_9);
+        _or = (_not_8 || _not_9);
+      }
+      if (_or) {
+        resultTypes.addAll(leftReals);
+        resultTypes.addAll(rightReals);
+      } else {
+        final List<PrimitiveType> leftIntegers = this.ts.getIntegerTypes(leftNumericals);
+        final List<PrimitiveType> rightIntegers = this.ts.getIntegerTypes(rightNumericals);
+        boolean _and_4 = false;
+        boolean _isEmpty_10 = leftIntegers.isEmpty();
+        boolean _not_10 = (!_isEmpty_10);
+        if (!_not_10) {
+          _and_4 = false;
+        } else {
+          boolean _isEmpty_11 = rightIntegers.isEmpty();
+          boolean _not_11 = (!_isEmpty_11);
+          _and_4 = (_not_10 && _not_11);
+        }
+        if (_and_4) {
+          resultTypes.addAll(leftIntegers);
+          resultTypes.addAll(rightIntegers);
+        }
+      }
+    }
+    return resultTypes;
+  }
+  
+  public List<Type> getNumericalTypes(final Collection<? extends Type> types) {
+    ArrayList<Type> integerTypes = CollectionLiterals.<Type>newArrayList();
+    for (final Type t : types) {
+      boolean _or = false;
+      boolean _isInteger = this.ts.isInteger(t);
+      if (_isInteger) {
+        _or = true;
+      } else {
+        boolean _isReal = this.ts.isReal(t);
+        _or = (_isInteger || _isReal);
+      }
+      if (_or) {
+        integerTypes.add(t);
+      }
+    }
+    return integerTypes;
+  }
+  
+  public Collection<? extends Type> analyze(final Statement stmt) {
+    return this.inferType(stmt);
+  }
+  
+  public Collection<? extends Type> analyze(final Declaration decl) {
+    return this.inferType(decl);
+  }
+  
+  public Collection<? extends Type> inferType(final EObject definition) {
+    if (definition instanceof VariableDefinition) {
+      return _inferType((VariableDefinition)definition);
+    } else if (definition instanceof ActiveStateReferenceExpression) {
+      return _inferType((ActiveStateReferenceExpression)definition);
+    } else if (definition instanceof AssignmentExpression) {
+      return _inferType((AssignmentExpression)definition);
+    } else if (definition instanceof BitwiseAndExpression) {
+      return _inferType((BitwiseAndExpression)definition);
+    } else if (definition instanceof BitwiseOrExpression) {
+      return _inferType((BitwiseOrExpression)definition);
+    } else if (definition instanceof BitwiseXorExpression) {
+      return _inferType((BitwiseXorExpression)definition);
+    } else if (definition instanceof ConditionalExpression) {
+      return _inferType((ConditionalExpression)definition);
+    } else if (definition instanceof ElementReferenceExpression) {
+      return _inferType((ElementReferenceExpression)definition);
+    } else if (definition instanceof EventRaisingExpression) {
+      return _inferType((EventRaisingExpression)definition);
+    } else if (definition instanceof EventValueReferenceExpression) {
+      return _inferType((EventValueReferenceExpression)definition);
+    } else if (definition instanceof FeatureCall) {
+      return _inferType((FeatureCall)definition);
+    } else if (definition instanceof LogicalAndExpression) {
+      return _inferType((LogicalAndExpression)definition);
+    } else if (definition instanceof LogicalNotExpression) {
+      return _inferType((LogicalNotExpression)definition);
+    } else if (definition instanceof LogicalOrExpression) {
+      return _inferType((LogicalOrExpression)definition);
+    } else if (definition instanceof LogicalRelationExpression) {
+      return _inferType((LogicalRelationExpression)definition);
+    } else if (definition instanceof NumericalAddSubtractExpression) {
+      return _inferType((NumericalAddSubtractExpression)definition);
+    } else if (definition instanceof NumericalMultiplyDivideExpression) {
+      return _inferType((NumericalMultiplyDivideExpression)definition);
+    } else if (definition instanceof NumericalUnaryExpression) {
+      return _inferType((NumericalUnaryExpression)definition);
+    } else if (definition instanceof ParenthesizedExpression) {
+      return _inferType((ParenthesizedExpression)definition);
+    } else if (definition instanceof PrimitiveValueExpression) {
+      return _inferType((PrimitiveValueExpression)definition);
+    } else if (definition instanceof ShiftExpression) {
+      return _inferType((ShiftExpression)definition);
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(expression).toString());
+        Arrays.<Object>asList(definition).toString());
     }
   }
   

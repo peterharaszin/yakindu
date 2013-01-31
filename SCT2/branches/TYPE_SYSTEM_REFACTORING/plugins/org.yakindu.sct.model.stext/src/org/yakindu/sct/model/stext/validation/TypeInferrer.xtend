@@ -29,7 +29,6 @@ import org.yakindu.sct.model.stext.stext.ConditionalExpression
 import org.yakindu.sct.model.stext.stext.ElementReferenceExpression
 import org.yakindu.sct.model.stext.stext.EventRaisingExpression
 import org.yakindu.sct.model.stext.stext.EventValueReferenceExpression
-import org.yakindu.sct.model.stext.stext.Expression
 import org.yakindu.sct.model.stext.stext.FeatureCall
 import org.yakindu.sct.model.stext.stext.HexLiteral
 import org.yakindu.sct.model.stext.stext.IntLiteral
@@ -50,6 +49,15 @@ import org.yakindu.sct.model.stext.stext.StringLiteral
 import org.yakindu.sct.model.stext.stext.UnaryOperator
 import java.util.Collection
 import org.yakindu.sct.model.stext.stext.EnumLiteral
+import java.util.List
+import java.util.ArrayList
+import java.util.Set
+import java.util.HashSet
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.yakindu.base.types.PrimitiveType
+import org.yakindu.sct.model.sgraph.Declaration
+import org.yakindu.sct.model.stext.validation.TypeCheckException
+import org.yakindu.sct.model.stext.stext.VariableDefinition
 
 /**
  * 
@@ -74,12 +82,25 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 		cache.get(stmt, this)
 	}
 	
-	def dispatch Collection<? extends Type> inferType(Expression expr) {
-		throw new RuntimeException("Unsupported expression type" + expr)
+	override Collection<? extends Type>getTypes(Declaration decl) {
+		if (decl == null) {
+			return <Type>newArrayList()
+		}
+		cache.get(decl, this)
 	}
 	
-	def dispatch Collection<? extends Type> inferType(Statement stmt){
-		throw new RuntimeException("Unsupported statement type" + stmt)
+	def dispatch Collection<? extends Type> inferType(VariableDefinition definition) {
+		if (definition.initialValue == null){
+			return newArrayList(definition.type)
+		}
+		else {
+			val valTypes = getTypes(definition.initialValue);
+			val types = assign(newArrayList(definition.type), valTypes);
+			if (types.isEmpty()) {
+				error("Can not assign a value of type " + valTypes.map(t | t.name).join(",") + " to a variable of type " + definition.type.name)
+			}
+			return types
+		}
 	}
 	
 	def dispatch Collection<? extends Type> inferType(AssignmentExpression assignment){
@@ -329,46 +350,6 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 		}
 		return booleanTypes
 	}
-	
-	def Collection<? extends Type> getNumericalTypes(Collection<? extends Type> types){
-		var integerTypes = <Type>newArrayList()
-		for(Type t: types){
-			if(t.integer || t.real){
-				integerTypes.add(t)
-			}
-		}
-		return integerTypes;
-	}
-	
-	def Collection<? extends Type> getRealTypes(Collection<? extends Type> types){
-		var realTypes = <Type>newArrayList()
-		for(Type t: types){
-			if(t.real){
-				realTypes.add(t)
-			}
-		}
-		return realTypes;
-	}
-	
-	def Collection<? extends Type> getIntegerTypes(Collection<? extends Type> types){
-		var integerTypes = <Type>newArrayList()
-		for(Type t: types){
-			if(t.integer){
-				integerTypes.add(t)
-			}
-		}
-		return integerTypes;
-	}
-	
-	def Collection<? extends Type> getBooleanTypes(Collection<? extends Type> types){
-		var booleanTypes = <Type>newArrayList()
-		for(Type t: types){
-			if(t.boolean){
-				booleanTypes.add(t)
-			}
-		}
-		return booleanTypes;
-	}
 	 
 	def error(String msg){
 		throw new TypeCheckException(msg)
@@ -393,5 +374,112 @@ class TypeInferrer implements org.yakindu.sct.model.stext.validation.ITypeInferr
 	def Collection<? extends Type> getStringTypes(){
 		ts.primitiveTypes.filter(t | ts.isString(t)).toList
 	}
+	
+	def Collection<Type> assign(Collection<? extends Type> leftTypes, Collection<? extends Type> rightTypes) {
+		// combine, but retain left types only
+		val Collection<Type> combined = combine(leftTypes, rightTypes);
+		val List<Type> matched = new ArrayList<Type>();
+		for(Type t1: leftTypes){
+			for(Type t2: combined){
+				if(EcoreUtil::equals(t1, t2)){
+					matched.add(t1);
+				}
+			}
+		}
+		return matched;
+	}
 
+	def Collection<Type> combine(Collection<? extends Type> leftTypes, Collection<? extends Type> rightTypes) {
+		val Set<Type> resultTypes = new HashSet<Type>();
+		// add all common types to result set
+		for (Type t1 : leftTypes) {
+			for(Type t2 : rightTypes){
+				if (EcoreUtil::equals(t1, t2)) {
+					resultTypes.add(t1);
+				}
+			}
+		}
+		val Set<Type> leftBacklog = new HashSet<Type>();
+		leftBacklog.addAll(leftTypes);
+		leftBacklog.removeAll(resultTypes);
+		val Set<Type> rightBacklog = new HashSet<Type>();
+		rightBacklog.addAll(rightTypes);
+		rightBacklog.removeAll(resultTypes);
+	
+		// we may add all void types (in case both lists contain any) as they
+		// are all assumed to be compatible
+		val List<PrimitiveType> leftVoids = getVoidTypes(leftBacklog);
+		val List<PrimitiveType> rightVoids = getVoidTypes(rightBacklog);
+		if (!leftVoids.isEmpty() && !rightVoids.isEmpty()) {
+			resultTypes.addAll(leftVoids);
+			resultTypes.addAll(rightVoids);
+			leftBacklog.removeAll(leftVoids);
+			rightBacklog.removeAll(rightVoids);
+		}
+	
+		// we may add all boolean types (in case both lists contain any) as they
+		// are all assumed to be compatible
+		val List<PrimitiveType> leftBooleans = getBooleanTypes(leftBacklog);
+		val List<PrimitiveType> rightBooleans = getBooleanTypes(rightBacklog);
+		if (!leftBooleans.isEmpty() && !rightBooleans.isEmpty()) {
+			resultTypes.addAll(leftBooleans);
+			resultTypes.addAll(rightBooleans);
+			leftBacklog.removeAll(leftBooleans);
+			rightBacklog.removeAll(rightBooleans);
+		}
+	
+		// we may add all string types (in case both lists contain any) as they
+		// are all assumed to be compatible
+		val List<PrimitiveType> leftStrings = getStringTypes(leftBacklog);
+		val List<PrimitiveType> rightStrings = getStringTypes(rightBacklog);
+		if (!leftStrings.isEmpty() && !rightStrings.isEmpty()) {
+			resultTypes.addAll(leftStrings);
+			resultTypes.addAll(rightStrings);
+			leftBacklog.removeAll(leftStrings);
+			rightBacklog.removeAll(rightStrings);
+		}
+	
+		// we may add numerical types if they are regarded to be compatible (and
+		// both lists contain any)
+		val List<Type> leftNumericals = getNumericalTypes(leftBacklog);
+		val List<Type> rightNumericals = getNumericalTypes(rightBacklog);
+		if (!leftNumericals.isEmpty() && !rightNumericals.isEmpty()) {
+			val List<PrimitiveType> leftReals = getRealTypes(leftNumericals);
+			val List<PrimitiveType> rightReals = getRealTypes(rightNumericals);
+			// if we have reals, we have to use the real types
+			if (!leftReals.isEmpty() || !rightReals.isEmpty()) {
+				resultTypes.addAll(leftReals);
+				resultTypes.addAll(rightReals);
+			} else {
+				val List<PrimitiveType> leftIntegers = getIntegerTypes(leftNumericals);
+				val List<PrimitiveType> rightIntegers = getIntegerTypes(rightNumericals);
+				// integer and hex types
+				if (!leftIntegers.isEmpty() && !rightIntegers.isEmpty()) {
+					resultTypes.addAll(leftIntegers);
+					resultTypes.addAll(rightIntegers);
+				}
+			}
+		}
+		return resultTypes;
+	}
+
+	def List<Type> getNumericalTypes(Collection<? extends Type> types){
+		var integerTypes = <Type>newArrayList()
+		for(Type t: types){
+			if(t.integer || t.real){
+				integerTypes.add(t)
+			}
+		}
+		return integerTypes;
+	}
+	
+
+	override analyze(Statement stmt) {
+		return inferType(stmt)
+	}
+	
+	override analyze(Declaration decl) {
+		return inferType(decl)
+	}
+	
 }

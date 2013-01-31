@@ -329,7 +329,7 @@ public class STextJavaValidatorTest extends AbstractSTextTest {
 		checkExpressionSuccess("interface: var myString : string = \"text\"");
 
 		String errorMsg = "Can not assign a value of type "
-				+ "'%s' to a variable of type '%s'";
+				+ "%s to a variable of type %s";
 
 		// Fail boolean 1
 		checkErrorMessageForExpression("interface: var myBool : boolean = 5",

@@ -14,6 +14,7 @@ package org.yakindu.sct.model.stext.validation;
 import java.util.Collection;
 
 import org.yakindu.base.types.Type;
+import org.yakindu.sct.model.sgraph.Declaration;
 import org.yakindu.sct.model.sgraph.Statement;
 
 import com.google.inject.ImplementedBy;
@@ -33,8 +34,8 @@ public interface ITypeInferrer {
 	 * @throws TypeCheckException
 	 *             if the Statement is invalid
 	 */
-	Collection<? extends Type> getTypes(Statement expr) throws TypeCheckException;
+	Collection<? extends Type> getTypes(Statement statement) throws TypeCheckException;
 	
-//	Collection<? extends Type> getTypes(Literal expr) throws TypeCheckException;
+	Collection<? extends Type> getTypes(Declaration declaration) throws TypeCheckException;
 	
 }

@@ -29,12 +29,6 @@ public interface ITypeSystemAccess {
 
 	public List<Type> getTypes();
 	
-	
-	public Collection<Type> combine(Collection<? extends Type> leftTypes, Collection<? extends Type> rightTypes);
-	
-	public Collection<Type> assign(Collection<? extends Type> leftTypes, Collection<? extends Type> rightTypes);
-
-	
 	public boolean isVoid(Type type);
 
 	public boolean isBoolean(Type type);

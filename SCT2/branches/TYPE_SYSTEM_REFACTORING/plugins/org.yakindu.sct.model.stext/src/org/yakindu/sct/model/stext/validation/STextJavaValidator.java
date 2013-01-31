@@ -12,7 +12,6 @@
 package org.yakindu.sct.model.stext.validation;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +39,7 @@ import org.yakindu.base.types.Parameter;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.Type;
 import org.yakindu.sct.model.sgraph.Choice;
+import org.yakindu.sct.model.sgraph.Declaration;
 import org.yakindu.sct.model.sgraph.SGraphPackage;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.ScopedElement;
@@ -370,31 +370,18 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 				ValidationMessageAcceptor.INSIGNIFICANT_INDEX, code);
 
 	}
-
+	
 	@Check(CheckType.FAST)
-	public void checkVariableDefinitionInitialValue(
-			VariableDefinition definition) {
-		Type varType = definition.getType();
-		if (definition.getInitialValue() == null)
-			return;
+	public void checkExpression(final Declaration declaration) {
 		try {
-			Collection<? extends Type> valTypes = inferrer.getTypes(definition
-					.getInitialValue());
-			if (tsAccess.assign(Collections.singletonList(varType), valTypes)
-					.isEmpty()) {
-				String valTypesNames = "";
-				for (Type t : valTypes) {
-					if (!valTypesNames.isEmpty()) {
-						valTypesNames += ", ";
-					}
-					valTypesNames += t.getName();
-				}
-				error("Can not assign a value of type '" + valTypesNames
-						+ "' to a variable of type '" + varType + "'",
-						StextPackage.Literals.VARIABLE_DEFINITION__INITIAL_VALUE);
-			}
-		} catch (Exception e) {
+			// what happens here??
+			inferrer.getTypes(declaration);
+		} catch (TypeCheckException e) {
 			error(e.getMessage(), null);
+		} catch (IllegalArgumentException e) {
+			// This happens, when the expression is not completed for Unhandled
+			// parameter types: [null]
+			// We can safely ignore this exception
 		}
 	}
 

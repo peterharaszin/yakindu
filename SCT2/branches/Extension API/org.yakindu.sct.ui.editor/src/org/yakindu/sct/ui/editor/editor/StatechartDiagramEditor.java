@@ -10,6 +10,7 @@
  */
 package org.yakindu.sct.ui.editor.editor;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -17,6 +18,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.ViewportAwareConnectionLayerClippingStrategy;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gef.RootEditPart;
@@ -31,6 +38,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.help.IWorkbenchHelpSystem;
 import org.eclipse.ui.ide.IGotoMarker;
 import org.eclipse.xtext.ui.XtextProjectHelper;
+import org.yakindu.sct.model.sgraph.SGraphPackage;
 import org.yakindu.sct.ui.editor.DiagramActivator;
 import org.yakindu.sct.ui.editor.editor.guice.InjectableDiagramDocumentEditor;
 import org.yakindu.sct.ui.editor.module.SCTModule;
@@ -39,6 +47,7 @@ import org.yakindu.sct.ui.editor.utils.HelpContextIds;
 import org.yakindu.sct.ui.editor.validation.SCTValidationJob;
 
 import com.google.inject.Inject;
+import com.google.inject.Injector;
 import com.google.inject.name.Named;
 
 import de.itemis.xtext.utils.gmf.resource.DirtyStateListener;
@@ -61,32 +70,30 @@ public class StatechartDiagramEditor extends InjectableDiagramDocumentEditor imp
 	@Inject
 	private StatechartMarkerNavigationProvider markerNavigator;
 
-	// private ResourceSetListener validationListener = new
-	// ResourceSetListenerImpl() {
-	//
-	// @Override
-	// public void resourceSetChanged(ResourceSetChangeEvent event) {
-	// for (Notification notification : event.getNotifications()) {
-	// if (notification.getNotifier() instanceof EObject
-	// && notification.getEventType() != Notification.REMOVING_ADAPTER
-	// && notification.getEventType() != Notification.RESOLVE) {
-	// EObject eObject = (EObject) notification.getNotifier();
-	// if (eObject.eClass().getEPackage() == SGraphPackage.eINSTANCE) {
-	// validationJob.cancel();
-	// validationJob.schedule(DELAY);
-	// } else
-	// for (EClass eClass : eObject.eClass()
-	// .getEAllSuperTypes()) {
-	// if (SGraphPackage.eINSTANCE == eClass.getEPackage()) {
-	// validationJob.cancel();
-	// validationJob.schedule(DELAY);
-	// return;
-	// }
-	// }
-	// }
-	// }
-	// }
-	// };
+	private ResourceSetListener validationListener = new ResourceSetListenerImpl() {
+
+		@Override
+		public void resourceSetChanged(ResourceSetChangeEvent event) {
+			for (Notification notification : event.getNotifications()) {
+				if (notification.getNotifier() instanceof EObject
+						&& notification.getEventType() != Notification.REMOVING_ADAPTER
+						&& notification.getEventType() != Notification.RESOLVE) {
+					EObject eObject = (EObject) notification.getNotifier();
+					if (eObject.eClass().getEPackage() == SGraphPackage.eINSTANCE) {
+						validationJob.cancel();
+						validationJob.schedule(DELAY);
+					} else
+						for (EClass eClass : eObject.eClass().getEAllSuperTypes()) {
+							if (SGraphPackage.eINSTANCE == eClass.getEPackage()) {
+								validationJob.cancel();
+								validationJob.schedule(DELAY);
+								return;
+							}
+						}
+				}
+			}
+		}
+	};
 
 	private DirtyStateListener domainAdapter;
 
@@ -99,21 +106,17 @@ public class StatechartDiagramEditor extends InjectableDiagramDocumentEditor imp
 	@Override
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
 		super.init(site, input);
-		// getEditingDomain().addResourceSetListener(validationListener);
+		getEditingDomain().addResourceSetListener(validationListener);
 		checkXtextNature();
 		initValidationJob();
 	}
 
 	private void initValidationJob() {
-		// final IFile file = ((IFileEditorInput) getEditorInput()).getFile();
-		// validationJob = new SCTValidationJob(getDiagram());
-		// IExpressionLanguageProvider registeredProvider =
-		// ExpressionLanguageProviderExtensions
-		// .getRegisteredProvider(SemanticTarget.StatechartSpecification,
-		// file.getFileExtension());
-		// Injector injector = registeredProvider.getInjector();
-		// injector.injectMembers(validationJob);
-		// validationJob.setRule(file);
+		final IFile file = ((IFileEditorInput) getEditorInput()).getFile();
+		validationJob = new SCTValidationJob(getDiagram());
+		Injector injector = DiagramActivator.getDefault().getInjector();
+		injector.injectMembers(validationJob);
+		validationJob.setRule(file);
 	}
 
 	private void checkXtextNature() {
@@ -180,8 +183,8 @@ public class StatechartDiagramEditor extends InjectableDiagramDocumentEditor imp
 
 	@Override
 	public void dispose() {
-		// validationJob.cancel();
-		// getEditingDomain().removeResourceSetListener(validationListener);
+		 validationJob.cancel();
+		 getEditingDomain().removeResourceSetListener(validationListener);
 		getEditingDomain().removeResourceSetListener(domainAdapter);
 		domainAdapter.dispose();
 		IFileEditorInput editorInput = (IFileEditorInput) getEditorInput();

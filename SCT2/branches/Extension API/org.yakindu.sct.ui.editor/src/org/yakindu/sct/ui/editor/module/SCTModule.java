@@ -3,6 +3,11 @@ package org.yakindu.sct.ui.editor.module;
 import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.xtext.ui.editor.validation.MarkerCreator;
+import org.eclipse.xtext.ui.validation.MarkerTypeProvider;
+import org.eclipse.xtext.validation.IDiagnosticConverter;
+import org.yakindu.sct.model.sgraph.ui.validation.SCTMarkerCreator;
+import org.yakindu.sct.model.sgraph.ui.validation.SCTMarkerTypeProvider;
 import org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor;
 import org.yakindu.sct.ui.editor.editor.guice.IMetaModelTypeFactory;
 import org.yakindu.sct.ui.editor.editor.guice.InjectableEditPartFactory;
@@ -30,6 +35,7 @@ import org.yakindu.sct.ui.editor.editparts.TransitionExpressionEditPart;
 import org.yakindu.sct.ui.editor.providers.DefaultSCTPaletteFactory;
 import org.yakindu.sct.ui.editor.providers.ISCTPaletteFactory;
 import org.yakindu.sct.ui.editor.providers.SemanticHints;
+import org.yakindu.sct.ui.editor.validation.SCTDiagnosticConverterImpl;
 import org.yakindu.sct.ui.editor.wizards.DefaultDiagramInitializer;
 import org.yakindu.sct.ui.editor.wizards.IDiagramInitializer;
 
@@ -146,6 +152,9 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(BORDER_ITEM_LABEL)).to(BorderItemEditPart.class);
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SYNCHRONIZATION)).to(StateEditPart.class);
 		bind(IDiagramInitializer.class).to(getDiagramInitializer());
+		bind(MarkerCreator.class).to(SCTMarkerCreator.class);
+		bind(MarkerTypeProvider.class).to(SCTMarkerTypeProvider.class);
+		bind(IDiagnosticConverter.class).to(SCTDiagnosticConverterImpl.class);
 
 	}
 

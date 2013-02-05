@@ -44,6 +44,7 @@ import com.google.inject.name.Names;
 public class SCTModule extends AbstractModule implements SemanticHints {
 
 	public static final String FILE_EXTENSION = "fileExtension";
+	public static final String CONTRIBUTOR_ID = "propertySheetId";
 
 	/**
 	 * returns an implementation if {@link IMetaModelTypeFactory} that registers
@@ -81,8 +82,23 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 		return "sct";
 	}
 
+	/**
+	 * Override the property sheet id if you want to contribute your own
+	 * property sheets via
+	 * org.eclipse.ui.views.properties.tabbed.propertyContributor extension
+	 * point
+	 * 
+	 */
+	protected String getContributorId() {
+		return "org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor";
+	}
+
 	protected Class<? extends IGraphicalEditPart> getTransitionEditPart() {
 		return TransitionEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getStateEditPart() {
+		return StateEditPart.class;
 	}
 
 	@Override
@@ -91,6 +107,7 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 		bind(IMetaModelTypeFactory.class).to(getMetaModelTypeFactory());
 		bind(EditPartFactory.class).to(InjectableEditPartFactory.class);
 		bind(ISCTPaletteFactory.class).to(getPaletteFactory());
+		bind(String.class).annotatedWith(Names.named(CONTRIBUTOR_ID)).toInstance(getContributorId());
 		configureEditParts();
 	}
 
@@ -117,7 +134,7 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 				StateTextCompartmentExpressionEditPart.class);
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_FIGURE_COMPARTMENT)).to(
 				StateFigureCompartmentEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE)).to(StateEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE)).to(getStateEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(CHOICE)).to(ChoiceEditPart.class);
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(DEEPHISTORY)).to(EntryEditPart.class);
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SHALLOWHISTORY)).to(EntryEditPart.class);

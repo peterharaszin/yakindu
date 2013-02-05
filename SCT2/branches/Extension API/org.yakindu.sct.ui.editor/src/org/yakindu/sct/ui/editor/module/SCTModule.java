@@ -1,6 +1,5 @@
 package org.yakindu.sct.ui.editor.module;
 
-import org.eclipse.gef.EditPartFactory;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.xtext.ui.editor.validation.MarkerCreator;
@@ -10,7 +9,6 @@ import org.yakindu.sct.model.sgraph.ui.validation.SCTMarkerCreator;
 import org.yakindu.sct.model.sgraph.ui.validation.SCTMarkerTypeProvider;
 import org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor;
 import org.yakindu.sct.ui.editor.editor.guice.IMetaModelTypeFactory;
-import org.yakindu.sct.ui.editor.editor.guice.InjectableEditPartFactory;
 import org.yakindu.sct.ui.editor.editor.guice.StatechartMetaModelTypeFactory;
 import org.yakindu.sct.ui.editor.editparts.BorderItemEditPart;
 import org.yakindu.sct.ui.editor.editparts.ChoiceEditPart;
@@ -111,7 +109,6 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 	protected void configure() {
 		bind(String.class).annotatedWith(Names.named(FILE_EXTENSION)).toInstance(getFileExtension());
 		bind(IMetaModelTypeFactory.class).to(getMetaModelTypeFactory());
-		bind(EditPartFactory.class).to(InjectableEditPartFactory.class);
 		bind(ISCTPaletteFactory.class).to(getPaletteFactory());
 		bind(String.class).annotatedWith(Names.named(CONTRIBUTOR_ID)).toInstance(getContributorId());
 		configureEditParts();

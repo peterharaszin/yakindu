@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Generator C Test
+Bundle-SymbolicName: org.yakindu.sct.generator.c.test
+Bundle-Version: 2.0.1.qualifier
+Bundle-Vendor: yakindu.org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Eclipse-BundleShape: dir
+Require-Bundle: org.junit;bundle-version="4.8.2",
+ org.eclipse.core.resources;bundle-version="3.7.100",
+ org.eclipse.core.runtime;bundle-version="3.7.0",
+ com.google.inject;bundle-version="2.0.0",
+ org.yakindu.sct.generator.c,
+ org.yakindu.sct.generator.core,
+ org.yakindu.sct.generator.genmodel,
+ org.yakindu.sct.model.sgen,
+ org.yakindu.sct.test.models,
+ org.yakindu.sct.generator.genmodel.ui

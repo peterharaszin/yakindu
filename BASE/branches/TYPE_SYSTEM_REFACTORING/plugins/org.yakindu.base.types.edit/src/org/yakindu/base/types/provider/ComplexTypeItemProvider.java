@@ -20,17 +20,17 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.yakindu.base.types.DataType;
+import org.yakindu.base.types.ComplexType;
 import org.yakindu.base.types.TypesFactory;
 import org.yakindu.base.types.TypesPackage;
 
 /**
- * This is the item provider adapter for a {@link org.yakindu.base.types.DataType} object.
+ * This is the item provider adapter for a {@link org.yakindu.base.types.ComplexType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class DataTypeItemProvider
+public class ComplexTypeItemProvider
 	extends TypeItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -44,7 +44,7 @@ public class DataTypeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataTypeItemProvider(AdapterFactory adapterFactory) {
+	public ComplexTypeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -75,9 +75,9 @@ public class DataTypeItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_DataType_superTypes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_DataType_superTypes_feature", "_UI_DataType_type"),
-				 TypesPackage.Literals.DATA_TYPE__SUPER_TYPES,
+				 getString("_UI_ComplexType_superTypes_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ComplexType_superTypes_feature", "_UI_ComplexType_type"),
+				 TypesPackage.Literals.COMPLEX_TYPE__SUPER_TYPES,
 				 true,
 				 false,
 				 true,
@@ -98,7 +98,7 @@ public class DataTypeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TypesPackage.Literals.DATA_TYPE__FEATURES);
+			childrenFeatures.add(TypesPackage.Literals.COMPLEX_TYPE__FEATURES);
 		}
 		return childrenFeatures;
 	}
@@ -117,14 +117,14 @@ public class DataTypeItemProvider
 	}
 
 	/**
-	 * This returns DataType.gif.
+	 * This returns ComplexType.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/DataType"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ComplexType"));
 	}
 
 	/**
@@ -135,10 +135,10 @@ public class DataTypeItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((DataType)object).getName();
+		String label = ((ComplexType)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_DataType_type") :
-			getString("_UI_DataType_type") + " " + label;
+			getString("_UI_ComplexType_type") :
+			getString("_UI_ComplexType_type") + " " + label;
 	}
 
 	/**
@@ -152,8 +152,8 @@ public class DataTypeItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DataType.class)) {
-			case TypesPackage.DATA_TYPE__FEATURES:
+		switch (notification.getFeatureID(ComplexType.class)) {
+			case TypesPackage.COMPLEX_TYPE__FEATURES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -173,17 +173,17 @@ public class DataTypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TypesPackage.Literals.DATA_TYPE__FEATURES,
+				(TypesPackage.Literals.COMPLEX_TYPE__FEATURES,
 				 TypesFactory.eINSTANCE.createOperation()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TypesPackage.Literals.DATA_TYPE__FEATURES,
+				(TypesPackage.Literals.COMPLEX_TYPE__FEATURES,
 				 TypesFactory.eINSTANCE.createProperty()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TypesPackage.Literals.DATA_TYPE__FEATURES,
+				(TypesPackage.Literals.COMPLEX_TYPE__FEATURES,
 				 TypesFactory.eINSTANCE.createEvent()));
 	}
 

@@ -699,31 +699,6 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.EnumLiteral} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected EnumLiteralItemProvider enumLiteralItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.yakindu.sct.model.stext.stext.EnumLiteral}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createEnumLiteralAdapter()
-  {
-    if (enumLiteralItemProvider == null)
-    {
-      enumLiteralItemProvider = new EnumLiteralItemProvider(this);
-    }
-
-    return enumLiteralItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.yakindu.sct.model.stext.stext.BoolLiteral} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1584,7 +1559,6 @@ public class StextItemProviderAdapterFactory extends StextAdapterFactory impleme
     if (alwaysEventItemProvider != null) alwaysEventItemProvider.dispose();
     if (expressionItemProvider != null) expressionItemProvider.dispose();
     if (literalItemProvider != null) literalItemProvider.dispose();
-    if (enumLiteralItemProvider != null) enumLiteralItemProvider.dispose();
     if (boolLiteralItemProvider != null) boolLiteralItemProvider.dispose();
     if (intLiteralItemProvider != null) intLiteralItemProvider.dispose();
     if (realLiteralItemProvider != null) realLiteralItemProvider.dispose();

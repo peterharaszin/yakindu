@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.yakindu.base.types.DataType;
+import org.yakindu.base.types.ComplexType;
 import org.yakindu.base.types.Feature;
 import org.yakindu.base.types.Operation;
 import org.yakindu.base.types.Parameter;
@@ -137,10 +137,10 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public DataType getOwningType()
+  public ComplexType getOwningType()
   {
     if (eContainerFeatureID() != StextPackage.OPERATION_DEFINITION__OWNING_TYPE) return null;
-    return (DataType)eContainer();
+    return (ComplexType)eContainer();
   }
 
   /**
@@ -148,7 +148,7 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOwningType(DataType newOwningType, NotificationChain msgs)
+  public NotificationChain basicSetOwningType(ComplexType newOwningType, NotificationChain msgs)
   {
     msgs = eBasicSetContainer((InternalEObject)newOwningType, StextPackage.OPERATION_DEFINITION__OWNING_TYPE, msgs);
     return msgs;
@@ -159,7 +159,7 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setOwningType(DataType newOwningType)
+  public void setOwningType(ComplexType newOwningType)
   {
     if (newOwningType != eInternalContainer() || (eContainerFeatureID() != StextPackage.OPERATION_DEFINITION__OWNING_TYPE && newOwningType != null))
     {
@@ -169,7 +169,7 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newOwningType != null)
-        msgs = ((InternalEObject)newOwningType).eInverseAdd(this, TypesPackage.DATA_TYPE__FEATURES, DataType.class, msgs);
+        msgs = ((InternalEObject)newOwningType).eInverseAdd(this, TypesPackage.COMPLEX_TYPE__FEATURES, ComplexType.class, msgs);
       msgs = basicSetOwningType(newOwningType, msgs);
       if (msgs != null) msgs.dispatch();
     }
@@ -205,7 +205,7 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
       case StextPackage.OPERATION_DEFINITION__OWNING_TYPE:
         if (eInternalContainer() != null)
           msgs = eBasicRemoveFromContainer(msgs);
-        return basicSetOwningType((DataType)otherEnd, msgs);
+        return basicSetOwningType((ComplexType)otherEnd, msgs);
       case StextPackage.OPERATION_DEFINITION__PARAMETERS:
         return ((InternalEList<InternalEObject>)(InternalEList<?>)getParameters()).basicAdd(otherEnd, msgs);
     }
@@ -241,7 +241,7 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
     switch (eContainerFeatureID())
     {
       case StextPackage.OPERATION_DEFINITION__OWNING_TYPE:
-        return eInternalContainer().eInverseRemove(this, TypesPackage.DATA_TYPE__FEATURES, DataType.class, msgs);
+        return eInternalContainer().eInverseRemove(this, TypesPackage.COMPLEX_TYPE__FEATURES, ComplexType.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -282,7 +282,7 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
         setType((Type)newValue);
         return;
       case StextPackage.OPERATION_DEFINITION__OWNING_TYPE:
-        setOwningType((DataType)newValue);
+        setOwningType((ComplexType)newValue);
         return;
       case StextPackage.OPERATION_DEFINITION__PARAMETERS:
         getParameters().clear();
@@ -306,7 +306,7 @@ public class OperationDefinitionImpl extends DeclarationImpl implements Operatio
         setType((Type)null);
         return;
       case StextPackage.OPERATION_DEFINITION__OWNING_TYPE:
-        setOwningType((DataType)null);
+        setOwningType((ComplexType)null);
         return;
       case StextPackage.OPERATION_DEFINITION__PARAMETERS:
         getParameters().clear();

@@ -17,6 +17,5 @@ Require-Bundle: org.eclipse.core.runtime,
  com.google.inject,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtext,
- org.yakindu.sct.model.stext,
- org.yakindu.sct.model.stext.types;bundle-version="1.0.0"
+ org.yakindu.sct.model.stext
 Bundle-ActivationPolicy: lazy

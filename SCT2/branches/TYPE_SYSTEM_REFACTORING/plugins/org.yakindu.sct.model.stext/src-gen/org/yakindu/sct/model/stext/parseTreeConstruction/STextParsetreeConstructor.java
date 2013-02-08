@@ -95,12 +95,11 @@ protected class ThisRootNode extends RootToken {
 			case 61: return new ActiveStateReferenceExpression_Group(this, this, 61, inst);
 			case 62: return new ParenthesizedExpression_Group(this, this, 62, inst);
 			case 63: return new Literal_Alternatives(this, this, 63, inst);
-			case 64: return new EnumLiteral_Group(this, this, 64, inst);
-			case 65: return new BoolLiteral_Group(this, this, 65, inst);
-			case 66: return new IntLiteral_Group(this, this, 66, inst);
-			case 67: return new RealLiteral_Group(this, this, 67, inst);
-			case 68: return new HexLiteral_Group(this, this, 68, inst);
-			case 69: return new StringLiteral_Group(this, this, 69, inst);
+			case 64: return new BoolLiteral_Group(this, this, 64, inst);
+			case 65: return new IntLiteral_Group(this, this, 65, inst);
+			case 66: return new RealLiteral_Group(this, this, 66, inst);
+			case 67: return new HexLiteral_Group(this, this, 67, inst);
+			case 68: return new StringLiteral_Group(this, this, 68, inst);
 			default: return null;
 		}	
 	}	
@@ -10787,11 +10786,11 @@ protected class ParenthesizedExpression_RightParenthesisKeyword_3 extends Keywor
 /************ begin Rule Literal ****************
  *
  * Literal:
- * 	EnumLiteral | BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
+ * 	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
  *
  **/
 
-// EnumLiteral | BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral
+// BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral
 protected class Literal_Alternatives extends AlternativesToken {
 
 	public Literal_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -10806,12 +10805,11 @@ protected class Literal_Alternatives extends AlternativesToken {
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new Literal_EnumLiteralParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
-			case 1: return new Literal_BoolLiteralParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
-			case 2: return new Literal_IntLiteralParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
-			case 3: return new Literal_HexLiteralParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
-			case 4: return new Literal_RealLiteralParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
-			case 5: return new Literal_StringLiteralParserRuleCall_5(lastRuleCallOrigin, this, 5, inst);
+			case 0: return new Literal_BoolLiteralParserRuleCall_0(lastRuleCallOrigin, this, 0, inst);
+			case 1: return new Literal_IntLiteralParserRuleCall_1(lastRuleCallOrigin, this, 1, inst);
+			case 2: return new Literal_HexLiteralParserRuleCall_2(lastRuleCallOrigin, this, 2, inst);
+			case 3: return new Literal_RealLiteralParserRuleCall_3(lastRuleCallOrigin, this, 3, inst);
+			case 4: return new Literal_StringLiteralParserRuleCall_4(lastRuleCallOrigin, this, 4, inst);
 			default: return null;
 		}	
 	}
@@ -10819,7 +10817,6 @@ protected class Literal_Alternatives extends AlternativesToken {
     @Override
 	public IEObjectConsumer tryConsume() {
 		if(getEObject().eClass() != grammarAccess.getBoolLiteralAccess().getBoolLiteralAction_0().getType().getClassifier() && 
-		   getEObject().eClass() != grammarAccess.getEnumLiteralAccess().getEnumLiteralAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getHexLiteralAccess().getHexLiteralAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getIntLiteralAccess().getIntLiteralAction_0().getType().getClassifier() && 
 		   getEObject().eClass() != grammarAccess.getRealLiteralAccess().getRealLiteralAction_0().getType().getClassifier() && 
@@ -10830,52 +10827,16 @@ protected class Literal_Alternatives extends AlternativesToken {
 
 }
 
-// EnumLiteral
-protected class Literal_EnumLiteralParserRuleCall_0 extends RuleCallToken {
-	
-	public Literal_EnumLiteralParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getLiteralAccess().getEnumLiteralParserRuleCall_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new EnumLiteral_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getEnumLiteralAccess().getEnumLiteralAction_0().getType().getClassifier())
-			return null;
-		if(checkForRecursion(EnumLiteral_Group.class, eObjectConsumer)) return null;
-		return eObjectConsumer;
-	}
-	
-    @Override
-	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(next, actIndex , index, inst);
-		}	
-	}	
-}
-
 // BoolLiteral
-protected class Literal_BoolLiteralParserRuleCall_1 extends RuleCallToken {
+protected class Literal_BoolLiteralParserRuleCall_0 extends RuleCallToken {
 	
-	public Literal_BoolLiteralParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Literal_BoolLiteralParserRuleCall_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getLiteralAccess().getBoolLiteralParserRuleCall_1();
+		return grammarAccess.getLiteralAccess().getBoolLiteralParserRuleCall_0();
 	}
 
     @Override
@@ -10903,15 +10864,15 @@ protected class Literal_BoolLiteralParserRuleCall_1 extends RuleCallToken {
 }
 
 // IntLiteral
-protected class Literal_IntLiteralParserRuleCall_2 extends RuleCallToken {
+protected class Literal_IntLiteralParserRuleCall_1 extends RuleCallToken {
 	
-	public Literal_IntLiteralParserRuleCall_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Literal_IntLiteralParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getLiteralAccess().getIntLiteralParserRuleCall_2();
+		return grammarAccess.getLiteralAccess().getIntLiteralParserRuleCall_1();
 	}
 
     @Override
@@ -10939,15 +10900,15 @@ protected class Literal_IntLiteralParserRuleCall_2 extends RuleCallToken {
 }
 
 // HexLiteral
-protected class Literal_HexLiteralParserRuleCall_3 extends RuleCallToken {
+protected class Literal_HexLiteralParserRuleCall_2 extends RuleCallToken {
 	
-	public Literal_HexLiteralParserRuleCall_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Literal_HexLiteralParserRuleCall_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getLiteralAccess().getHexLiteralParserRuleCall_3();
+		return grammarAccess.getLiteralAccess().getHexLiteralParserRuleCall_2();
 	}
 
     @Override
@@ -10975,15 +10936,15 @@ protected class Literal_HexLiteralParserRuleCall_3 extends RuleCallToken {
 }
 
 // RealLiteral
-protected class Literal_RealLiteralParserRuleCall_4 extends RuleCallToken {
+protected class Literal_RealLiteralParserRuleCall_3 extends RuleCallToken {
 	
-	public Literal_RealLiteralParserRuleCall_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Literal_RealLiteralParserRuleCall_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getLiteralAccess().getRealLiteralParserRuleCall_4();
+		return grammarAccess.getLiteralAccess().getRealLiteralParserRuleCall_3();
 	}
 
     @Override
@@ -11011,15 +10972,15 @@ protected class Literal_RealLiteralParserRuleCall_4 extends RuleCallToken {
 }
 
 // StringLiteral
-protected class Literal_StringLiteralParserRuleCall_5 extends RuleCallToken {
+protected class Literal_StringLiteralParserRuleCall_4 extends RuleCallToken {
 	
-	public Literal_StringLiteralParserRuleCall_5(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public Literal_StringLiteralParserRuleCall_4(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
 	public RuleCall getGrammarElement() {
-		return grammarAccess.getLiteralAccess().getStringLiteralParserRuleCall_5();
+		return grammarAccess.getLiteralAccess().getStringLiteralParserRuleCall_4();
 	}
 
     @Override
@@ -11048,168 +11009,6 @@ protected class Literal_StringLiteralParserRuleCall_5 extends RuleCallToken {
 
 
 /************ end Rule Literal ****************/
-
-
-/************ begin Rule EnumLiteral ****************
- *
- * EnumLiteral:
- * 	{EnumLiteral} type=[types::EnumerationType|FQN] "::" value=[types::Enumerator];
- *
- **/
-
-// {EnumLiteral} type=[types::EnumerationType|FQN] "::" value=[types::Enumerator]
-protected class EnumLiteral_Group extends GroupToken {
-	
-	public EnumLiteral_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getEnumLiteralAccess().getGroup();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new EnumLiteral_ValueAssignment_3(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getEnumLiteralAccess().getEnumLiteralAction_0().getType().getClassifier())
-			return null;
-		return eObjectConsumer;
-	}
-
-}
-
-// {EnumLiteral}
-protected class EnumLiteral_EnumLiteralAction_0 extends ActionToken  {
-
-	public EnumLiteral_EnumLiteralAction_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Action getGrammarElement() {
-		return grammarAccess.getEnumLiteralAccess().getEnumLiteralAction_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
-		}	
-	}
-
-    @Override
-	public IEObjectConsumer tryConsume() {
-		if(!eObjectConsumer.isConsumed()) return null;
-		return eObjectConsumer;
-	}
-}
-
-// type=[types::EnumerationType|FQN]
-protected class EnumLiteral_TypeAssignment_1 extends AssignmentToken  {
-	
-	public EnumLiteral_TypeAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getEnumLiteralAccess().getTypeAssignment_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new EnumLiteral_EnumLiteralAction_0(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("type",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("type");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getEnumLiteralAccess().getTypeEnumerationTypeCrossReference_1_0().getType().getClassifier())) {
-				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getEnumLiteralAccess().getTypeEnumerationTypeCrossReference_1_0(); 
-				return obj;
-			}
-		}
-		return null;
-	}
-
-}
-
-// "::"
-protected class EnumLiteral_ColonColonKeyword_2 extends KeywordToken  {
-	
-	public EnumLiteral_ColonColonKeyword_2(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Keyword getGrammarElement() {
-		return grammarAccess.getEnumLiteralAccess().getColonColonKeyword_2();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new EnumLiteral_TypeAssignment_1(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-}
-
-// value=[types::Enumerator]
-protected class EnumLiteral_ValueAssignment_3 extends AssignmentToken  {
-	
-	public EnumLiteral_ValueAssignment_3(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
-		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getEnumLiteralAccess().getValueAssignment_3();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
-		switch(index) {
-			case 0: return new EnumLiteral_ColonColonKeyword_2(lastRuleCallOrigin, this, 0, inst);
-			default: return null;
-		}	
-	}
-
-    @Override	
-	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("value",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("value");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getEnumLiteralAccess().getValueEnumeratorCrossReference_3_0().getType().getClassifier())) {
-				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getEnumLiteralAccess().getValueEnumeratorCrossReference_3_0(); 
-				return obj;
-			}
-		}
-		return null;
-	}
-
-}
-
-
-/************ end Rule EnumLiteral ****************/
 
 
 /************ begin Rule BoolLiteral ****************

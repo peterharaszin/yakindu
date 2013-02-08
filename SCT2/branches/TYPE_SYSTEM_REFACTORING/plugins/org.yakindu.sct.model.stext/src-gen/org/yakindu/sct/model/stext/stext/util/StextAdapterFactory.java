@@ -217,11 +217,6 @@ public class StextAdapterFactory extends AdapterFactoryImpl
         return createLiteralAdapter();
       }
       @Override
-      public Adapter caseEnumLiteral(EnumLiteral object)
-      {
-        return createEnumLiteralAdapter();
-      }
-      @Override
       public Adapter caseBoolLiteral(BoolLiteral object)
       {
         return createBoolLiteralAdapter();
@@ -834,21 +829,6 @@ public class StextAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createLiteralAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.yakindu.sct.model.stext.stext.EnumLiteral <em>Enum Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.yakindu.sct.model.stext.stext.EnumLiteral
-   * @generated
-   */
-  public Adapter createEnumLiteralAdapter()
   {
     return null;
   }

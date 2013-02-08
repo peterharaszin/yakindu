@@ -3683,123 +3683,54 @@ ruleLiteral returns [EObject current=null]
     @after { leaveRule(); }:
 (
     { 
-        newCompositeNode(grammarAccess.getLiteralAccess().getEnumLiteralParserRuleCall_0()); 
+        newCompositeNode(grammarAccess.getLiteralAccess().getBoolLiteralParserRuleCall_0()); 
     }
-    this_EnumLiteral_0=ruleEnumLiteral
+    this_BoolLiteral_0=ruleBoolLiteral
     { 
-        $current = $this_EnumLiteral_0.current; 
+        $current = $this_BoolLiteral_0.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getLiteralAccess().getBoolLiteralParserRuleCall_1()); 
+        newCompositeNode(grammarAccess.getLiteralAccess().getIntLiteralParserRuleCall_1()); 
     }
-    this_BoolLiteral_1=ruleBoolLiteral
+    this_IntLiteral_1=ruleIntLiteral
     { 
-        $current = $this_BoolLiteral_1.current; 
+        $current = $this_IntLiteral_1.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getLiteralAccess().getIntLiteralParserRuleCall_2()); 
+        newCompositeNode(grammarAccess.getLiteralAccess().getHexLiteralParserRuleCall_2()); 
     }
-    this_IntLiteral_2=ruleIntLiteral
+    this_HexLiteral_2=ruleHexLiteral
     { 
-        $current = $this_IntLiteral_2.current; 
+        $current = $this_HexLiteral_2.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getLiteralAccess().getHexLiteralParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getLiteralAccess().getRealLiteralParserRuleCall_3()); 
     }
-    this_HexLiteral_3=ruleHexLiteral
+    this_RealLiteral_3=ruleRealLiteral
     { 
-        $current = $this_HexLiteral_3.current; 
+        $current = $this_RealLiteral_3.current; 
         afterParserOrEnumRuleCall();
     }
 
     |
     { 
-        newCompositeNode(grammarAccess.getLiteralAccess().getRealLiteralParserRuleCall_4()); 
+        newCompositeNode(grammarAccess.getLiteralAccess().getStringLiteralParserRuleCall_4()); 
     }
-    this_RealLiteral_4=ruleRealLiteral
+    this_StringLiteral_4=ruleStringLiteral
     { 
-        $current = $this_RealLiteral_4.current; 
-        afterParserOrEnumRuleCall();
-    }
-
-    |
-    { 
-        newCompositeNode(grammarAccess.getLiteralAccess().getStringLiteralParserRuleCall_5()); 
-    }
-    this_StringLiteral_5=ruleStringLiteral
-    { 
-        $current = $this_StringLiteral_5.current; 
+        $current = $this_StringLiteral_4.current; 
         afterParserOrEnumRuleCall();
     }
 )
-;
-
-
-
-
-
-// Entry rule entryRuleEnumLiteral
-entryRuleEnumLiteral returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getEnumLiteralRule()); }
-	 iv_ruleEnumLiteral=ruleEnumLiteral 
-	 { $current=$iv_ruleEnumLiteral.current; } 
-	 EOF 
-;
-
-// Rule EnumLiteral
-ruleEnumLiteral returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-((
-    {
-        $current = forceCreateModelElement(
-            grammarAccess.getEnumLiteralAccess().getEnumLiteralAction_0(),
-            $current);
-    }
-)(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumLiteralRule());
-	        }
-        }
-		{ 
-	        newCompositeNode(grammarAccess.getEnumLiteralAccess().getTypeEnumerationTypeCrossReference_1_0()); 
-	    }
-		ruleFQN		{ 
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)	otherlv_2='::' 
-    {
-    	newLeafNode(otherlv_2, grammarAccess.getEnumLiteralAccess().getColonColonKeyword_2());
-    }
-(
-(
-		{
-			if ($current==null) {
-	            $current = createModelElement(grammarAccess.getEnumLiteralRule());
-	        }
-        }
-	otherlv_3=RULE_ID
-	{
-		newLeafNode(otherlv_3, grammarAccess.getEnumLiteralAccess().getValueEnumeratorCrossReference_3_0()); 
-	}
-
-)
-))
 ;
 
 

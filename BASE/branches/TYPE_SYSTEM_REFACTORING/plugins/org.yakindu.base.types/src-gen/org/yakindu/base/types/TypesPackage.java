@@ -468,14 +468,14 @@ public interface TypesPackage extends EPackage {
 	int ENUMERATION_TYPE_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.yakindu.base.types.impl.DataTypeImpl <em>Data Type</em>}' class.
+	 * The meta object id for the '{@link org.yakindu.base.types.impl.ComplexTypeImpl <em>Complex Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.yakindu.base.types.impl.DataTypeImpl
-	 * @see org.yakindu.base.types.impl.TypesPackageImpl#getDataType()
+	 * @see org.yakindu.base.types.impl.ComplexTypeImpl
+	 * @see org.yakindu.base.types.impl.TypesPackageImpl#getComplexType()
 	 * @generated
 	 */
-	int DATA_TYPE = 9;
+	int COMPLEX_TYPE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -484,7 +484,7 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__NAME = TYPE__NAME;
+	int COMPLEX_TYPE__NAME = TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Constraint</b></em>' containment reference list.
@@ -493,7 +493,7 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__CONSTRAINT = TYPE__CONSTRAINT;
+	int COMPLEX_TYPE__CONSTRAINT = TYPE__CONSTRAINT;
 
 	/**
 	 * The feature id for the '<em><b>Features</b></em>' containment reference list.
@@ -502,7 +502,7 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__FEATURES = TYPE_FEATURE_COUNT + 0;
+	int COMPLEX_TYPE__FEATURES = TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Super Types</b></em>' reference list.
@@ -511,16 +511,16 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE__SUPER_TYPES = TYPE_FEATURE_COUNT + 1;
+	int COMPLEX_TYPE__SUPER_TYPES = TYPE_FEATURE_COUNT + 1;
 
 	/**
-	 * The number of structural features of the '<em>Data Type</em>' class.
+	 * The number of structural features of the '<em>Complex Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
+	int COMPLEX_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.yakindu.base.types.impl.EnumeratorImpl <em>Enumerator</em>}' class.
@@ -774,36 +774,36 @@ public interface TypesPackage extends EPackage {
 	EReference getPrimitiveType_BaseType();
 
 	/**
-	 * Returns the meta object for class '{@link org.yakindu.base.types.DataType <em>Data Type</em>}'.
+	 * Returns the meta object for class '{@link org.yakindu.base.types.ComplexType <em>Complex Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Data Type</em>'.
-	 * @see org.yakindu.base.types.DataType
+	 * @return the meta object for class '<em>Complex Type</em>'.
+	 * @see org.yakindu.base.types.ComplexType
 	 * @generated
 	 */
-	EClass getDataType();
+	EClass getComplexType();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.yakindu.base.types.DataType#getFeatures <em>Features</em>}'.
+	 * Returns the meta object for the containment reference list '{@link org.yakindu.base.types.ComplexType#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference list '<em>Features</em>'.
-	 * @see org.yakindu.base.types.DataType#getFeatures()
-	 * @see #getDataType()
+	 * @see org.yakindu.base.types.ComplexType#getFeatures()
+	 * @see #getComplexType()
 	 * @generated
 	 */
-	EReference getDataType_Features();
+	EReference getComplexType_Features();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.yakindu.base.types.DataType#getSuperTypes <em>Super Types</em>}'.
+	 * Returns the meta object for the reference list '{@link org.yakindu.base.types.ComplexType#getSuperTypes <em>Super Types</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Super Types</em>'.
-	 * @see org.yakindu.base.types.DataType#getSuperTypes()
-	 * @see #getDataType()
+	 * @see org.yakindu.base.types.ComplexType#getSuperTypes()
+	 * @see #getComplexType()
 	 * @generated
 	 */
-	EReference getDataType_SuperTypes();
+	EReference getComplexType_SuperTypes();
 
 	/**
 	 * Returns the meta object for class '{@link org.yakindu.base.types.Enumerator <em>Enumerator</em>}'.
@@ -1027,14 +1027,14 @@ public interface TypesPackage extends EPackage {
 		EReference PRIMITIVE_TYPE__BASE_TYPE = eINSTANCE.getPrimitiveType_BaseType();
 
 		/**
-		 * The meta object literal for the '{@link org.yakindu.base.types.impl.DataTypeImpl <em>Data Type</em>}' class.
+		 * The meta object literal for the '{@link org.yakindu.base.types.impl.ComplexTypeImpl <em>Complex Type</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.yakindu.base.types.impl.DataTypeImpl
-		 * @see org.yakindu.base.types.impl.TypesPackageImpl#getDataType()
+		 * @see org.yakindu.base.types.impl.ComplexTypeImpl
+		 * @see org.yakindu.base.types.impl.TypesPackageImpl#getComplexType()
 		 * @generated
 		 */
-		EClass DATA_TYPE = eINSTANCE.getDataType();
+		EClass COMPLEX_TYPE = eINSTANCE.getComplexType();
 
 		/**
 		 * The meta object literal for the '<em><b>Features</b></em>' containment reference list feature.
@@ -1042,7 +1042,7 @@ public interface TypesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATA_TYPE__FEATURES = eINSTANCE.getDataType_Features();
+		EReference COMPLEX_TYPE__FEATURES = eINSTANCE.getComplexType_Features();
 
 		/**
 		 * The meta object literal for the '<em><b>Super Types</b></em>' reference list feature.
@@ -1050,7 +1050,7 @@ public interface TypesPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference DATA_TYPE__SUPER_TYPES = eINSTANCE.getDataType_SuperTypes();
+		EReference COMPLEX_TYPE__SUPER_TYPES = eINSTANCE.getComplexType_SuperTypes();
 
 		/**
 		 * The meta object literal for the '{@link org.yakindu.base.types.impl.EnumeratorImpl <em>Enumerator</em>}' class.

@@ -9,13 +9,12 @@
  * 	itemis AG - initial API and implementation
  * 
  */
-package org.yakindu.sct.model.stext.validation;
+package org.yakindu.sct.model.stext.types;
 
-import java.util.Collection;
-
-import org.yakindu.base.types.Type;
-import org.yakindu.sct.model.sgraph.Declaration;
-import org.yakindu.sct.model.sgraph.Statement;
+import org.yakindu.base.types.ITypeSystem.InferenceResult;
+import org.yakindu.sct.model.stext.stext.EventDefinition;
+import org.yakindu.sct.model.stext.stext.Expression;
+import org.yakindu.sct.model.stext.stext.VariableDefinition;
 
 import com.google.inject.ImplementedBy;
 
@@ -25,19 +24,17 @@ import com.google.inject.ImplementedBy;
  * @author Alexander Nyßen - Adopted to changes in type system
  * 
  */
-@ImplementedBy(TypeInferrer.class)
-public interface ITypeInferrer {
+@ImplementedBy(STextDefaultTypeInferrer.class)
+public interface ISTextTypeInferrer {
 	
 	/**
-	 * infers the type for a given {@link Statement}
+	 * Infers the type for a given {@link Expression}
 	 * 
-	 * @throws TypeCheckException
-	 *             if the Statement is invalid
 	 */
-	Collection<? extends Type> getTypes(Statement statement) throws TypeCheckException;
+	InferenceResult inferType(Expression e);
 	
-	Collection<? extends Type> getTypes(Declaration declaration) throws TypeCheckException;
+	InferenceResult inferType(VariableDefinition d);
 	
-	
+	InferenceResult inferType(EventDefinition d);
 	
 }

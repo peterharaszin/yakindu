@@ -337,11 +337,7 @@ ParenthesizedExpression returns Expression:
 ;
 
 Literal:
-	EnumLiteral | BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
-
-EnumLiteral:
-	{EnumLiteral} type=[types::EnumerationType|FQN] '::' value=[types::Enumerator|ID]
-;
+	BoolLiteral | IntLiteral | HexLiteral | RealLiteral | StringLiteral;
 
 BoolLiteral:
 	{BoolLiteral} value=BOOL;

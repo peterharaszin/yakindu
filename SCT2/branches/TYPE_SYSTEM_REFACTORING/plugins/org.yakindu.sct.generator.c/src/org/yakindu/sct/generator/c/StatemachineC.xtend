@@ -17,14 +17,14 @@ import org.yakindu.sct.model.sexec.Check
 import org.yakindu.sct.model.sexec.ExecutionFlow
 import org.yakindu.sct.model.sexec.Step
 import org.yakindu.sct.model.sgraph.Statechart
-import org.yakindu.base.types.ITypeSystemAccess
+import org.yakindu.sct.generator.core.types.ICodegenTypeSystemAccess
 
 class StatemachineC {
 	
 	@Inject extension Naming
 	@Inject extension Navigation
 	@Inject extension FlowCode
-	@Inject extension ITypeSystemAccess
+	@Inject extension ICodegenTypeSystemAccess
 	
 	
 	def generateStatemachineC(ExecutionFlow flow, Statechart sc, IFileSystemAccess fsa) {
@@ -206,7 +206,7 @@ class StatemachineC {
 					return «event.access»;
 				}
 				«IF event.hasValue» 
-					«event.type.targetLanguageTypeName» «event.asGetter»(«scHandleDecl») {
+					«event.type.targetLanguageName» «event.asGetter»(«scHandleDecl») {
 						//TODO: Check if event is not raised
 						return «event.valueAccess»;
 					}
@@ -214,11 +214,11 @@ class StatemachineC {
 			«ENDFOR»
 			
 			«FOR variable : scope.variableDefinitions»
-				«variable.type.targetLanguageTypeName» «variable.asGetter»(«scHandleDecl») {
+				«variable.type.targetLanguageName» «variable.asGetter»(«scHandleDecl») {
 					return «variable.access»;
 				}
 				«IF !variable.readonly »
-				void «variable.asSetter»(«scHandleDecl», «variable.type.targetLanguageTypeName» value) {
+				void «variable.asSetter»(«scHandleDecl», «variable.type.targetLanguageName» value) {
 					«variable.access» = value;
 				}
 				«ENDIF»

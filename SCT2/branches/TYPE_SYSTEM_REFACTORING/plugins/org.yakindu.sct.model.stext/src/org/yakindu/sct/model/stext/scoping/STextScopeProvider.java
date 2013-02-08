@@ -12,6 +12,7 @@
 package org.yakindu.sct.model.stext.scoping;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,14 +32,17 @@ import org.eclipse.xtext.scoping.impl.FilteringScope;
 import org.eclipse.xtext.scoping.impl.SimpleScope;
 import org.eclipse.xtext.util.PolymorphicDispatcher.ErrorHandler;
 import org.yakindu.base.types.DataType;
+import org.yakindu.base.types.EnumerationType;
+import org.yakindu.base.types.Enumerator;
 import org.yakindu.base.types.Feature;
+import org.yakindu.base.types.ITypeSystem;
 import org.yakindu.base.types.Type;
+import org.yakindu.base.types.TypeSystemUtils;
 import org.yakindu.sct.model.sgraph.SGraphPackage;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.stext.scoping.ContextPredicateProvider.EmptyPredicate;
 import org.yakindu.sct.model.stext.stext.ElementReferenceExpression;
-import org.yakindu.sct.model.stext.stext.EnumLiteral;
 import org.yakindu.sct.model.stext.stext.Expression;
 import org.yakindu.sct.model.stext.stext.FeatureCall;
 import org.yakindu.sct.model.stext.stext.InterfaceScope;
@@ -60,6 +64,12 @@ import de.itemis.xtext.utils.jface.viewers.ContextElementAdapter;
  */
 public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 
+	@Inject
+	ITypeSystem typeSystem;
+	
+	@Inject
+	TypeSystemUtils typeSystemUtils;
+	
 	private static class ErrorHandlerDelegate<T> implements ErrorHandler<T> {
 
 		private ErrorHandler<T> delegate;
@@ -109,11 +119,6 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 		unnamedScope = new FilteringScope(unnamedScope, predicate);
 		return new SimpleScope(Iterables.concat(namdScope.getAllElements(),
 				unnamedScope.getAllElements()));
-	}
-
-	public IScope scope_EnumLiteral_value(final EnumLiteral context,
-			EReference reference) {
-		return Scopes.scopeFor(context.getType().getEnumerator());
 	}
 
 	public IScope scope_FeatureCall_feature(final FeatureCall context,
@@ -210,7 +215,17 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 				scopeCandidates.addAll(scope.getDeclarations());
 			}
 		}
+		// enumerators are handled as element references, so we have to add them here
+		scopeCandidates.addAll(getEnumeratorss());
 		return Scopes.scopeFor(scopeCandidates);
+	}
+
+	private Collection<? extends EObject> getEnumeratorss() {
+		List<Enumerator> enumerators = new ArrayList<Enumerator>();
+		for(EnumerationType enumType : typeSystemUtils.getEnumerationTypes(typeSystem)){
+			enumerators.addAll(enumType.getEnumerator());
+		}
+		return enumerators;
 	}
 
 	/**

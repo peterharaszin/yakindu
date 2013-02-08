@@ -10,22 +10,27 @@
  */
 package org.yakindu.sct.generator.c.types
 
+import com.google.inject.Inject
 import org.yakindu.base.types.Type
-import org.yakindu.sct.model.stext.types.DefaultTypeSystemAccess
+import org.yakindu.sct.generator.core.types.ICodegenTypeSystemAccess
+import org.yakindu.sct.model.stext.types.ISTextTypeSystem
 
 /**
  * @author andreas muelder
  * @author Alexander Nyßen - Adopted to type system changes
  */
-class CTypeSystemAccess extends DefaultTypeSystemAccess {
+class CTypeSystemAccess implements ICodegenTypeSystemAccess {
 	
-	override getTargetLanguageTypeName(Type type) {
+	@Inject
+	extension ISTextTypeSystem ts
+	
+	override getTargetLanguageName(Type type) {
 		switch (type) {
-			case type == null || isVoid(type): 'void'
-			case isInteger(type): 'sc_integer'
-			case isReal(type)	: 'sc_real'
-			case isBoolean(type): 'sc_boolean'
-			case isString(type)	: 'sc_string'
+			case type == null || isVoidType(type): 'void'
+			case isIntegerType(type): 'sc_integer'
+			case isRealType(type)	: 'sc_real'
+			case isBooleanType(type): 'sc_boolean'
+			case isStringType(type)	: 'sc_string'
 		}
 	}
 	

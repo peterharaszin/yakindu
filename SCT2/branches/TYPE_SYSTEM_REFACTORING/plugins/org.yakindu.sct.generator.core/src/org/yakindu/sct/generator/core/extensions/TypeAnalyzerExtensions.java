@@ -12,23 +12,27 @@ package org.yakindu.sct.generator.core.extensions;
 
 import static org.yakindu.sct.generator.core.impl.AbstractXpandBasedCodeGenerator.CONTEXT_INJECTOR_PROPERTY_NAME;
 
-import java.util.Collection;
-
 import org.eclipse.xtend.expression.ExecutionContext;
 import org.eclipse.xtend.expression.IExecutionContextAware;
-import org.yakindu.base.types.ITypeSystemAccess;
+import org.yakindu.base.types.ITypeSystem.InferredType;
 import org.yakindu.base.types.Type;
+import org.yakindu.sct.generator.core.types.ICodegenTypeSystemAccess;
 import org.yakindu.sct.model.sgraph.Statement;
-import org.yakindu.sct.model.stext.validation.ITypeInferrer;
+import org.yakindu.sct.model.stext.stext.Expression;
+import org.yakindu.sct.model.stext.types.ISTextTypeInferrer;
+import org.yakindu.sct.model.stext.types.ISTextTypeSystem;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 
 public class TypeAnalyzerExtensions implements IExecutionContextAware {
+
 	@Inject
-	private ITypeInferrer typeInferrer;
+	private ISTextTypeInferrer typeInferrer;
 	@Inject
-	private ITypeSystemAccess access;
+	private ISTextTypeSystem typeSystem;
+	@Inject
+	private ICodegenTypeSystemAccess typeSystemAccess;
 
 	public void setExecutionContext(ExecutionContext ctx) {
 		Injector injector = null;
@@ -44,44 +48,19 @@ public class TypeAnalyzerExtensions implements IExecutionContextAware {
 		}
 	}
 
-	public boolean isBoolean(Collection<? extends Type> types) {
-		for(Type t : types){
-			if(access.isBoolean(t)){
-				return true;
-			}
-		}
-		return false;
+	public boolean isStringType(Type type) {
+		return typeSystem.isStringType(new InferredType(type));
 	}
 
-	public boolean isInteger(Collection<? extends Type> types) {
-		for(Type t : types){
-			if(access.isInteger(t)){
-				return true;
+	public Type getType(Statement stmt) {
+		if (stmt instanceof Expression) {
+			InferredType type = typeInferrer.inferType((Expression) stmt)
+					.getType();
+			if (type != null) {
+				return typeSystem.getTypes(type).iterator().next();
 			}
 		}
-		return false;
-	}
-
-	public boolean isReal(Collection<? extends Type> types) {
-		for(Type t : types){
-			if(access.isReal(t)){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public boolean isString(Collection<? extends Type> types) {
-		for(Type t : types){
-			if(access.isString(t)){
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public Collection<? extends Type> getTypes(Statement stmt) {
-		return typeInferrer.getTypes(stmt);
+		return null;
 	}
 
 }

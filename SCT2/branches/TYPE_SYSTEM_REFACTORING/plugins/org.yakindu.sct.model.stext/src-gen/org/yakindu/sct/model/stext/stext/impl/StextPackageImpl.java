@@ -32,7 +32,6 @@ import org.yakindu.sct.model.stext.stext.DefaultTrigger;
 import org.yakindu.sct.model.stext.stext.Direction;
 import org.yakindu.sct.model.stext.stext.ElementReferenceExpression;
 import org.yakindu.sct.model.stext.stext.EntryEvent;
-import org.yakindu.sct.model.stext.stext.EnumLiteral;
 import org.yakindu.sct.model.stext.stext.EventDefinition;
 import org.yakindu.sct.model.stext.stext.EventRaisingExpression;
 import org.yakindu.sct.model.stext.stext.EventSpec;
@@ -265,13 +264,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
    * @generated
    */
   private EClass literalEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass enumLiteralEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -994,36 +986,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
   public EClass getLiteral()
   {
     return literalEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getEnumLiteral()
-  {
-    return enumLiteralEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEnumLiteral_Type()
-  {
-    return (EReference)enumLiteralEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getEnumLiteral_Value()
-  {
-    return (EReference)enumLiteralEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2020,10 +1982,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
 
     literalEClass = createEClass(LITERAL);
 
-    enumLiteralEClass = createEClass(ENUM_LITERAL);
-    createEReference(enumLiteralEClass, ENUM_LITERAL__TYPE);
-    createEReference(enumLiteralEClass, ENUM_LITERAL__VALUE);
-
     boolLiteralEClass = createEClass(BOOL_LITERAL);
     createEAttribute(boolLiteralEClass, BOOL_LITERAL__VALUE);
 
@@ -2204,7 +2162,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     exitEventEClass.getESuperTypes().add(this.getBuiltinEventSpec());
     alwaysEventEClass.getESuperTypes().add(this.getBuiltinEventSpec());
     expressionEClass.getESuperTypes().add(theSGraphPackage.getStatement());
-    enumLiteralEClass.getESuperTypes().add(this.getLiteral());
     boolLiteralEClass.getESuperTypes().add(this.getLiteral());
     intLiteralEClass.getESuperTypes().add(this.getLiteral());
     realLiteralEClass.getESuperTypes().add(this.getLiteral());
@@ -2299,10 +2256,6 @@ public class StextPackageImpl extends EPackageImpl implements StextPackage
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(literalEClass, Literal.class, "Literal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-    initEClass(enumLiteralEClass, EnumLiteral.class, "EnumLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEnumLiteral_Type(), theTypesPackage.getEnumerationType(), null, "type", null, 0, 1, EnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getEnumLiteral_Value(), theTypesPackage.getEnumerator(), null, "value", null, 0, 1, EnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(boolLiteralEClass, BoolLiteral.class, "BoolLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBoolLiteral_Value(), ecorePackage.getEBoolean(), "value", null, 0, 1, BoolLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

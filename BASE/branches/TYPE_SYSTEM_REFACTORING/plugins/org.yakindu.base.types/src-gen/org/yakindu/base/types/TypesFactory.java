@@ -80,13 +80,13 @@ public interface TypesFactory extends EFactory {
 	PrimitiveType createPrimitiveType();
 
 	/**
-	 * Returns a new object of class '<em>Data Type</em>'.
+	 * Returns a new object of class '<em>Complex Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Data Type</em>'.
+	 * @return a new object of class '<em>Complex Type</em>'.
 	 * @generated
 	 */
-	DataType createDataType();
+	ComplexType createComplexType();
 
 	/**
 	 * Returns a new object of class '<em>Enumerator</em>'.

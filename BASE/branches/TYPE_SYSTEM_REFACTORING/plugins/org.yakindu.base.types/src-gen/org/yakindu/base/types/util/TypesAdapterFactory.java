@@ -118,8 +118,8 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 				return createPrimitiveTypeAdapter();
 			}
 			@Override
-			public Adapter caseDataType(DataType object) {
-				return createDataTypeAdapter();
+			public Adapter caseComplexType(ComplexType object) {
+				return createComplexTypeAdapter();
 			}
 			@Override
 			public Adapter caseEnumerator(Enumerator object) {
@@ -294,16 +294,16 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.yakindu.base.types.DataType <em>Data Type</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.yakindu.base.types.ComplexType <em>Complex Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.yakindu.base.types.DataType
+	 * @see org.yakindu.base.types.ComplexType
 	 * @generated
 	 */
-	public Adapter createDataTypeAdapter() {
+	public Adapter createComplexTypeAdapter() {
 		return null;
 	}
 

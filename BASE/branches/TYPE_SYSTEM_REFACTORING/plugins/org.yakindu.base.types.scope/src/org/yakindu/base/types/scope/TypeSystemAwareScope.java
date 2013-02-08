@@ -18,18 +18,18 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
-import org.yakindu.base.types.ITypeSystemAccess;
+import org.yakindu.base.types.ITypeSystem;
 
 public class TypeSystemAwareScope extends AbstractScope {
 
-	private final ITypeSystemAccess typeSystemAccess;
+	private final ITypeSystem typeSystemAccess;
 
 	private final IQualifiedNameProvider qualifiedNameProvider;
 
 	private EClass eClass;
 
 	public TypeSystemAwareScope(IScope parent,
-			ITypeSystemAccess typeSystemAccess,
+			ITypeSystem typeSystemAccess,
 			IQualifiedNameProvider qualifiedNameProvider, EClass eClass) {
 		super(parent, false);
 		this.typeSystemAccess = typeSystemAccess;

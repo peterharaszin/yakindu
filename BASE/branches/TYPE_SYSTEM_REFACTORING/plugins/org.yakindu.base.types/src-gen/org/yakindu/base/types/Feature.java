@@ -28,7 +28,7 @@ import org.yakindu.base.base.NamedElement;
 public interface Feature extends TypedElement, NamedElement {
 	/**
 	 * Returns the value of the '<em><b>Owning Type</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.yakindu.base.types.DataType#getFeatures <em>Features</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.yakindu.base.types.ComplexType#getFeatures <em>Features</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Type</em>' container reference isn't clear,
@@ -36,13 +36,13 @@ public interface Feature extends TypedElement, NamedElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Owning Type</em>' container reference.
-	 * @see #setOwningType(DataType)
+	 * @see #setOwningType(ComplexType)
 	 * @see org.yakindu.base.types.TypesPackage#getFeature_OwningType()
-	 * @see org.yakindu.base.types.DataType#getFeatures
+	 * @see org.yakindu.base.types.ComplexType#getFeatures
 	 * @model opposite="features" transient="false"
 	 * @generated
 	 */
-	DataType getOwningType();
+	ComplexType getOwningType();
 
 	/**
 	 * Sets the value of the '{@link org.yakindu.base.types.Feature#getOwningType <em>Owning Type</em>}' container reference.
@@ -52,6 +52,6 @@ public interface Feature extends TypedElement, NamedElement {
 	 * @see #getOwningType()
 	 * @generated
 	 */
-	void setOwningType(DataType value);
+	void setOwningType(ComplexType value);
 
 } // Feature

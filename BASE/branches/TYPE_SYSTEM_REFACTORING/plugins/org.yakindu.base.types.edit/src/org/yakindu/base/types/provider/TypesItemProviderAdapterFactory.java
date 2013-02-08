@@ -210,26 +210,26 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.yakindu.base.types.DataType} instances.
+	 * This keeps track of the one adapter used for all {@link org.yakindu.base.types.ComplexType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DataTypeItemProvider dataTypeItemProvider;
+	protected ComplexTypeItemProvider complexTypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.yakindu.base.types.DataType}.
+	 * This creates an adapter for a {@link org.yakindu.base.types.ComplexType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createDataTypeAdapter() {
-		if (dataTypeItemProvider == null) {
-			dataTypeItemProvider = new DataTypeItemProvider(this);
+	public Adapter createComplexTypeAdapter() {
+		if (complexTypeItemProvider == null) {
+			complexTypeItemProvider = new ComplexTypeItemProvider(this);
 		}
 
-		return dataTypeItemProvider;
+		return complexTypeItemProvider;
 	}
 
 	/**
@@ -383,7 +383,7 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
 		if (eventItemProvider != null) eventItemProvider.dispose();
 		if (enumerationTypeItemProvider != null) enumerationTypeItemProvider.dispose();
 		if (primitiveTypeItemProvider != null) primitiveTypeItemProvider.dispose();
-		if (dataTypeItemProvider != null) dataTypeItemProvider.dispose();
+		if (complexTypeItemProvider != null) complexTypeItemProvider.dispose();
 		if (enumeratorItemProvider != null) enumeratorItemProvider.dispose();
 		if (typeConstraintItemProvider != null) typeConstraintItemProvider.dispose();
 	}

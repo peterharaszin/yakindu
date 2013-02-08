@@ -1,0 +1,89 @@
+To execute this build as a Hudson build job, you have to configure the following:
+JobName: YAKINDU_SCT2_CI
+
+Parameterized-build:
++ Run Parameter
+	Name: base_target_job
+	Project: YAKINDU_Base_target
+	Description: Build from target to use for target repository
++ Run Parameter
+	Name: base_repository_job
+	Project: YAKINDU_Base_CI
+	Description: 
+
+Source-Code-Management:
++ SVN
+	URL: http://svn.codespot.com/a/eclipselabs.org/yakindu/SCT2/trunk/releng
+	Location: releng
++ SVN
+	URL: http://svn.codespot.com/a/eclipselabs.org/yakindu/SCT2/trunk/plugins
+	Location: sct2_repository/plugins
++ SVN
+	URL: http://svn.codespot.com/a/eclipselabs.org/yakindu/SCT2/trunk/features
+	Location: sct2_repository/features
++ SVN
+	URL: https://svn.codespot.com/a/eclipselabs.org/yakindu/SCT2/trunk/test-plugins
+	Location: sct2_repository/test-plugins
++ SVN
+	URL: https://svn.codespot.com/a/eclipselabs.org/yakindu/SCT2/trunk/examples
+	Location: sct2_repository/examples
+    
+Build:
++ Execute Shell
+	Command
+		echo base_target_job: ${base_target_job}
+		echo base_repository_job: ${base_repository_job}
+
++ Execute Shell
+    Command 
+		if [ -d "build" ]; then
+		   rm -fr build
+		fi
+		mkdir build
+		cp -R releng/* build/
+		cp -R sct2_repository/plugins/* build/
+		cp -R sct2_repository/features/* build/
+		cp -R sct2_repository/test-plugins/* build/
+		cp -R sct2_repository/examples/* build/
+
+
++ Invoke Maven 3
+	Goals
+		clean
+	POM File
+		../build/org.yakindu.sct.releng/pom.xml
+	Properties
+		tycho.mode=maven
+	JVM Options
+	Private Maven-Repository: Checked
+
+
++ Invoke Maven 3
+	Goals
+		verify -PCI -s ../build/org.yakindu.sct.releng/settings.xml
+	POM File
+		../build/org.yakindu.sct.releng/pom.xml
+	Profiles
+		CI
+	Properties
+		p2.target.repository=${env.base_target_job}artifact/update-site
+		p2.base.repository=${env.base_repository_job}artifact/update-site
+	Private Maven-Repository: Checked
+
++ Execute Shell
+	Command
+		if [ -d "update-site" ]; then
+      		rm -fr update-site
+		fi
+		mkdir update-site
+		cp -R build/org.yakindu.sct.repository/target/repository/* update-site/
+		
+		
+Post-Build-Actions:
++ Publish JUnit Test Results
+	Testreports in XML format
+		build/*test/target/surefire-reports/*.xml
++ Archive the artifacs
+	Files to archive
+		update-site/**
+		

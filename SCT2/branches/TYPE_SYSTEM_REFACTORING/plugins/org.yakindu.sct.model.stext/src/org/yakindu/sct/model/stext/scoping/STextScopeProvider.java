@@ -114,7 +114,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 			final EObject context, EReference reference) {
 		IScope namdScope = getNamedTopLevelScope(context, reference);
 		IScope unnamedScope = getUnnamedTopLevelScope(context, reference);
-		Predicate<IEObjectDescription> predicate = calcuateFilterPredicate(
+		Predicate<IEObjectDescription> predicate = calculateFilterPredicate(
 				context, reference);
 		unnamedScope = new FilteringScope(unnamedScope, predicate);
 		return new SimpleScope(Iterables.concat(namdScope.getAllElements(),
@@ -124,7 +124,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 	public IScope scope_FeatureCall_feature(final FeatureCall context,
 			EReference reference) {
 
-		Predicate<IEObjectDescription> predicate = calcuateFilterPredicate(
+		Predicate<IEObjectDescription> predicate = calculateFilterPredicate(
 				context, reference);
 
 		Expression owner = context.getOwner();
@@ -158,7 +158,7 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 		return scope;
 	}
 
-	private Predicate<IEObjectDescription> calcuateFilterPredicate(
+	private Predicate<IEObjectDescription> calculateFilterPredicate(
 			final EObject context, final EReference reference) {
 		Predicate<IEObjectDescription> predicate = null;
 		EObject container = context;

@@ -216,11 +216,11 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 			}
 		}
 		// enumerators are handled as element references, so we have to add them here
-		scopeCandidates.addAll(getEnumeratorss());
+		scopeCandidates.addAll(getEnumerators());
 		return Scopes.scopeFor(scopeCandidates);
 	}
 
-	private Collection<? extends EObject> getEnumeratorss() {
+	private Collection<? extends EObject> getEnumerators() {
 		List<Enumerator> enumerators = new ArrayList<Enumerator>();
 		for(EnumerationType enumType : typeSystemUtils.getEnumerationTypes(typeSystem)){
 			enumerators.addAll(enumType.getEnumerator());

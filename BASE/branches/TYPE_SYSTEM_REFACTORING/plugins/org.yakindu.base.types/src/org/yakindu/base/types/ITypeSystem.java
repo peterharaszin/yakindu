@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 itemis AG and others.
+ * Copyright (c) 2013 itemis AG and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -21,17 +21,38 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 /**
  * Generic type system representation, which is responsible of listing the
  * available types ({@link #getTypes()}) and inferring types for certain
- * operations or feature calls.
+ * operations (or feature calls - not yet supported).
  * 
  * @author Alexander Nyßen - Initial contribution and API
- * 
  */
 public interface ITypeSystem {
 
+	/**
+	 * Representation of a (type) inference result, which is consists of an
+	 * {@link InferredType} and a list of {@link InferenceIssue}.
+	 * <p>
+	 * Note that the {@link InferredType} may be null. In such a case the list
+	 * of issues should document, why a type could not be inferred. The list of
+	 * issues may also be non-empty, even if a type could be inferred. As an
+	 * example consider the case where a base type could be inferred (e.g.
+	 * integer), while issues indicate that value range constraints (modeled via
+	 * {@link TypeConstraint}s) are violated.
+	 * 
+	 */
 	public class InferenceResult {
 		private InferredType inferredType;
 		private Collection<InferenceIssue> inferenceIssues;
 
+		/**
+		 * Constructs an {@link InferenceResult} from a concrete {@link Type}.
+		 * The {@link InferenceResult} returned as result will contain an
+		 * {@link InferredType} that contains the given {@link Type} and no
+		 * {@link TypeConstraint}s and an empty list of {@link InferenceIssue}s.
+		 * 
+		 * @param type
+		 *            The {@link Type} to construct the {@link InferenceResult}
+		 *            for.
+		 */
 		public InferenceResult(Type type) {
 			this(new InferredType(type));
 		}
@@ -60,19 +81,61 @@ public interface ITypeSystem {
 		}
 	}
 
+	/**
+	 * Representation of an inference problem, consisting of a message and a
+	 * severity.
+	 */
 	public class InferenceIssue {
+		
 		private String message;
 		private int severity;
 
 		/**
+		 * Constructs a new {@link InferenceIssue} with the given message and
+		 * severity.
 		 * 
 		 * @param message
+		 *            The message depicting the cause of the inference issue.
+		 *            May not be <code>null</null>.
 		 * @param severity
-		 *            An <code>int</code> literal as defined by {@link IStatus}
+		 *            The severity of this {@link InferenceIssue}. May be one of
+		 *            {@link IStatus#OK}, {@link IStatus#WARNING}, or
+		 *            {@link IStatus#ERROR}.
 		 */
 		public InferenceIssue(String message, int severity) {
-			this.message = message;
+			if (message == null) {
+				throw new NullPointerException("Message may not be null.");
+			}
+			if (severity != IStatus.OK && severity != IStatus.WARNING
+					&& severity != IStatus.ERROR) {
+				throw new IllegalArgumentException(
+						"Unsupported severity. Has to be one of IStatus#OK, IStatus#WARNING, or IStatus#ERROR");
+			}
 			this.severity = severity;
+			this.message = message;
+		}
+
+		/**
+		 * Returns the message that indicates the cause of this
+		 * {@link InferenceIssue}.
+		 * 
+		 * @return A {@link String} depicting the message. Will never return
+		 *         <code>null</code>
+		 */
+		public String getMessage() {
+			return message;
+		}
+
+		/**
+		 * Returns the severity of this {@link InferenceIssue}. Will be one of
+		 * the {@link IStatus#OK}, {@link IStatus#WARNING}, or
+		 * {@link IStatus#ERROR}.
+		 * 
+		 * @return {@link IStatus#OK}, {@link IStatus#WARNING}, or
+		 *         {@link IStatus#ERROR}
+		 */
+		public int getSeverity() {
+			return severity;
 		}
 
 		@Override
@@ -82,20 +145,32 @@ public interface ITypeSystem {
 					&& severity == ((InferenceIssue) obj).severity;
 		}
 
-		public String getMessage() {
-			return message;
-		}
-
-		public int getSeverity() {
-			return severity;
-		}
-
 		@Override
 		public int hashCode() {
 			return message.hashCode() + severity;
 		};
 	}
 
+	/**
+	 * Representation of an inferred type, which is formed by a {@link Type} and
+	 * a set of {@link TypeConstraint}s.
+	 * <p>
+	 * Note that the {@link Type} included in an {@link InferredType} does not
+	 * necessarily have to be a concrete type that is provided via
+	 * {@link ITypeSystem#getTypes()}, and should thus never be used by clients
+	 * directly. In fact, the it may be an (abstract) type that is used by an
+	 * {@link ITypeSystem} for purposes of type inference only. As an example
+	 * consider a type system that offers a set of different integer types,
+	 * which have different value ranges (modeled by {@link TypeConstraint}s)
+	 * but no common base type. In such a case, the {@link ITypeSystem} may
+	 * synthesize an abstract integer base type and use it during type inference
+	 * (together with {@link TypeConstraint}s that narrow the range of supported
+	 * values). In the end, {@link ITypeSystem#getTypes(InferredType))} may then
+	 * use the synthesized integer base type (and the computed constraints) to
+	 * decide which of its concrete integer types may be used and return them to
+	 * the client.
+	 * 
+	 */
 	public class InferredType {
 
 		private Type type;
@@ -175,8 +250,7 @@ public interface ITypeSystem {
 	// /**
 	// * Infer a type for a given literal. The literal may represent a primitive
 	// * value (primitive type literal) or an instance specification (complex
-	// type
-	// * literal).
+	// * type literal).
 	// *
 	// * @param literal
 	// * The literal for which to infer a type
@@ -188,6 +262,21 @@ public interface ITypeSystem {
 	// */
 	// public InferenceResult inferType(Object literal);
 
+	/**
+	 * Responsible of inferring a type for a given concrete type (provided via
+	 * {@link ITypeSystem#getTypes()}. In most cases the {@link ITypeSystem}
+	 * will simply return an {@link InferenceResult} that wraps the type into an
+	 * {@link InferredType} (with the {@link TypeConstraint}s provided by the
+	 * given {@link Type} and an empty set of {@link InferenceIssue}s.
+	 * 
+	 * @param type
+	 *            The {@link Type} to infer.
+	 * @return An {@link InferenceResult} containing the {@link InferredType}
+	 *         (or <code>null</code> in case no type could be inferred) and
+	 *         potential {@link InferenceIssue}s that occurred during the type
+	 *         inference. The result may also contain both, an inferred type and
+	 *         issues.
+	 */
 	public InferenceResult inferType(Type type);
 
 	/**

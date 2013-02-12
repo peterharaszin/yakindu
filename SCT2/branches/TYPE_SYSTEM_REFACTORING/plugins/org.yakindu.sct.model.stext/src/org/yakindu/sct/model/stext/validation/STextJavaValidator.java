@@ -169,7 +169,7 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 			Property reference = (Property) ((ElementReferenceExpression) varRef)
 					.getReference();
 			return reference.getName();
-		} else if (varRef instanceof FeatureCall) {
+		} else if (varRef instanceof FeatureCall && ((FeatureCall)varRef).getFeature() instanceof Property) {
 			Property reference = (Property) ((FeatureCall) varRef).getFeature();
 			return reference.getName();
 		}

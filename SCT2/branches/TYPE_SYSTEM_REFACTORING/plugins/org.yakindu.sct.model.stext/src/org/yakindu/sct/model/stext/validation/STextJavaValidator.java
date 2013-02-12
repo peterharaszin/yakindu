@@ -42,6 +42,7 @@ import org.yakindu.sct.model.sgraph.Choice;
 import org.yakindu.sct.model.sgraph.SGraphPackage;
 import org.yakindu.sct.model.sgraph.Scope;
 import org.yakindu.sct.model.sgraph.ScopedElement;
+import org.yakindu.sct.model.sgraph.Statement;
 import org.yakindu.sct.model.sgraph.Transition;
 import org.yakindu.sct.model.sgraph.Trigger;
 import org.yakindu.sct.model.sgraph.resource.AbstractSCTResource;
@@ -169,7 +170,8 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 			Property reference = (Property) ((ElementReferenceExpression) varRef)
 					.getReference();
 			return reference.getName();
-		} else if (varRef instanceof FeatureCall && ((FeatureCall)varRef).getFeature() instanceof Property) {
+		} else if (varRef instanceof FeatureCall
+				&& ((FeatureCall) varRef).getFeature() instanceof Property) {
 			Property reference = (Property) ((FeatureCall) varRef).getFeature();
 			return reference.getName();
 		}
@@ -397,24 +399,36 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 				ValidationMessageAcceptor.INSIGNIFICANT_INDEX, code);
 	}
 
-//	private void reportIssues(Collection<InferenceIssue> issues) {
-//		int severity = IStatus.OK;
-//		String message = "";
-//		for (InferenceIssue issue : issues) {
-//			if (issue.getSeverity() > severity) {
-//				severity = issue.getSeverity();
-//			}
-//			if (message.length() > 0) {
-//				message += "; ";
-//			}
-//			message += issue.getMessage();
-//		}
-//		if (severity == IStatus.ERROR) {
-//			error(message, null);
-//		} else if (severity == IStatus.WARNING) {
-//			warning(message, null);
-//		}
-//	}
+	// private void reportIssues(Collection<InferenceIssue> issues) {
+	// int severity = IStatus.OK;
+	// String message = "";
+	// for (InferenceIssue issue : issues) {
+	// if (issue.getSeverity() > severity) {
+	// severity = issue.getSeverity();
+	// }
+	// if (message.length() > 0) {
+	// message += "; ";
+	// }
+	// message += issue.getMessage();
+	// }
+	// if (severity == IStatus.ERROR) {
+	// error(message, null);
+	// } else if (severity == IStatus.WARNING) {
+	// warning(message, null);
+	// }
+	// }
+	@Check(CheckType.FAST)
+	public void checkExpression(final Statement statement) {
+		if (statement instanceof Expression) {
+			InferenceResult inferType = typeInferrer
+					.inferType((Expression) statement);
+			if (!inferType.getIssues().isEmpty()) {
+				// TODO: handle severity and multiple issues here
+				error(inferType.getIssues().iterator().next().getMessage(),
+						null);
+			}
+		}
+	}
 
 	@Check
 	public void checkChoiceWithoutDefaultTransition(final Choice choice) {

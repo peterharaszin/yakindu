@@ -10,6 +10,8 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.yakindu.base.types.EnumerationType;
+import org.yakindu.base.types.Enumerator;
 import org.yakindu.base.types.Event;
 import org.yakindu.base.types.Feature;
 import org.yakindu.base.types.ITypeSystem.ITypeSystemOperator;
@@ -17,6 +19,7 @@ import org.yakindu.base.types.ITypeSystem.InferenceIssue;
 import org.yakindu.base.types.ITypeSystem.InferenceResult;
 import org.yakindu.base.types.ITypeSystem.InferredType;
 import org.yakindu.base.types.Type;
+import org.yakindu.base.types.TypedElement;
 import org.yakindu.sct.model.stext.stext.ActiveStateReferenceExpression;
 import org.yakindu.sct.model.stext.stext.AdditiveOperator;
 import org.yakindu.sct.model.stext.stext.AssignmentExpression;
@@ -191,6 +194,26 @@ public class STextDefaultTypeInferrer implements ISTextTypeInferrer {
     InferredType _inferredType_1 = new InferredType(_type_1);
     InferenceResult _inferenceResult_1 = new InferenceResult(_inferredType_1);
     return _inferenceResult_1;
+  }
+  
+  protected InferenceResult _doInferType(final Type type) {
+    InferredType _inferredType = new InferredType(type);
+    InferenceResult _inferenceResult = new InferenceResult(_inferredType);
+    return _inferenceResult;
+  }
+  
+  protected InferenceResult _doInferType(final TypedElement typedElement) {
+    Type _type = typedElement.getType();
+    InferredType _inferredType = new InferredType(_type);
+    InferenceResult _inferenceResult = new InferenceResult(_inferredType);
+    return _inferenceResult;
+  }
+  
+  protected InferenceResult _doInferType(final Enumerator enumerator) {
+    EnumerationType _owningEnumeration = enumerator.getOwningEnumeration();
+    InferredType _inferredType = new InferredType(_owningEnumeration);
+    InferenceResult _inferenceResult = new InferenceResult(_inferredType);
+    return _inferenceResult;
   }
   
   protected InferenceResult _doInferType(final EObject e) {
@@ -513,9 +536,8 @@ public class STextDefaultTypeInferrer implements ISTextTypeInferrer {
       InferenceResult _inferenceResult_2 = new InferenceResult(_voidType);
       return _inferenceResult_2;
     }
-    Type _voidType_1 = this.ts.getVoidType();
-    InferenceResult _inferenceResult_3 = new InferenceResult(_voidType_1);
-    return _inferenceResult_3;
+    EObject _feature_3 = featureCall.getFeature();
+    return this.doInferType(_feature_3);
   }
   
   protected InferenceResult _doInferType(final ActiveStateReferenceExpression expression) {
@@ -840,8 +862,14 @@ public class STextDefaultTypeInferrer implements ISTextTypeInferrer {
       return _doInferType((PrimitiveValueExpression)definition);
     } else if (definition instanceof ShiftExpression) {
       return _doInferType((ShiftExpression)definition);
+    } else if (definition instanceof Enumerator) {
+      return _doInferType((Enumerator)definition);
+    } else if (definition instanceof Type) {
+      return _doInferType((Type)definition);
     } else if (definition instanceof Expression) {
       return _doInferType((Expression)definition);
+    } else if (definition instanceof TypedElement) {
+      return _doInferType((TypedElement)definition);
     } else if (definition instanceof Literal) {
       return _doInferType((Literal)definition);
     } else if (definition != null) {

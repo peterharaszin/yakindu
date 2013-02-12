@@ -56,6 +56,9 @@ import org.yakindu.base.types.ITypeSystem$InferenceIssue
 import org.eclipse.core.runtime.IStatus
 import org.yakindu.sct.model.stext.stext.VariableDefinition
 import org.yakindu.sct.model.stext.stext.EventDefinition
+import org.yakindu.base.types.Type
+import org.yakindu.base.types.Enumerator
+import org.yakindu.base.types.TypedElement
 
 /**
  * 
@@ -140,8 +143,20 @@ class STextDefaultTypeInferrer implements ISTextTypeInferrer {
 		return new InferenceResult(new InferredType(definition.type))
 	}
 	
+	def dispatch InferenceResult doInferType(Type type) {
+		return new InferenceResult(new InferredType(type))
+	}
+	
+	def dispatch InferenceResult doInferType(TypedElement typedElement) {
+		return new InferenceResult(new InferredType(typedElement.type))
+	}
+	
+	def dispatch InferenceResult doInferType(Enumerator enumerator) {
+		return new InferenceResult(new InferredType(enumerator.owningEnumeration));
+	}
+	
 	def dispatch InferenceResult doInferType(EObject e) {
-		// TODO: this has to delegate to the type system
+		// TODO: delegate to type system
 		return new InferenceResult(new InferredType(voidType))
 	}
 
@@ -276,7 +291,7 @@ class STextDefaultTypeInferrer implements ISTextTypeInferrer {
 			}
 			return new InferenceResult(getVoidType)
 		}
-		return new InferenceResult(getVoidType)
+		return featureCall.feature.doInferType
 	}
 	 
 	def dispatch InferenceResult doInferType(ActiveStateReferenceExpression expression){

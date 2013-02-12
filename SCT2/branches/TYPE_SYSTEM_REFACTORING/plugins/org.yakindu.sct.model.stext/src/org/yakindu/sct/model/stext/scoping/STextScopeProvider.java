@@ -117,8 +117,10 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 		Predicate<IEObjectDescription> predicate = calculateFilterPredicate(
 				context, reference);
 		unnamedScope = new FilteringScope(unnamedScope, predicate);
+		// add enum types
 		return new SimpleScope(Iterables.concat(namdScope.getAllElements(),
-				unnamedScope.getAllElements()));
+				unnamedScope.getAllElements(),
+				Scopes.scopeFor(typeSystemUtils.getEnumerationTypes(typeSystem)).getAllElements()));
 	}
 
 	public IScope scope_FeatureCall_feature(final FeatureCall context,
@@ -146,6 +148,11 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 
 		if (element instanceof DataType) {
 			scope = Scopes.scopeFor(allFeatures((Type) element), scope);
+			scope = new FilteringScope(scope, predicate);
+		}
+		
+		if( element instanceof EnumerationType){
+			scope = Scopes.scopeFor(((EnumerationType) element).getEnumerator(), scope);
 			scope = new FilteringScope(scope, predicate);
 		}
 
@@ -215,18 +222,9 @@ public class STextScopeProvider extends AbstractDeclarativeScopeProvider {
 				scopeCandidates.addAll(scope.getDeclarations());
 			}
 		}
-		// enumerators are handled as element references, so we have to add them here
-		scopeCandidates.addAll(getEnumerators());
 		return Scopes.scopeFor(scopeCandidates);
 	}
-
-	private Collection<? extends EObject> getEnumerators() {
-		List<Enumerator> enumerators = new ArrayList<Enumerator>();
-		for(EnumerationType enumType : typeSystemUtils.getEnumerationTypes(typeSystem)){
-			enumerators.addAll(enumType.getEnumerator());
-		}
-		return enumerators;
-	}
+	
 
 	/**
 	 * Returns the {@link Statechart} for a context element

@@ -1,8 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
  */
 package org.yakindu.base.types.provider;
 
@@ -12,17 +8,20 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.yakindu.base.base.provider.NamedElementItemProvider;
+
 import org.yakindu.base.types.Type;
 import org.yakindu.base.types.TypesFactory;
 import org.yakindu.base.types.TypesPackage;
@@ -62,31 +61,8 @@ public class TypeItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSuperTypesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Super Types feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addSuperTypesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Type_superTypes_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Type_superTypes_feature", "_UI_Type_type"),
-				 TypesPackage.Literals.TYPE__SUPER_TYPES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
 	}
 
 	/**
@@ -101,7 +77,7 @@ public class TypeItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(TypesPackage.Literals.TYPE__FEATURES);
+			childrenFeatures.add(TypesPackage.Literals.TYPE__CONSTRAINT);
 		}
 		return childrenFeatures;
 	}
@@ -156,7 +132,7 @@ public class TypeItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Type.class)) {
-			case TypesPackage.TYPE__FEATURES:
+			case TypesPackage.TYPE__CONSTRAINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -176,18 +152,8 @@ public class TypeItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(TypesPackage.Literals.TYPE__FEATURES,
-				 TypesFactory.eINSTANCE.createOperation()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TypesPackage.Literals.TYPE__FEATURES,
-				 TypesFactory.eINSTANCE.createProperty()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(TypesPackage.Literals.TYPE__FEATURES,
-				 TypesFactory.eINSTANCE.createEvent()));
+				(TypesPackage.Literals.TYPE__CONSTRAINT,
+				 TypesFactory.eINSTANCE.createTypeConstraint()));
 	}
 
 	/**

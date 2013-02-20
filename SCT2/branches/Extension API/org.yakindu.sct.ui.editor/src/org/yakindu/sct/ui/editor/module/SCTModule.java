@@ -94,7 +94,7 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 	 * 
 	 */
 	protected String getContributorId() {
-		return "org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor";
+		return "de.cau.cs.kieler.yakindu.sccharts.ui.editor.SCChartsDiagramEditor";
 	}
 
 	protected Class<? extends IGraphicalEditPart> getTransitionEditPart() {
@@ -104,7 +104,74 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 	protected Class<? extends IGraphicalEditPart> getStateEditPart() {
 		return StateEditPart.class;
 	}
+	
+	protected Class<? extends IGraphicalEditPart> getStateNameEditPart() {
+		return StateNameEditPart.class;
+	}
+	
+	protected Class<? extends IGraphicalEditPart> getStateTextCompartmentEditPart() {
+		return StateTextCompartmentEditPart.class;
+	}
+	
+	protected Class<? extends IGraphicalEditPart> getStateFigureCompartmentEditPart() {
+		return StateFigureCompartmentEditPart.class;
+	}
+	
+	protected Class<? extends IGraphicalEditPart> getRegionEditPart() {
+		return RegionEditPart.class;
+	}
+	
+	protected Class<? extends IGraphicalEditPart> getRegionNameEditPart() {
+		return RegionNameEditPart.class;
+	}
+	protected Class<? extends IGraphicalEditPart> getChoiceEditPart() {
+		return ChoiceEditPart.class;
+	}
+	
+	protected Class<? extends IGraphicalEditPart> getEntryEditPart() {
+		return EntryEditPart.class;
+	}
+	
+	protected Class<? extends IGraphicalEditPart> getBorderItemEditPart() {
+		return BorderItemEditPart.class;
+	}
 
+	protected Class<? extends IGraphicalEditPart> getFinalStateEditPart() {
+		return FinalStateEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getNamedElementLabelEditPart() {
+		return NamedElementLabelEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getExitEditPart() {
+		return ExitEditPart.class;
+	}
+	
+	protected Class<? extends IGraphicalEditPart> getStateTextCompartmentExpressionEditPart() {
+		return StateTextCompartmentExpressionEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getTransitionExpressionEditPart() {
+		return TransitionExpressionEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getRegionCompartmentEditPart() {
+		return RegionCompartmentEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getStatechartTextExpressionEditPart() {
+		return StatechartTextExpressionEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getStatechartTextEditPart() {
+		return StatechartTextEditPart.class;
+	}
+
+	protected Class<? extends IGraphicalEditPart> getStatechartNameEditPart() {
+		return StatechartNameEditPart.class;
+	}
+	
 	@Override
 	protected void configure() {
 		bind(String.class).annotatedWith(Names.named(FILE_EXTENSION)).toInstance(getFileExtension());
@@ -117,42 +184,41 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 	protected void configureEditParts() {
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(StatechartDiagramEditor.ID)).to(
 				StatechartDiagramEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_TEXT)).to(StatechartTextEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_NAME)).to(StatechartNameEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_TEXT)).to(getStatechartTextEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_NAME)).to(getStatechartNameEditPart());
 
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATECHART_TEXT_EXPRESSION)).to(
-				StatechartTextExpressionEditPart.class);
+				getStatechartTextExpressionEditPart());
 
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION)).to(RegionEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION_NAME)).to(RegionNameEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION)).to(getRegionEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION_NAME)).to(getRegionNameEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(REGION_COMPARTMENT)).to(
-				RegionCompartmentEditPart.class);
+				getRegionCompartmentEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(TRANSITION)).to(getTransitionEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(TRANSITION_EXPRESSION)).to(
-				TransitionExpressionEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_NAME)).to(StateNameEditPart.class);
+				getTransitionExpressionEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_NAME)).to(getStateNameEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_TEXT_COMPARTMENT)).to(
-				StateTextCompartmentEditPart.class);
+				getStateTextCompartmentEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_TEXT_COMPARTMENT_EXPRESSION)).to(
-				StateTextCompartmentExpressionEditPart.class);
+				getStateTextCompartmentExpressionEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE_FIGURE_COMPARTMENT)).to(
-				StateFigureCompartmentEditPart.class);
+				getStateFigureCompartmentEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(STATE)).to(getStateEditPart());
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(CHOICE)).to(ChoiceEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(DEEPHISTORY)).to(EntryEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SHALLOWHISTORY)).to(EntryEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(ENTRY)).to(EntryEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(FINALSTATE)).to(FinalStateEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(EXIT)).to(ExitEditPart.class);
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(CHOICE)).to(getChoiceEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(DEEPHISTORY)).to(getEntryEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SHALLOWHISTORY)).to(getEntryEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(ENTRY)).to(getEntryEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(FINALSTATE)).to(getFinalStateEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(EXIT)).to(getExitEditPart());
 		bind(IGraphicalEditPart.class).annotatedWith(Names.named(BORDER_ITEM_LABEL_CONTAINER)).to(
-				NamedElementLabelEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(BORDER_ITEM_LABEL)).to(BorderItemEditPart.class);
-		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SYNCHRONIZATION)).to(StateEditPart.class);
+				getNamedElementLabelEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(BORDER_ITEM_LABEL)).to(getBorderItemEditPart());
+		bind(IGraphicalEditPart.class).annotatedWith(Names.named(SYNCHRONIZATION)).to(getStateEditPart());
 		bind(IDiagramInitializer.class).to(getDiagramInitializer());
 		bind(MarkerCreator.class).to(SCTMarkerCreator.class);
 		bind(MarkerTypeProvider.class).to(SCTMarkerTypeProvider.class);
 		bind(IDiagnosticConverter.class).to(SCTDiagnosticConverterImpl.class);
 
 	}
-
 }

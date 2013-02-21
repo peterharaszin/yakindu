@@ -94,7 +94,7 @@ public class SCTModule extends AbstractModule implements SemanticHints {
 	 * 
 	 */
 	protected String getContributorId() {
-		return "de.cau.cs.kieler.yakindu.sccharts.ui.editor.SCChartsDiagramEditor";
+		return "org.yakindu.sct.ui.editor.editor.StatechartDiagramEditor";
 	}
 
 	protected Class<? extends IGraphicalEditPart> getTransitionEditPart() {

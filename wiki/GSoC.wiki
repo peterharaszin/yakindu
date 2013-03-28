@@ -1,0 +1,46 @@
+=About Yakindu Statechart Tools=
+
+Yakindu Statechart Tools (SCT) is an Open-Source-Toolkit for the specification and development of reactive, event-driven systems with the help of state machines. It consists of an easy-to-use tool for graphical editing and provides validation, simulation and code generators for different target platforms. The users come from both the industrial and academic sectors. The main features of Yakindu Statechart tools are:
+ * smart combination of textual and graphical modeling
+ * syntactic and semantic validation of the state machines
+ * executable models via the simulation engine
+ * code generators for Java and C
+
+=Contact and Support=
+
+ * http://www.statecharts.org is our project site where you can download Yakindu Statechart Tools and find a lot of useful documentation including a 'getting started' tutorial
+ * We use [https://groups.google.com/forum/?fromgroups#!forum/yakindu-user google groups] to support our community
+ * The [https://code.google.com/a/eclipselabs.org/p/yakindu/wiki/RepositoryStructure?tm=4 SVN] is hosted at Google Code
+ * Or follow us on twitter [https://twitter.com/yakindu @yakindu]
+ 
+=Community=
+
+Yakindu Statechart Tools is not only a spare-time project. A large part of the people working on Yakindu Statechart Tools are employed at itemis AG - an eclipse strategic member company - , where the working time model is »4+1«. This model offers free time one day a week for the employees to arrange their personal further education. A group of 5 comitters use this free time to make Yakindu Statechart Tools even better. That is why SCT has a "very high activity" rating according to [http://www.ohloh.net/p/sct2 ohloh.net]. Only a small percentage of projects on Ohloh received this rating.
+In a Nutshell, Yakindu Statechart Tools...
+ * has had 2,509 commits made by 18 contributors representing 206,339 lines of code
+ * is mostly written in Java with an average number of source code comments
+ * has a young, but established codebase maintained by a large development team with stable Y-O-Y commits
+ * first commit in June, 2010 
+
+=Ideas List=
+
+||Idea || Required Skills || Difficulty || Mentor ||
+||Model Diff & Merge|| Java, EMF, GMF ||Hard ||Andreas Muelder ||
+||SCXML Importer and Exporter ||Java, EMF, Xtend ||Medium|| Andreas Muelder ||
+||UML2 Transformation ||Java, EMF ||Medium ||Axel Terfloth ||
+||Code Generator for Boost.MSM ||C++, Java, EMF, Xtend ||Medium ||Axel Terfloth ||
+||Code Generator for C++ || Xtend, C++ ||Medium ||Markus Muehlbrandt ||
+||Model Code Co-Refactoring || Java, C, JDT, CDT ||Hard ||Andreas Muelder ||
+
+=Model Diff & Merge=
+ Currently, there is only poor tool support to perform diff and merge on statechart models. Indeed, EMF Compare (http://www.eclipse.org/emf/compare/) provides compare and merge facility for any kind of EMF model, but it only supports a tree-based diff and merge view. Further, it does not differ between the semantical (i.e. a state was added / renamed / removed) and notational (i.e,. a state was resized / moved) changes in the model. The goal of this project is to create a graphical diff and merge view that focuses on semantical changes and to integrate it into the Eclipse Team API. 
+=SCXML Transformation=
+ State Chart eXtensible Markup Language (SCXML) is an XML notation that is used to describe statecharts and can represent Hierarchy, History, Concurrency, and Synchronization. A Yakindu Statechart Model conforms to an EMF (Eclipse Modeling Framework) Metamodel persisted in XMI (XML Metadata Interchange) format. The goal of this project is the development of a bi-directional model to model transformation to ease the integration of Yakindu Statechart Tools with third party tools and frameworks that support SCXMl, for example Qt.
+=UML2 Transformation=
+ The goal of this project is to create a model-to-model transformation from Eclipse UML2 to Yakindu Statechart Tools. It should be possible to import statemachines modeled with different UML2 Tools that support persistance or export to EMF-UML (i.e. MagicDraw or the Eclipse UML2 Tools). This task includes the definition of an UML2-Profile to fill the gap between the different meta models. For example, Yakindu Statechart Models require a priority for every transition and region for deterministic execution. Since UML2 does not support priorities, this additional information must be provided via a custom UML2 Profile.
+=Code Generators for Boost.MSM=
+ SCTcode generator infrastructure allows generating code against existing state machine libraries. Boost.MSM (Meta State Machine) is an open source library that allows  easy and quick definition of state machines of very high performance. The task is to implement a generator that generates Boost.MSM code from Yakindu Statecharts.
+=Code Generator for C++=
+ SCT includes code generators for Java and C out of the box. The code generators follow a code-only approach and do not rely on any additional runtime library. The generated code provides a well-defined interface and can be integrated easily with any client code. This project aims to provide an additional code generator for C++. The first part of this project is to implement a reference implementation in C++ for an example statechart model. The second part is to create the code generator for C++. From the technical perspective, SCT provide a plugable infrastructure for contributing additional code generators based on the statechart execution model via eclipse extension points. The execution model is builds on top of the Eclipse Modeling Framework and Xtend is used for the model to text transformation. 
+=Model Code Co-Refactoring=
+ The generated Java and C code provide well-defined interfaces and can be integrated easily with any client code. When a statechart model is refactored and the code is regenerated the interface signatures may change.Especially when renaming events or variables this may result in compilation errors wihtin the client code. The aim of this project is to integrate the statechart tools rename refactoring with the JDT and CDT rename refactoring to automatically refactor the client code.  

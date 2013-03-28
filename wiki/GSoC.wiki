@@ -1,3 +1,4 @@
+#labels SummerofCode
 =About Yakindu Statechart Tools=
 
 Yakindu Statechart Tools (SCT) is an Open-Source-Toolkit for the specification and development of reactive, event-driven systems with the help of state machines. It consists of an easy-to-use tool for graphical editing and provides validation, simulation and code generators for different target platforms. The users come from both the industrial and academic sectors. The main features of Yakindu Statechart tools are:
@@ -8,10 +9,10 @@ Yakindu Statechart Tools (SCT) is an Open-Source-Toolkit for the specification a
 
 =Contact and Support=
 
- * http://www.statecharts.org is our project site where you can download Yakindu Statechart Tools and find a lot of useful documentation including a 'getting started' tutorial
- * We use [https://groups.google.com/forum/?fromgroups#!forum/yakindu-user google groups] to support our community
- * The [https://code.google.com/a/eclipselabs.org/p/yakindu/wiki/RepositoryStructure?tm=4 SVN] is hosted at Google Code
- * Or follow us on twitter [https://twitter.com/yakindu @yakindu]
+ * http://www.statecharts.org - downloads, documentation and tutorials 
+ * [https://groups.google.com/forum/?fromgroups#!forum/yakindu-user yakindu user group] - user discussion
+ * [https://code.google.com/a/eclipselabs.org/p/yakindu/wiki/RepositoryStructure?tm=4 SVN] - source code
+ * [https://twitter.com/yakindu @yakindu] - Follow us on twitter
  
 =Community=
 

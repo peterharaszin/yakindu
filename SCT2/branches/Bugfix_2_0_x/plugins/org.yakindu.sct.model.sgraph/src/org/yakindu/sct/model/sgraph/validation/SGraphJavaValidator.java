@@ -10,9 +10,15 @@
  */
 package org.yakindu.sct.model.sgraph.validation;
 
-import org.eclipse.emf.common.util.TreeIterator;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.validation.AbstractDeclarativeValidator;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.CheckType;
@@ -21,6 +27,7 @@ import org.yakindu.sct.model.sgraph.Choice;
 import org.yakindu.sct.model.sgraph.Entry;
 import org.yakindu.sct.model.sgraph.EntryKind;
 import org.yakindu.sct.model.sgraph.FinalState;
+import org.yakindu.sct.model.sgraph.Region;
 import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.model.sgraph.Transition;
 import org.yakindu.sct.model.sgraph.Vertex;
@@ -43,7 +50,7 @@ import com.google.inject.Inject;
 public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 
 	public static final String ISSUE_STATE_WITHOUT_NAME = "A state must have a name.";
-	public static final String ISSUE_NODE_NOT_REACHABLE = "Node is not reachable due to missing incoming transition.";
+	public static final String ISSUE_NODE_NOT_REACHABLE = "Node is not reachable.";
 	public static final String ISSUE_FINAL_STATE_OUTGOING_TRANSITION = "A final state should have no outgoing transition.";
 	public static final String ISSUE_STATE_WITHOUT_OUTGOING_TRANSITION = "A state should have at least one outgoing transition.";
 	public static final String ISSUE_INITIAL_ENTRY_WITH_IN_TRANS = "Initial entry should have no incoming transition.";
@@ -53,36 +60,67 @@ public class SGraphJavaValidator extends AbstractDeclarativeValidator {
 	public static final String ISSUE_CHOICE_WITHOUT_OUTGOING_TRANSITION = "A choice must have at least one outgoing transition.";
 	public static final String ISSUE_SUBMACHINE_UNRESOLVABLE = "Referenced Substatemachine '%s'does not exist!";
 
+	
 	@Check(CheckType.FAST)
-	public void vertexNotReachable(Vertex vertex) {
+	public void vertexNotReachable(final Vertex vertex) {
 		if (!(vertex instanceof Entry)) {
-			int incomingTransitions = 0;
-			incomingTransitions += vertex.getIncomingTransitions().size();
-
-			// in context of a state it is sufficient if a sub state is targeted
-			// by
-			// an external transition
-			if (vertex instanceof org.yakindu.sct.model.sgraph.State) {
-				TreeIterator<EObject> eAllContents = vertex.eAllContents();
-				while (eAllContents.hasNext()) {
-					EObject next = eAllContents.next();
-					if (next instanceof org.yakindu.sct.model.sgraph.State) {
-						for (Transition transition : ((org.yakindu.sct.model.sgraph.State) next)
-								.getIncomingTransitions()) {
-							if (!EcoreUtil.isAncestor(vertex,
-									transition.getSource())) {
-								incomingTransitions++;
-							}
-						}
-					}
-				}
+			
+			final Set<Object> stateScopeSet = new HashSet<Object>();
+			for ( EObject obj : EcoreUtil2.eAllContents(vertex) ) {
+				stateScopeSet.add(obj);
 			}
+			stateScopeSet.add(vertex);
+			
+			final List<Object> externalPredecessors = new ArrayList<Object>();
 
-			if (incomingTransitions == 0) {
+			DFS dfs = new DFS() {	
+
+				@Override
+				public Iterator<Object> getElementLinks(Object element) {
+					List<Object> elements = new ArrayList<Object>();
+					
+					if (element instanceof org.yakindu.sct.model.sgraph.State ) {
+						if ( ! stateScopeSet.contains(element) ) {
+							externalPredecessors.add(element);
+						} else {
+							elements.addAll(((org.yakindu.sct.model.sgraph.State)element).getRegions() );
+							elements.addAll(((org.yakindu.sct.model.sgraph.State)element).getIncomingTransitions() );							
+						}
+						
+					} else if (element instanceof Region) {
+						elements.addAll( ((Region) element).getVertices() );
+
+					} else if (element instanceof Entry) {
+						if ( ! stateScopeSet.contains(element) ) {
+							externalPredecessors.add(element);
+						} else {
+							elements.addAll(((Entry)element).getIncomingTransitions() );									
+						}
+
+					} else if (element instanceof Vertex) {
+						elements.addAll( ((Vertex) element).getIncomingTransitions() );
+
+					} else if (element instanceof Transition) {
+						elements.add( ((Transition) element).getSource() );
+						
+					}
+				
+					return elements.iterator();
+				}
+			};
+			
+			dfs.perform(vertex);
+
+			if (externalPredecessors.size() == 0) {
 				error(ISSUE_NODE_NOT_REACHABLE, vertex, null, -1);
 			}
 		}
 	}
+	
+	
+	/**
+	 * Calculates all predecessor states 
+	 */
 
 	@Check(CheckType.FAST)
 	public void incomingTransitionCount(Vertex vertex) {

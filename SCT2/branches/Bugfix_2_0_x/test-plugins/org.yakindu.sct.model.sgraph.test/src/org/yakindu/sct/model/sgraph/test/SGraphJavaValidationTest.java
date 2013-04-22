@@ -31,6 +31,7 @@ import java.util.HashMap;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.junit4.InjectWith;
 import org.eclipse.xtext.junit4.XtextRunner;
 import org.eclipse.xtext.validation.Check;
@@ -158,6 +159,142 @@ public class SGraphJavaValidationTest {
 		assertError(diagnostics, ISSUE_NODE_NOT_REACHABLE);
 	}
 
+	
+	/**
+	 * A transition to a sub entry is considered implies reachability.
+	 */
+	@Test
+	public void vertexNotReachable_AcceptThroughSubstate() {
+		prepareStateTest();
+
+		State stateA = factory.createState();
+		
+		Region subRegion = factory.createRegion();
+		state.getRegions().add(subRegion);
+		
+		State stateC = factory.createState();
+		subRegion.getVertices().add(stateC);
+				
+		Transition t1 = factory.createTransition();
+		t1.setSource(stateA);
+		t1.setTarget(stateC);
+				
+		validate(state);
+		assertNoIssues(diagnostics);
+	}
+
+	
+	
+	/**
+	 * A transition to a sub entry is considered implies reachability.
+	 */
+	@Test
+	public void vertexNotReachable_AcceptThroughSubentry() {
+		prepareStateTest();
+
+		State stateA = factory.createState();
+		
+		Region subRegion = factory.createRegion();
+		state.getRegions().add(subRegion);
+		
+		State stateC = factory.createState();
+		subRegion.getVertices().add(stateC);
+		
+		Entry entry = factory.createEntry();
+		subRegion.getVertices().add(entry);
+		
+		Transition t1 = factory.createTransition();
+		t1.setSource(stateA);
+		t1.setTarget(entry);
+		
+		Transition t2 = factory.createTransition();
+		t2.setSource(entry);
+		t2.setTarget(stateC);
+				
+		validate(state);
+		assertNoIssues(diagnostics);
+	}
+
+	
+	/**
+	 * A transition to a sub choice is considered implies reachability.
+	 */
+	@Test
+	public void vertexNotReachable_AcceptThroughSubchoice() {
+		prepareStateTest();
+
+		State stateA = factory.createState();
+		
+		Region subRegion = factory.createRegion();
+		state.getRegions().add(subRegion);
+		
+		State stateC = factory.createState();
+		subRegion.getVertices().add(stateC);
+		
+		Choice choice = factory.createChoice();
+		subRegion.getVertices().add(choice);
+		
+		Transition t1 = factory.createTransition();
+		t1.setSource(stateA);
+		t1.setTarget(choice);
+		
+		Transition t2 = factory.createTransition();
+		t2.setSource(choice);
+		t2.setTarget(stateC);
+				
+		validate(state);
+		assertNoIssues(diagnostics);
+	}
+
+	
+	/**
+	 * If an incoming transitions is part of an external transition path that 
+	 * only consists of pseudo states and only has state predecessors within 
+	 * the state then the state is not reachable and the validation must fail 
+	 * with an error.
+	 */
+	@Test
+	public void vertexNotReachable_FailOnExternalPseudoPath() {
+		prepareStateTest();
+
+		Choice choice = factory.createChoice();
+		region.getVertices().add(choice);
+		
+		createTransition(state, choice);
+		createTransition(choice, state);
+				
+		validate(state);
+		assertIssue(diagnostics, ISSUE_NODE_NOT_REACHABLE);
+	}
+
+	
+	/**
+	 * If an incoming transitions is part of an external transition path to an internal state 
+	 * that only consists of pseudo states and only has state predecessors within 
+	 * the state then the state is not reachable and the validation must fail 
+	 * with an error.
+	 */
+	@Test
+	public void vertexNotReachable_FailOnExternalPseudoPathToSubstate() {
+		prepareStateTest();
+
+		Region subRegion = factory.createRegion();
+		state.getRegions().add(subRegion);
+
+		State stateA = factory.createState();
+		subRegion.getVertices().add(stateA);
+		
+		Choice choice = factory.createChoice();
+		region.getVertices().add(choice);
+		
+		createTransition(stateA, choice);
+		createTransition(choice, stateA);
+				
+		validate(state);
+		assertIssue(diagnostics, ISSUE_NODE_NOT_REACHABLE);
+	}
+
+	
 	/**
 	 * A regular state may be a dead end.
 	 */
@@ -179,8 +316,9 @@ public class SGraphJavaValidationTest {
 		region.getVertices().add(entry);
 		createTransition(entry, state);
 
-		assertTrue(validator.validate(state, diagnostics,
-				new HashMap<Object, Object>()));
+		validate(state);
+//		assertTrue(validator.validate(state, diagnostics,
+//				new HashMap<Object, Object>()));
 		assertIssueCount(diagnostics, 0);
 	}
 
@@ -290,8 +428,7 @@ public class SGraphJavaValidationTest {
 		FinalState finalState = factory.createFinalState();
 		region.getVertices().add(finalState);
 
-		assertFalse(validator.validate(finalState, diagnostics,
-				new HashMap<Object, Object>()));
+		assertFalse(validate(finalState));
 
 		assertIssueCount(diagnostics, 1);
 		assertError(diagnostics, ISSUE_NODE_NOT_REACHABLE);
@@ -311,8 +448,7 @@ public class SGraphJavaValidationTest {
 		region.getVertices().add(state);
 		createTransition(state, finalState);
 
-		assertTrue(validator.validate(finalState, diagnostics,
-				new HashMap<Object, Object>()));
+		assertTrue(validate(finalState));
 		assertIssueCount(diagnostics, 0);
 	}
 
@@ -332,8 +468,7 @@ public class SGraphJavaValidationTest {
 		createTransition(state, finalState);
 		createTransition(finalState, state);
 
-		validator.validate(finalState, diagnostics,
-				new HashMap<Object, Object>());
+		validate(finalState);
 
 		assertIssueCount(diagnostics, 1);
 		assertWarning(diagnostics, ISSUE_FINAL_STATE_OUTGOING_TRANSITION);
@@ -377,7 +512,7 @@ public class SGraphJavaValidationTest {
 	}
 
 	/**
-	 * checks tht each @Check method of {@link STextJavaValidator} has a @Test
+	 * checks that each @Check method of {@link STextJavaValidator} has a @Test
 	 * method in this class with the same name
 	 */
 	// TODO: Create abstract test class for SGraphJavaValidatorTest and
@@ -400,6 +535,8 @@ public class SGraphJavaValidationTest {
 		}
 	}
 
+	
+	
 	protected Transition createTransition(Vertex source, Vertex target) {
 		Transition trans = factory.createTransition();
 		trans.setSource(source);
@@ -435,6 +572,11 @@ public class SGraphJavaValidationTest {
 				issueByName(diag, message));
 	}
 
+
+	protected void assertNoIssues(BasicDiagnostic diag) {
+		assertIssueCount(diag, 0);
+	}
+
 	protected void assertIssueCount(BasicDiagnostic diag, int count) {
 		int c = diagnostics.getChildren().size();
 		assertEquals("expected " + count + " issue(s) but were " + c + " ["
@@ -449,5 +591,12 @@ public class SGraphJavaValidationTest {
 
 		return null;
 	}
+	
+
+	protected boolean validate(EObject obj) {
+		return validator.validate(obj, diagnostics,
+				new HashMap<Object, Object>());
+	}
+
 
 }

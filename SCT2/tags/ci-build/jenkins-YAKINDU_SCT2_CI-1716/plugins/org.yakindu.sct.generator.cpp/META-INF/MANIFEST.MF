@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Yakindu SCT C++ Generator
+Bundle-SymbolicName: org.yakindu.sct.generator.cpp;singleton:=true
+Bundle-Version: 2.1.0.qualifier
+Require-Bundle: org.yakindu.sct.model.sexec,
+ org.eclipse.jdt.core,
+ org.apache.commons.logging,
+ org.apache.log4j;resolution:=optional,
+ com.ibm.icu,
+ org.antlr.runtime,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.mwe.utils,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.jface.text,
+ org.eclipse.xpand,
+ org.eclipse.xtend,
+ org.eclipse.xtend.typesystem.emf,
+ org.yakindu.sct.model.stext,
+ org.yakindu.sct.generator.core;bundle-version="1.0.0",
+ org.yakindu.sct.generator.genmodel;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.yakindu.sct.generator.cpp,
+ org.yakindu.sct.generator.cpp.templates
+Bundle-Vendor: yakindu.org

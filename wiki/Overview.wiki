@@ -1,1 +1,0 @@
-<wiki:gadget url="http://svn.codespot.com/a/eclipselabs.org/yakindu/SCT2/trunk/plugins/org.yakindu.sct.doc.user/gadgets/overview.xml" up_projectName="" width="900" height="750"> 

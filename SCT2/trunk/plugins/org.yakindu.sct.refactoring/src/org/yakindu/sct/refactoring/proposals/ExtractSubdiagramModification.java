@@ -8,18 +8,19 @@
  * 	committers of YAKINDU - initial API and implementation
  * 
  */
-package de.itemis.xtext.utils.gmf.proposals;
+package org.yakindu.sct.refactoring.proposals;
 
-import org.eclipse.gmf.runtime.notation.View;
+import org.yakindu.sct.refactoring.refactor.impl.ExtractSubdiagramRefactoring;
 
 /**
  * 
  * @author andreas muelder - Initial contribution and API
  * 
  */
-public interface ISemanticModification {
+public class ExtractSubdiagramModification extends SemanticModificationAdapter {
 
-	public boolean IsModificationFor(View view);
+	public ExtractSubdiagramModification() {
+		super(new ExtractSubdiagramRefactoring());
+	}
 
-	public void modify(View view);
 }

@@ -1,0 +1,21 @@
+testsuite AllTests {  
+	AlwaysOncycle, AssignmentAsExpression,
+	BitExpressions, BooleanExpressions,
+	Choice, CKeywords,
+	Declarations, DeepHistory,
+	EnterState, ExitOnSelfTransition, ExitState,
+	//FeatureCalls,
+	Guard, GuardedEntry, GuardedExit, 
+	HistoryWithoutInitialStep,
+	InEventLifeCycle, IntegerExpressions, InternalEventLifeCycle,
+	NamedInterfaceAccess,
+	OutEventLifeCycle,
+	Parenthesis, PriorityValues,
+	RaiseEvent,
+	SameNameDifferentRegion, ShallowHistory, SimpleHierachy , StateIsActive , StatechartLocalReactions,
+	StringExpressions, 
+	SyncFork,
+	SyncJoin, 
+	SimpleEvent,
+	STextKeywordsInStatesAndRegions 
+} 

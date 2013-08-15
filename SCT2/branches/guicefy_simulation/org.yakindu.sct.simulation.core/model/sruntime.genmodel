@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2013 committers of YAKINDU and others.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;Contributors:&#xD;&#xA;committers of YAKINDU - initial API and implementation&#xD;&#xA;"
+    modelDirectory="/org.yakindu.sct.simulation.core/src" modelPluginID="org.yakindu.sct.simulation.core"
+    modelName="Sruntime" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    publicConstructors="true" usedGenPackages="../../org.yakindu.base.types/model/base.genmodel#//base ../../org.yakindu.sct.model.sgraph/model/emf/sgraph.genmodel#//sgraph"
+    interfaceNamePattern="" importOrganizing="true">
+  <foreignModel>sruntime.ecore</foreignModel>
+  <genPackages prefix="SRuntime" basePackage="org.yakindu.sct.simulation.core" disposableProviderFactory="true"
+      ecorePackage="sruntime.ecore#/">
+    <genDataTypes ecoreDataType="sruntime.ecore#//InferredType"/>
+    <genClasses ecoreClass="sruntime.ecore#//RuntimeContext">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference sruntime.ecore#//RuntimeContext/slots"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sruntime.ecore#//RuntimeContext/activeStates"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sruntime.ecore#//RuntimeContext/events"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sruntime.ecore#//RuntimeContext/variables"/>
+      <genOperations ecoreOperation="sruntime.ecore#//RuntimeContext/getRaisedEvents"/>
+      <genOperations ecoreOperation="sruntime.ecore#//RuntimeContext/getScheduledEvents"/>
+      <genOperations ecoreOperation="sruntime.ecore#//RuntimeContext/getVariable">
+        <genParameters ecoreParameter="sruntime.ecore#//RuntimeContext/getVariable/name"/>
+      </genOperations>
+      <genOperations ecoreOperation="sruntime.ecore#//RuntimeContext/getEvent">
+        <genParameters ecoreParameter="sruntime.ecore#//RuntimeContext/getEvent/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="sruntime.ecore#//RuntimeEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sruntime.ecore#//RuntimeEvent/raised"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sruntime.ecore#//RuntimeEvent/scheduled"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="sruntime.ecore#//RuntimeSlot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sruntime.ecore#//RuntimeSlot/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute sruntime.ecore#//RuntimeSlot/value"/>
+    </genClasses>
+    <genClasses ecoreClass="sruntime.ecore#//RuntimeVariable"/>
+  </genPackages>
+</genmodel:GenModel>

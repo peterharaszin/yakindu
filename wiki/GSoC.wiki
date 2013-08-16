@@ -33,7 +33,7 @@ In a Nutshell, Yakindu Statechart Tools...
 ||Code Generator for C++ || Xtend, C++ ||Medium ||Markus Muehlbrandt ||
 ||Model Code Co-Refactoring || Java, C, JDT, CDT ||Hard ||Andreas Muelder ||
 
-=Model Diff & Merge=
+=Model Diff & Merge  (done)=
  Currently, there is only poor tool support to perform diff and merge on statechart models. Indeed, EMF Compare (http://www.eclipse.org/emf/compare/) provides compare and merge facility for any kind of EMF model, but it only supports a tree-based diff and merge view. Further, it does not differ between the semantical (i.e. a state was added / renamed / removed) and notational (i.e,. a state was resized / moved) changes in the model. The goal of this project is to create a graphical diff and merge view that focuses on semantical changes and to integrate it into the Eclipse Team API. 
 =SCXML Transformation=
  State Chart eXtensible Markup Language (SCXML) is an XML notation that is used to describe statecharts and can represent Hierarchy, History, Concurrency, and Synchronization. A Yakindu Statechart Model conforms to an EMF (Eclipse Modeling Framework) Metamodel persisted in XMI (XML Metadata Interchange) format. The goal of this project is the development of a bi-directional model to model transformation to ease the integration of Yakindu Statechart Tools with third party tools and frameworks that support SCXMl, for example Qt.

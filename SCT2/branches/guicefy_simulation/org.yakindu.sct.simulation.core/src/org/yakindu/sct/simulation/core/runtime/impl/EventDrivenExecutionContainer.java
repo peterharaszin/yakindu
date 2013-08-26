@@ -11,9 +11,9 @@
 
 package org.yakindu.sct.simulation.core.runtime.impl;
 
-import org.yakindu.sct.simulation.core.debugmodel.SCTDebugTarget;
-import org.yakindu.sct.simulation.core.runtime.IExecutionContext;
+import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.simulation.core.runtime.IExecutionContainer;
+import org.yakindu.sct.simulation.core.sruntime.RuntimeContext;
 
 /**
  * Event Driven implementation of the {@link IExecutionContainer}.
@@ -21,13 +21,12 @@ import org.yakindu.sct.simulation.core.runtime.IExecutionContainer;
  * @author andreas muelder - Initial contribution and API
  * 
  */
-public class EventDrivenExecutionContainer extends
-		AbstractExecutionContainer {
+public class EventDrivenExecutionContainer extends AbstractExecutionContainer {
 
 	private Thread cycleRunner;
 
-	public EventDrivenExecutionContainer(SCTDebugTarget target) {
-		super(target);
+	public EventDrivenExecutionContainer(Statechart statechart) {
+		super(statechart);
 	}
 
 	public void start() {
@@ -53,9 +52,8 @@ public class EventDrivenExecutionContainer extends
 	private final class CycleRunner implements Runnable {
 		public void run() {
 			while (!terminated && !suspended) {
-				IExecutionContext context = facade.getExecutionContext();
-				if (context.getRaisedEvents().size() > 0
-						|| context.getScheduledEvents().size() > 0) {
+				RuntimeContext context = interpreter.getRuntimeContext();
+				if (context.getRaisedEvents().size() > 0 || context.getScheduledEvents().size() > 0) {
 					runCycle();
 				}
 			}

@@ -10,13 +10,17 @@
  */
 package org.yakindu.sct.simulation.core.runtime;
 
+import org.yakindu.sct.model.sgraph.Statechart;
+import org.yakindu.sct.simulation.core.sruntime.RuntimeContext;
+
 /**
- * Facade for executable statechart implementation.
  * 
  * @author andreas muelder - Initial contribution and API
  * 
  */
-public interface IExecutionFacade {
+public interface IStatechartInterpreter {
+
+	public void initialize(final Statechart statechart);
 
 	/**
 	 * Unique name
@@ -32,6 +36,7 @@ public interface IExecutionFacade {
 	 * Called after execution, used for clean up
 	 */
 	public void exit();
+
 	/**
 	 * Called after execution, used for clean up
 	 */
@@ -41,30 +46,9 @@ public interface IExecutionFacade {
 	 * Call on every cycle
 	 */
 	public void runCycle();
+ 
+	public RuntimeContext getRuntimeContext();
 
-	/**
-	 * Adds an implementation of {@link IExecutionTraceListener}
-	 */
-	public void addTraceListener(IExecutionTraceListener listener);
-
-	/**
-	 * Removes an implementation of {@link IExecutionTraceListener}
-	 */
-	public void removeTraceListener(IExecutionTraceListener listener);
-
-	/**
-	 * Returns the {@link IExecutionContext}
-	 */
-	public IExecutionContext getExecutionContext();
-
-	/**
-	 * Adds a callback object that is used for the simulation of operations
-	 */
-	public void addCallbackObject(Object object);
-
-	/**
-	 * Removes a callback object that is used for the simulation of operations
-	 */
-	public void removeCallbackObject(Object object);
+	public void setRuntimeContext(RuntimeContext context);
 
 }

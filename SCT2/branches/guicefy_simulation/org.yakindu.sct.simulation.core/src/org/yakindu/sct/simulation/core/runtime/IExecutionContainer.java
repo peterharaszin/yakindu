@@ -11,8 +11,10 @@
 
 package org.yakindu.sct.simulation.core.runtime;
 
+import org.yakindu.sct.simulation.core.sruntime.RuntimeContext;
+
 /**
- * An {@link IExecutionContainer} controls the {@link IExecutionFacade}
+ * An {@link IExecutionContainer} controls the {@link IStatechartInterpreter}
  * runCycle method invocation.
  * 
  * Possible implementations can be cycle based or event driven controllers.
@@ -25,11 +27,17 @@ public interface IExecutionContainer {
 	public void start();
 
 	public void suspend();
-	
+
 	public void step();
 
 	public void resume();
 
 	public void terminate();
+
+	public RuntimeContext getRuntimeContext();
+
+	public IStatechartInterpreter getStatechartInterpreter();
+
+	public void addCallbackObject(Object object);
 
 }

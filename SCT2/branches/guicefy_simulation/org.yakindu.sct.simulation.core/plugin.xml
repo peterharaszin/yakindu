@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="org.yakindu.sct.simulation.core.executionfactory" name="ExecutionFactory" schema="schema/executionfactory.exsd"/>
+   <extension-point id="org.yakindu.sct.simulation.core.extension" name="simulation.core.extension" schema="schema/org.yakindu.sct.simulation.core.extension.exsd"/>
 
 	<!-- Launch configuration -->
 	<extension point="org.eclipse.debug.core.launchConfigurationTypes">
@@ -20,14 +20,12 @@
       		id="org.yakindu.sct.simulation.core.sct.breakpoints">
    		</breakpoint>
 	</extension>
- <extension
-       id="breakpoints"
-       point="org.eclipse.core.resources.markers">
-    <super type="org.eclipse.debug.core.breakpointMarker"/>
-    <persistent value="true"/>
-      <attribute name="message"/>
-      <attribute name="elementId"/>
-      <attribute name="conditional"/>
-      <attribute name="expression"/>
- </extension>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated sruntime -->
+      <package
+            uri="http://www.yakindu.org/sct/sruntime/2.0.0"
+            class="org.yakindu.sct.simulation.core.sruntime.SRuntimePackage"
+            genModel="model/sruntime.genmodel"/>
+   </extension>
+
 </plugin>

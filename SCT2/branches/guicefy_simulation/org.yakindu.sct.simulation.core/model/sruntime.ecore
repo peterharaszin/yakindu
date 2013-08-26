@@ -30,4 +30,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="InferredType" instanceClassName="org.yakindu.base.types.ITypeSystem.InferredType"/>
   <eClassifiers xsi:type="ecore:EClass" name="RuntimeVariable" eSuperTypes="#//RuntimeSlot"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeSlot" eSuperTypes="#//RuntimeSlot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="slots" upperBound="-1"
+        eType="#//RuntimeSlot" containment="true"/>
+  </eClassifiers>
 </ecore:EPackage>

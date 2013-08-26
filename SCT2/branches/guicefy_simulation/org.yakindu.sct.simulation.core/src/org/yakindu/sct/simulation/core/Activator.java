@@ -3,6 +3,11 @@ package org.yakindu.sct.simulation.core;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.yakindu.sct.simulation.core.hmr.SCTHotModelReplacementManager;
+import org.yakindu.sct.simulation.core.module.ModuleProviderExtensions;
+import org.yakindu.sct.simulation.core.module.SimulationModule;
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 
 public class Activator implements BundleActivator {
 
@@ -24,4 +29,13 @@ public class Activator implements BundleActivator {
 		SCTHotModelReplacementManager.INSTANCE.tearDown();
 	}
 
+	private static Injector injector = null;
+
+	public static Injector getInjector() {
+		if (injector == null) {
+			// TODO: Use override
+			injector = Guice.createInjector(new SimulationModule(), ModuleProviderExtensions.getOverridingModule());
+		}
+		return injector;
+	}
 }

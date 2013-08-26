@@ -42,8 +42,8 @@ import org.yakindu.sct.simulation.core.util.ResourceUtil;
  * @author andreas muelder - Initial contribution and API
  * 
  */
-public class SCTHotModelReplacementManager implements IResourceChangeListener,
-		IResourceDeltaVisitor, ILaunchListener, IDebugEventSetListener {
+public class SCTHotModelReplacementManager implements IResourceChangeListener, IResourceDeltaVisitor, ILaunchListener,
+		IDebugEventSetListener {
 
 	public static final SCTHotModelReplacementManager INSTANCE = new SCTHotModelReplacementManager();
 
@@ -56,13 +56,11 @@ public class SCTHotModelReplacementManager implements IResourceChangeListener,
 		listeners = new ArrayList<IHotModelReplacementListener>();
 	}
 
-	public synchronized void addReplacementListener(
-			IHotModelReplacementListener listener) {
+	public synchronized void addReplacementListener(IHotModelReplacementListener listener) {
 		listeners.add(listener);
 	}
 
-	public synchronized void removeReplacementListener(
-			IHotModelReplacementListener listener) {
+	public synchronized void removeReplacementListener(IHotModelReplacementListener listener) {
 		listeners.remove(listener);
 	}
 
@@ -81,8 +79,7 @@ public class SCTHotModelReplacementManager implements IResourceChangeListener,
 			if (debugEvent.getKind() == DebugEvent.TERMINATE) {
 				Object source = debugEvent.getSource();
 				if (source instanceof IAdaptable) {
-					Object adapter = ((IAdaptable) source)
-							.getAdapter(IDebugTarget.class);
+					Object adapter = ((IAdaptable) source).getAdapter(IDebugTarget.class);
 					if (adapter instanceof SCTDebugTarget) {
 						unregisterSCTTarget((SCTDebugTarget) adapter);
 					}
@@ -128,8 +125,7 @@ public class SCTHotModelReplacementManager implements IResourceChangeListener,
 			}
 			// Stop listening to resource changes if no SCTDebugTarget is active
 			if (activeTargets.isEmpty()) {
-				ResourcesPlugin.getWorkspace().removeResourceChangeListener(
-						this);
+				ResourcesPlugin.getWorkspace().removeResourceChangeListener(this);
 			}
 		}
 	}
@@ -162,8 +158,8 @@ public class SCTHotModelReplacementManager implements IResourceChangeListener,
 		if (event.getResource() instanceof IProject) {
 			IProject project = ((IProject) event.getResource());
 			for (SCTDebugTarget target : activeTargets) {
-				IFile file = WorkspaceSynchronizer.getFile(target
-						.getStatechart().eResource());
+				Statechart statechart = (Statechart) target.getAdapter(EObject.class);
+				IFile file = WorkspaceSynchronizer.getFile(statechart.eResource());
 				if (project.equals(file.getProject())) {
 					try {
 						target.terminate();
@@ -183,10 +179,8 @@ public class SCTHotModelReplacementManager implements IResourceChangeListener,
 		List<SCTDebugTarget> modelReplacementFailedTargets = new ArrayList<SCTDebugTarget>();
 		for (SCTDebugTarget sctDebugTarget : targets) {
 			// Reload the Statechart form the changes resource
-			Statechart newStatechart = ResourceUtil
-					.loadStatechart(sctDebugTarget.getResourceString());
-			if (!EcoreUtil.equals(newStatechart,
-					(EObject) sctDebugTarget.getAdapter(EObject.class))) {
+			Statechart newStatechart = ResourceUtil.loadStatechart(sctDebugTarget.getResourceString());
+			if (!EcoreUtil.equals(newStatechart, (EObject) sctDebugTarget.getAdapter(EObject.class))) {
 				// The model semantically changed, we have to create a
 				// notificiation for that....
 				modelReplacementFailedTargets.add(sctDebugTarget);
@@ -199,8 +193,7 @@ public class SCTHotModelReplacementManager implements IResourceChangeListener,
 
 	}
 
-	protected void notifyHotModelReplacementFailed(
-			List<SCTDebugTarget> affectedTargets) {
+	protected void notifyHotModelReplacementFailed(List<SCTDebugTarget> affectedTargets) {
 		synchronized (listeners) {
 			for (IHotModelReplacementListener listener : listeners) {
 				listener.hotCodeReplaceFailed(affectedTargets);
@@ -213,8 +206,7 @@ public class SCTHotModelReplacementManager implements IResourceChangeListener,
 		synchronized (activeTargets) {
 			for (SCTDebugTarget debugTarget : activeTargets) {
 				String resourceString = debugTarget.getResourceString();
-				IResource resource = ResourcesPlugin.getWorkspace().getRoot()
-						.findMember(resourceString);
+				IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(resourceString);
 				if (changedFiles.contains(resource)) {
 					targets.add(debugTarget);
 				}

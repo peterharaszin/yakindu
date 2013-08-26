@@ -13,14 +13,16 @@ package org.yakindu.sct.simulation.core.runtime.impl;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.yakindu.sct.simulation.core.debugmodel.SCTDebugTarget;
-import org.yakindu.sct.simulation.core.runtime.IExecutionFacade;
+import org.yakindu.sct.model.sgraph.Statechart;
 import org.yakindu.sct.simulation.core.runtime.IExecutionContainer;
+import org.yakindu.sct.simulation.core.runtime.IStatechartInterpreter;
+
+import com.google.inject.Inject;
 
 /**
  * Cycle based implementation of {@link IExecutionContainer}.
  * 
- * runCycle is called on {@link IExecutionFacade} periodically, depending on the
+ * runCycle is called on {@link IStatechartInterpreter} periodically, depending on the
  * cyclePeriod value.
  * 
  * @author andreas muelder - Initial contribution and API
@@ -28,14 +30,14 @@ import org.yakindu.sct.simulation.core.runtime.IExecutionContainer;
  */
 public class CycleBasedExecutionContainer extends AbstractExecutionContainer {
 
+	@Inject
 	private Timer timer;
 
 	private long cyclePeriod;
 
-	public CycleBasedExecutionContainer(SCTDebugTarget target, long cyclePeriod) {
-		super(target);
+	public CycleBasedExecutionContainer(Statechart statechart, long cyclePeriod) {
+		super(statechart);
 		this.cyclePeriod = cyclePeriod;
-		timer = new Timer();
 	}
 
 	protected void scheduleCycle() {

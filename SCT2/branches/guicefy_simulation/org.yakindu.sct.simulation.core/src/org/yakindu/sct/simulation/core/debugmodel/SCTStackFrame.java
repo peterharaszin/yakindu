@@ -18,7 +18,7 @@ import org.eclipse.debug.core.model.IStackFrame;
 import org.eclipse.debug.core.model.IVariable;
 import org.eclipse.emf.ecore.EObject;
 import org.yakindu.sct.model.sgraph.Vertex;
-import org.yakindu.sct.simulation.core.runtime.IExecutionFacade;
+import org.yakindu.sct.simulation.core.runtime.IStatechartInterpreter;
 
 /**
  * 
@@ -156,8 +156,8 @@ public class SCTStackFrame extends SCTDebugElement implements IStackFrame {
 	}
 
 	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
-		if (adapter == IExecutionFacade.class)
-			return getDebugTarget().getAdapter(IExecutionFacade.class);
+		if (adapter == IStatechartInterpreter.class)
+			return getDebugTarget().getAdapter(IStatechartInterpreter.class);
 		if(adapter == EObject.class)
 			return state;
 		return super.getAdapter(adapter);

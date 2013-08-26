@@ -10,6 +10,8 @@
  */
 package org.yakindu.sct.simulation.core.debugmodel;
 
+import static org.yakindu.sct.simulation.core.debugmodel.IDebugConstants.ID_DEBUG_MODEL;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -39,7 +41,7 @@ public class SCTDebugElement extends DebugElement {
 	}
 
 	public String getModelIdentifier() {
-		return IDebugConstants.ID_DEBUG_MODEL;
+		return ID_DEBUG_MODEL;
 	}
 
 	public String fullQfn(NamedElement element) {

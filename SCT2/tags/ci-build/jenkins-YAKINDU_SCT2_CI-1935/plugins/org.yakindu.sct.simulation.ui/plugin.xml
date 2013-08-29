@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+	<!-- Editor Highlighting Adapter -->
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor"
+            class="org.yakindu.sct.simulation.ui.model.presenter.IHighlightingSupportAdapterFactory">
+         <adapter
+               type="de.itemis.gmf.runtime.commons.highlighting.IHighlightingSupport">
+         </adapter>
+      </factory>
+   </extension>
+	<!-- Launch configuration images -->
+   <extension point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+    	<launchConfigurationTypeImage
+        	icon="icons/Statechart-Launcher-16.png"
+        	configTypeID="org.yakindu.sct.simulation.core.launch.statechart"
+        	id="org.yakindu.sct.core.simulation.launch.statechartTypeImage">
+	    </launchConfigurationTypeImage>
+	</extension>
+	
+	<!-- launch tab group -->
+	<extension point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+  	  <launchConfigurationTabGroup
+    	 type="org.yakindu.sct.simulation.core.launch.statechart"
+  	     class="org.yakindu.sct.simulation.ui.launch.tabs.StatechartLaunchConfigurationTabGroup"
+  	     id="org.yakindu.sct.simulation.ui.launch.tabs.statechart.tabs">
+  	      <launchMode 
+                  mode="debug"
+                  perspective="org.yakindu.sct.ui.SimulationPerspective">
+            </launchMode>
+              <launchMode 
+                  mode="run"
+                  perspective="org.yakindu.sct.ui.SimulationPerspective">
+            </launchMode>
+   	 </launchConfigurationTabGroup>
+	</extension>
+	
+	<!-- launch shortcuts -->
+	<extension point="org.eclipse.debug.ui.launchShortcuts">
+	    <shortcut
+	        id="org.yakindu.sct.core.simulation.launch.shortcut"
+	        class="org.yakindu.sct.simulation.ui.launch.StatechartLaunchShortcut"
+	        label="YAKINDU Statechart"
+	        icon="icons/Statechart-Launcher-16.png"
+	        modes="run, debug">
+	         <contextualLaunch>
+				<enablement>
+					<with variable="selection">
+					<count value="1"/>
+						<iterate>
+							<test property="org.eclipse.debug.ui.matchesPattern" value="*.sct"/>
+						</iterate>
+					</with>
+				</enablement>
+		  	 </contextualLaunch>
+	    </shortcut>
+	</extension>
+	
+<!-- Session Listener -->
+ <extension
+       point="org.eclipse.ui.views">
+    <view
+          allowMultiple="false"
+          class="org.yakindu.sct.simulation.ui.view.SimulationView"
+          icon="icons/Declarations-View-16.gif"
+          id="org.yakindu.sct.simulation.ui.declarationview"
+          name="Simulation View"
+          restorable="true">
+    </view>
+ </extension>
+ <extension
+       point="org.eclipse.debug.core.statusHandlers">
+    <statusHandler
+          class="org.yakindu.sct.simulation.ui.handler.GenericStatusHandler"
+          code="200"
+          id="org.yakindu.sct.simulation.ui.statushandler"
+          plugin="org.yakindu.sct.simulation.core">
+    </statusHandler>
+ </extension>
+  <extension
+       point="org.eclipse.debug.core.statusHandlers">
+    <statusHandler
+          class="org.yakindu.sct.simulation.ui.handler.TerminateLaunchStatusHandler"
+          code="765"
+          id="org.yakindu.sct.simulation.ui.statushandler"
+          plugin="org.yakindu.sct.simulation.core">
+    </statusHandler>
+ </extension>
+ 
+ <!-- Source Display Adapter factory -->
+ <extension
+       point="org.eclipse.core.runtime.adapters">
+    <factory
+          adaptableType="org.yakindu.sct.simulation.core.debugmodel.SCTStackFrame"
+          class="org.yakindu.sct.simulation.ui.model.presenter.SCTSourceDisplayAdapterFactory">
+       <adapter
+             type="org.eclipse.debug.ui.sourcelookup.ISourceDisplay">
+       </adapter>
+    </factory>
+     <factory
+          adaptableType="org.yakindu.sct.simulation.core.debugmodel.SCTDebugThread"
+          class="org.yakindu.sct.simulation.ui.model.presenter.SCTSourceDisplayAdapterFactory">
+       <adapter
+             type="org.eclipse.debug.ui.sourcelookup.ISourceDisplay">
+       </adapter>
+    </factory>
+     <factory
+          adaptableType="org.yakindu.sct.simulation.core.debugmodel.SCTDebugTarget"
+          class="org.yakindu.sct.simulation.ui.model.presenter.SCTSourceDisplayAdapterFactory">
+       <adapter
+             type="org.eclipse.debug.ui.sourcelookup.ISourceDisplay">
+       </adapter>
+    </factory>
+ </extension>
+ <extension
+       point="org.eclipse.ui.preferencePages">
+    <page
+          class="org.yakindu.sct.simulation.ui.preferences.SimulationPreferencePage"
+          id="org.yakindu.sct.simulation.ui.preferences.SimulationPreferencePage"
+          name="Simulation"
+          category="org.yakindu.sct.ui.preferences.root">
+    </page>
+ </extension>
+ <extension
+       point="org.eclipse.core.runtime.preferences">
+    <initializer
+          class="org.yakindu.sct.simulation.ui.preferences.PreferenceInitializer">
+    </initializer>
+ </extension>
+ 
+ 
+ 
+ <!-- Toggle breakpoint action -->
+<extension point="org.eclipse.ui.commands">
+ 	<command
+       defaultHandler="org.yakindu.sct.simulation.ui.breakpoints.ToggleBreakpointCommand"
+       id="org.yakindu.sct.simulation.ui.breakpoints.ToggleBreakpointCommand"
+       name="Toggle breakpoint">
+	</command>
+</extension>
+
+<extension
+       point="org.eclipse.ui.menus">
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+          <command
+                commandId="org.yakindu.sct.simulation.ui.breakpoints.ToggleBreakpointCommand"
+                label="Toggle Breakpoint"
+                style="push">
+             <visibleWhen
+                checkEnabled="false">
+             <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                      <or>
+                   <!--
+                   <instanceof
+                         value="org.yakindu.sct.ui.editor.editparts.TransitionEditPart">
+                   </instanceof>
+                   -->
+                    <instanceof
+                         value="org.yakindu.sct.ui.editor.editparts.StateEditPart">
+                   </instanceof>
+                   </or>
+                </iterate>
+             </with>
+          </visibleWhen>
+          </command>
+    </menuContribution>
+ </extension>
+ <!-- Debug Model Presentation -->
+	<extension point = "org.eclipse.debug.ui.debugModelPresentations"> 
+       <debugModelPresentation 
+           class = "org.yakindu.sct.simulation.ui.breakpoints.SCTDebugModelPresentation"
+           id = "org.yakindu.sct.debug.core.breakpoints">
+       </debugModelPresentation> 
+   </extension>  
+  <!-- Breakpoint Decoration Provider -->
+   <extension id="breakpointDecoratorProvider" name="BreakpointDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <decoratorProvider class="org.yakindu.sct.simulation.ui.breakpoints.BreakpointDecorationProvider">
+         <Priority name="Medium"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+  <!-- Breakpoint Detail Pane factory -->
+  <extension point="org.eclipse.debug.ui.detailPaneFactories">
+       <detailFactories
+             class="org.yakindu.sct.simulation.ui.breakpoints.SCTDetailPaneFactory"
+             id="sctDetailPane">
+             <enablement>
+       		   <with
+                variable="selection">
+             <count
+                   value="1">
+             </count>
+             <iterate>
+                <instanceof
+                      value="org.yakindu.sct.simulation.core.breakpoints.SCTBreakpoint">
+                </instanceof>
+             </iterate>
+          </with>
+       </enablement>
+       </detailFactories>
+</extension>
+</plugin>

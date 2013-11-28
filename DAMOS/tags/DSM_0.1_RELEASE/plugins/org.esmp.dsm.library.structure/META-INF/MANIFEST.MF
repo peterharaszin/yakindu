@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Dynamical Systems Modeler Library Structure
-Bundle-SymbolicName: org.esmp.dsm.library.structure;singleton:=true
-Bundle-Version: 0.1.0.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.esmp.dsm.library.common
-Bundle-Vendor: esmp.org
-Export-Package: org.esmp.dsm.library.structure.util

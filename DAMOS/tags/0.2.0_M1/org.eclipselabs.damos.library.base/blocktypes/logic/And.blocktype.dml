@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_a6MHoIkREd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.logic.And">
-  <inputDefinitions xmi:id="_a6MHoYkREd-UBLGPWvR3ew" minimumPortCount="2" maximumPortCount="-1" name="input"/>
-  <outputDefinitions xmi:id="_a6MHookREd-UBLGPWvR3ew" name="output"/>
-  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_Q_rdURl_EeCbYvAKHyD6pg" behavior="func And(input) -> output {&#xA;&#x9;static assert input is bool[] :&#xA;&#x9;&#x9;error &quot;Input values must be boolean&quot;;&#xA;&#x9;&#x9;&#xA;&#x9;output = input.iterate(e; and = true | and &amp;&amp; e);&#xA;}&#xA;"/>
-</dml:BlockType>

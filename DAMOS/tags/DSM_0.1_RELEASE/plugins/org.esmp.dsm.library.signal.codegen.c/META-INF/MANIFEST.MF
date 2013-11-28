@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Dynamical Systems Modeler Library Signal Codegen C
-Bundle-SymbolicName: org.esmp.dsm.library.signal.codegen.c;singleton:=true
-Bundle-Version: 0.1.0.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Bundle-Vendor: esmp.org
-Require-Bundle: org.esmp.dsm.codegen.c

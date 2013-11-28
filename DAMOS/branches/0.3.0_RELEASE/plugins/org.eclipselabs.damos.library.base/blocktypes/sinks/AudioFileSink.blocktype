@@ -1,9 +1,0 @@
-package damos.library.base.sinks
-
-blockType AudioFileSink {
-
-	input _input[1..*]
-	
-	opaque parameter fileURI = ""
-
-}

@@ -1,8 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Dynamical Systems Modeler Library Logic Codegen C
-Bundle-SymbolicName: org.esmp.dsm.library.logic.codegen.c;singleton:=true
-Bundle-Version: 0.1.0.qualifier
-Bundle-Vendor: esmp.org
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.esmp.dsm.codegen.c

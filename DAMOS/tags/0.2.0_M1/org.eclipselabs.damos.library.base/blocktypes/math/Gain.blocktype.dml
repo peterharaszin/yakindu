@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_m27mcIkREd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.math.Gain">
-  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_m28NgIkREd-UBLGPWvR3ew" name="gain">
-    <defaultExpression xmi:id="_m28NgYkREd-UBLGPWvR3ew" expression="1"/>
-  </parameters>
-  <inputDefinitions xmi:id="_m27mcYkREd-UBLGPWvR3ew" name="input"/>
-  <outputDefinitions xmi:id="_m27mcokREd-UBLGPWvR3ew" name="output"/>
-  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_l43U8BjKEeCy-8Aq07u_Xw" behavior="func Gain&lt;gain>(input) -> output {&#xA;&#x9;static assert input is real() :&#xA;&#x9;&#x9;error &quot;Input value must be numeric&quot;;&#xA;&#xA;&#x9;output = gain * input;&#xA;}&#xA;"/>
-</dml:BlockType>

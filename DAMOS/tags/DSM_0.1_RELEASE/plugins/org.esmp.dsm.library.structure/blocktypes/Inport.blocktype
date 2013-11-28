@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blockdiagram:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:blockdiagram="http://www.esmp.org/dsm/BlockDiagram/1.0.0" name="Inport" structural="true">
-  <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="PortNumber" defaultValue="1"/>
-  <inputs name="VirtualInput" minimumPortCount="0" virtual="true" type="Mixed"/>
-  <outputs name="Output" type="Mixed"/>
-  <categories href="http://www.esmp.org/dsm/1.0.0/Execution/MixedOutputDataTypeSpecifier.blockcategory#/"/>
-</blockdiagram:BlockType>

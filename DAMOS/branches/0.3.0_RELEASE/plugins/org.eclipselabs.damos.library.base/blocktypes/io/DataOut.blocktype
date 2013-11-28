@@ -1,8 +1,0 @@
-package damos.library.base.io
-
-discrete boundary blockType DataOut {
-
-	input _input
-	testPoint output _output
-
-}

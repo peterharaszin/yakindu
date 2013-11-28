@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blockdiagram:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:blockdiagram="http://www.esmp.org/dsm/BlockDiagram/1.0.0" name="Product">
-  <inputs name="Input" minimumPortCount="2" maximumPortCount="-1"/>
-  <outputs name="Output"/>
-</blockdiagram:BlockType>

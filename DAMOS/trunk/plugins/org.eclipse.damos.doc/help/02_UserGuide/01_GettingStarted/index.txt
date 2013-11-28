@@ -1,3 +1,0 @@
-01_CreatingModel.textile
-02_GeneratingCode.textile
-03_StructuringModels.textile

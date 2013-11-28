@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blockdiagram:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:blockdiagram="http://www.esmp.org/dsm/BlockDiagram/1.0.0" name="DiscreteIntegrator">
-  <inputs name="Input" directFeedthroughExpression="false"/>
-  <outputs name="Output"/>
-  <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="InitialValue" defaultValue="0"/>
-  <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="Gain" defaultValue="1"/>
-  <parameters xsi:type="blockdiagram:BooleanParameterDescriptor" name="Accumulation"/>
-</blockdiagram:BlockType>

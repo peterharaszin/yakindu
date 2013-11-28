@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blockdiagram:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:blockdiagram="http://www.esmp.org/dsm/BlockDiagram/1.0.0" name="Sum">
-  <inputs name="Input" minimumPortCount="2" maximumPortCount="-1">
-    <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="Sign" defaultValue="1"/>
-  </inputs>
-  <outputs name="Output"/>
-</blockdiagram:BlockType>

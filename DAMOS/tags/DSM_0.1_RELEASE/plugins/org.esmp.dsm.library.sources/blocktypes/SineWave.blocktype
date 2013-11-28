@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blockdiagram:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:blockdiagram="http://www.esmp.org/dsm/BlockDiagram/1.0.0" name="SineWave" virtual="true">
-  <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="Amplitude" defaultValue="1"/>
-  <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="Bias" defaultValue="0"/>
-  <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="Frequency" defaultValue="1"/>
-  <parameters xsi:type="blockdiagram:ExpressionParameterDescriptor" name="Phase" defaultValue="0"/>
-  <outputs name="Output"/>
-  <categories href="http://www.esmp.org/dsm/1.0.0/Execution/ScalarOutputDataTypeSpecifier.blockcategory#/"/>
-</blockdiagram:BlockType>

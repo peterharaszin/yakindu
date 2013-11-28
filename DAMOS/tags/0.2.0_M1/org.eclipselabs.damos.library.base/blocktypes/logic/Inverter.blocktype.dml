@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_d5MPYIkREd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.logic.Inverter">
-  <inputDefinitions xmi:id="_d5MPYYkREd-UBLGPWvR3ew" name="input"/>
-  <outputDefinitions xmi:id="_d5MPYokREd-UBLGPWvR3ew" name="output"/>
-  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_QxlbgBnCEeC_e-Pf9pf9-g" behavior="func Inverter(input) -> output {&#xA;&#x9;static assert input is bool :&#xA;&#x9;&#x9;error &quot;Input value must be boolean&quot;;&#xA;&#x9;&#x9;&#xA;&#x9;output = !input;&#xA;}&#xA;"/>
-</dml:BlockType>

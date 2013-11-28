@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_OR3fwIkSEd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.signal.Switch">
-  <inputDefinitions xmi:id="_OR3fwYkSEd-UBLGPWvR3ew" name="onTrue"/>
-  <inputDefinitions xmi:id="_OR4G0IkSEd-UBLGPWvR3ew" name="control"/>
-  <inputDefinitions xmi:id="_OR4G0YkSEd-UBLGPWvR3ew" name="onFalse"/>
-  <outputDefinitions xmi:id="_OR4G0okSEd-UBLGPWvR3ew" name="output"/>
-  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_m0s38BnDEeC_e-Pf9pf9-g" behavior="func Switch(onTrue, control, onFalse) -> output {&#xA;&#x9;static assert onTrue is real() :&#xA;&#x9;&#x9;error &quot;On-true input must be numeric&quot;;&#xA;&#xA;&#x9;static assert onFalse is real() :&#xA;&#x9;&#x9;error &quot;On-false input must be numeric&quot;;&#xA;&#xA;&#x9;static assert onTrue is real() &amp;&amp; onFalse is real() => unit(onTrue) == unit(onFalse) :&#xA;&#x9;&#x9;error &quot;On-true input and on-false input must have same unit&quot;;&#xA;&#xA;&#x9;static assert control is bool :&#xA;&#x9;&#x9;error &quot;Control input must be boolean&quot;;&#xA;&#x9;&#x9;&#xA;&#x9;output =&#xA;&#x9;&#x9;if control then&#xA;&#x9;&#x9;&#x9;onTrue&#xA;&#x9;&#x9;else&#xA;&#x9;&#x9;&#x9;onFalse;&#xA;}&#xA;"/>
-</dml:BlockType>

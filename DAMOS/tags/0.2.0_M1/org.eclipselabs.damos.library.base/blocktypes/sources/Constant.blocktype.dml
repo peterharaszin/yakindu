@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<dml:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dml="http://www.eclipselabs.org/damos/DML/1.0.0" xmi:id="_VYHJsIkSEd-UBLGPWvR3ew" qualifiedName="org.eclipselabs.damos.library.base.sources.Constant">
-  <parameters xsi:type="dml:ExpressionParameter" xmi:id="_VYHJsokSEd-UBLGPWvR3ew" name="value">
-    <defaultExpression xmi:id="_VYHJs4kSEd-UBLGPWvR3ew" expression="1"/>
-  </parameters>
-  <outputDefinitions xmi:id="_VYHJsYkSEd-UBLGPWvR3ew" name="output"/>
-  <behavior xsi:type="dml:OpaqueBehaviorSpecification" xmi:id="_7kzzABmFEeCbYvAKHyD6pg" behavior="func Constant&lt;value>() -> output {&#xA;&#x9;output = value;&#xA;}&#xA;"/>
-</dml:BlockType>

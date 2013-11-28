@@ -1,9 +1,0 @@
-package damos.blocks
-
-blockType Scope {
-
-	input _input[1..*]
-	
-	parameter dataPointLimit = 20000
-
-}

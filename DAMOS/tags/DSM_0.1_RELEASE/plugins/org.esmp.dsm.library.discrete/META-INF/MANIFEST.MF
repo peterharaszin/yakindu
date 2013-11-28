@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: Dynamical Systems Modeler Library Discrete
-Bundle-SymbolicName: org.esmp.dsm.library.discrete;singleton:=true
-Bundle-Version: 0.1.0.qualifier
-Bundle-Vendor: esmp.org
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.esmp.dsm.library.common
-Export-Package: org.esmp.dsm.library.discrete.util

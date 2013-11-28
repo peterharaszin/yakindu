@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blockdiagram:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:blockdiagram="http://www.esmp.org/dsm/BlockDiagram/1.0.0" name="Scope" virtual="true">
-  <inputs name="Input" maximumPortCount="-1" type="Mixed" directFeedthroughExpression="false"/>
-</blockdiagram:BlockType>

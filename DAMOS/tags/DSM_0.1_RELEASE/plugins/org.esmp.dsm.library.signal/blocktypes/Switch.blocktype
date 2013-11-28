@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<blockdiagram:BlockType xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:blockdiagram="http://www.esmp.org/dsm/BlockDiagram/1.0.0" name="Switch">
-  <inputs name="OnTrue"/>
-  <inputs name="Control" type="Logic"/>
-  <inputs name="OnFalse"/>
-  <outputs name="Output"/>
-</blockdiagram:BlockType>

@@ -1,0 +1,195 @@
+grammar org.yakindu.sct.model.stext.SText with org.yakindu.base.expressions.Expressions
+
+generate stext "http://www.yakindu.org/sct/statechart/SText"
+import "http://www.yakindu.org/sct/sgraph/2.0.0" as sgraph
+import "http://www.yakindu.org/base/types/2.0.0" as types
+import "http://www.yakindu.org/base/base/2.0.0" as base
+import "http://www.yakindu.org/base/expressions/Expressions" as exp
+/* ---- root rules ----
+These root rules are not relevant for the grammar integration in the statechart. They just integrate the different start rules consistently 
+into a single grammar. 
+*/
+Root:
+	(roots+=DefRoot)*;
+
+DefRoot:
+	StatechartRoot | StateRoot | TransitionRoot;
+
+StatechartRoot:
+	'@@statechart@@' def=StatechartSpecification;
+
+StateRoot:
+	'@@state@@' def=StateSpecification;
+
+TransitionRoot:
+	'@@transition@@' def=TransitionSpecification;
+/* ---- start rules ----
+Define the starting points used by the statechart integration. These rules hook in the concrete rules of the specific grammar.
+*/
+ScopedElement returns sgraph::ScopedElement:
+	StatechartSpecification;
+
+StatechartSpecification:
+	{StatechartSpecification} ('namespace' namespace=FQN)?
+	(scopes+=StatechartScope)*;
+
+StateSpecification:
+	scope=StateScope;
+
+TransitionSpecification:
+	reaction=TransitionReaction;
+
+Scope returns sgraph::Scope:
+	(StateScope | StatechartScope);
+
+StateScope returns sgraph::Scope:
+	{SimpleScope} (declarations+=(LocalReaction))*;
+
+StatechartScope:
+	InterfaceScope | InternalScope | ImportScope;
+
+NamedInterfaceScope returns base::NamedElement:
+	InterfaceScope;
+
+InterfaceScope:
+	{InterfaceScope} 'interface' (name=XID)? ':' (declarations+=(EventDeclarartion | VariableDeclaration |
+	OperationDeclaration))*;
+
+InternalScope:
+	{InternalScope} 'internal' ':' (declarations+=(EventDeclarartion | VariableDeclaration | OperationDeclaration |
+	LocalReaction))*;
+	
+ImportScope:
+	 {ImportScope} 'import' ':' (imports+=Import)*;
+
+Import:
+	importedNamespace=QIDWithWildcards;
+
+QIDWithWildcards:
+	QID ('.*')?;
+
+QID:
+	ID ('.' ID)*;
+
+Declaration returns sgraph::Declaration:
+	EventDeclarartion | VariableDeclaration | OperationDeclaration | LocalReaction;
+
+EventDeclarartion returns sgraph::Event:
+	EventDefinition;
+
+EventFeature returns types::Event:
+	EventDefinition;
+
+EventDefinition:
+	(direction=Direction)? 'event' name=XID (':' type=[types::Type|FQN])?;
+
+enum Direction:
+	LOCAL='local' | IN='in' | OUT='out';
+
+VariableDeclaration returns sgraph::Variable:
+	VariableDefinition;
+
+VariableFeature returns types::Property:
+	VariableDefinition;
+
+
+VariableDefinition:
+	{VariableDefinition} 'var' ((readonly?='readonly')? & (external?='external')?) name=XID ':' type=[types::Type|FQN]
+	(('<' (typeArguments+=[types::Type|QID]) (',' typeArguments+=[types::Type|QID])* '>'))?
+	('=' initialValue=Expression)?; /* ---- operation definition ---- */ 
+	
+OperationDeclaration returns sgraph::Declaration:
+	OperationDefinition;
+
+OperationFeature returns types::Operation:
+	OperationDefinition;
+
+OperationDefinition:
+	{OperationDefinition} 'operation' name=XID '(' (parameters+=Parameter (',' parameters+=Parameter)*)? ')' (':'
+	type=[types::Type|FQN] (('<' (typeArguments+=[types::Type|QID]) (',' typeArguments+=[types::Type|QID])* '>'))?)?;
+
+Parameter returns types::Parameter:
+	name=XID ':' type=[types::Type|FQN] (('<' (typeArguments+=[types::Type|QID]) (',' typeArguments+=[types::Type|QID])*
+	'>'))?;
+
+Reaction returns sgraph::Reaction:
+	LocalReaction | TransitionReaction;
+
+LocalReaction:
+	(trigger=ReactionTrigger) => ('/' effect=ReactionEffect);
+
+TransitionReaction:
+	{TransitionReaction} (trigger=StextTrigger)? ('/' effect=ReactionEffect)? ('#' (properties+=TransitionProperty)*)?;
+
+StextTrigger returns sgraph::Trigger:
+	ReactionTrigger | DefaultTrigger;
+
+ReactionTrigger returns sgraph::Trigger:
+	{ReactionTrigger} ((triggers+=EventSpec ("," triggers+=EventSpec)* (=> '[' guard=Guard ']')?) | ('[' guard=Guard
+	']'));
+
+DefaultTrigger returns sgraph::Trigger:
+	{DefaultTrigger} ('default' | 'else');
+
+Guard:
+	{Guard} expression=Expression;
+
+ReactionEffect returns sgraph::Effect:
+	{ReactionEffect} actions+=(Expression | EventRaisingExpression) (=> ';' actions+=(Expression |
+	EventRaisingExpression))*;
+
+TransitionProperty returns sgraph::ReactionProperty:
+	EntryPointSpec | ExitPointSpec;
+
+EntryPointSpec:
+	'>' entrypoint=ID;
+
+ExitPointSpec:
+	exitpoint=ID '>';
+
+EventSpec:
+	RegularEventSpec | TimeEventSpec | BuiltinEventSpec;
+
+RegularEventSpec:
+	event=FeatureCall;
+
+TimeEventSpec:
+	type=TimeEventType value=ConditionalExpression unit=TimeUnit;
+
+enum TimeEventType:
+	after | every;
+
+BuiltinEventSpec:
+	EntryEvent | ExitEvent | AlwaysEvent;
+
+EntryEvent:
+	{EntryEvent} 'entry';
+
+ExitEvent:
+	{ExitEvent} 'exit';
+
+AlwaysEvent:
+	{AlwaysEvent} ('always' | 'oncycle');
+
+EventRaisingExpression returns exp::Expression:
+	{EventRaisingExpression} 'raise' event=FeatureCall (':' value=Expression)?;
+
+EventValueReferenceExpression returns exp::Expression:
+	{EventValueReferenceExpression} 'valueof' '(' value=FeatureCall ')';
+
+ActiveStateReferenceExpression returns exp::Expression:
+	{ActiveStateReferenceExpression} 'active' '(' value=[sgraph::State|FQN] ')';
+
+PrimaryExpression returns exp::Expression:
+	PrimitiveValueExpression | FeatureCall | ArrayInitializationExpression | ActiveStateReferenceExpression | EventValueReferenceExpression |
+	ParenthesizedExpression;
+
+enum TimeUnit:
+	second='s' | millisecond='ms' | microsecond='us' | nanosecond='ns';
+
+XID:
+	ID | 'namespace' | 'interface' | 'internal' | 'event' | 'local' | 'in' | 'out' | 'var' | 'readonly' | 'external' |
+	'operation' | 'default' | 'else' | 'entry' | 'exit' | 'always' | 'oncycle' | 'raise' | 'valueof' | 'active';
+
+FQN:
+	XID ('.' XID)*;

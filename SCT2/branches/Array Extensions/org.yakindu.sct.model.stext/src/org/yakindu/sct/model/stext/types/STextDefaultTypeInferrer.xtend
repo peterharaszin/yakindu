@@ -203,7 +203,19 @@ class STextDefaultTypeInferrer extends DefaultExpressionsTypeInferrer implements
 			return expression.reference.doInferType
 		}
 	}
-
+	
+//		def dispatch InferenceResult doInferType(SimpleElementReferenceExpression expression) {
+//		if (expression.reference instanceof EventDefinition && !(expression.eContainer instanceof EventRaisingExpression ||
+//			expression.eContainer instanceof EventValueReferenceExpression)) {
+//
+//			// in case we are not inside an raise or valueOf expression, the event is a shortcut for isRaised(event) and thus, we may return boolean here
+//			return new InferenceResult(getBooleanType)
+//		} 
+//		else {
+//			// inference of the reference type is not context dependent
+//			return expression.reference.doInferType
+//		}
+//	}
 	
 	def dispatch InferenceResult doInferType(FeatureCall featureCall) {
  		if (featureCall.feature instanceof Event /*Definition*/ &&
@@ -233,6 +245,7 @@ class STextDefaultTypeInferrer extends DefaultExpressionsTypeInferrer implements
 
 		return featureCall.feature.doInferType
 	}
+	
 	
 	// TODO: needs to be tested more properly
 	def private Type getInstanceTypeForTypeParameter(TypeParameter type, FeatureCall featureCall) {

@@ -373,10 +373,10 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 			else if (definition.getType() instanceof ArrayType) {
 				Expression initialValue = definition.getInitialValue();
 				if (initialValue instanceof ArrayInitializationExpression) {
-					checkSelectorInitialization(((ArrayType)definition.getType()).getArraySelector(), (ArrayInitializationExpression) initialValue,definition.getName(), 0);
-					checkInitValueType((ArrayInitializationExpression) initialValue, ((ArrayType)definition.getType()).getElementType(), definition.getName());
+//					checkSelectorInitialization(((ArrayType)definition.getType()).getArraySelector(), (ArrayInitializationExpression) initialValue,definition.getName(), 0);
+//					checkInitValueType((ArrayInitializationExpression) initialValue, ((ArrayType)definition.getType()).getElementType(), definition.getName());
 				}
-				else error("Initialization expression for array " + definition.getName() +" is invalid", null);
+				else if (initialValue != null) error("Initialization expression for array " + definition.getName() +" is invalid", null);
 			}
 			else {
 				report(result, null);

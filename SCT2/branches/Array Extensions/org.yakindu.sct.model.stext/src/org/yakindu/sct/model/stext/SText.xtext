@@ -1,6 +1,7 @@
 grammar org.yakindu.sct.model.stext.SText with org.yakindu.base.expressions.Expressions
 
 generate stext "http://www.yakindu.org/sct/statechart/SText"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 import "http://www.yakindu.org/sct/sgraph/2.0.0" as sgraph
 import "http://www.yakindu.org/base/types/2.0.0" as types
 import "http://www.yakindu.org/base/base/2.0.0" as base
@@ -125,7 +126,7 @@ StextTrigger returns sgraph::Trigger:
 	ReactionTrigger | DefaultTrigger;
 
 ReactionTrigger returns sgraph::Trigger:
-	{ReactionTrigger} ((triggers+=EventSpec ("," triggers+=EventSpec)* (=> '[' guard=Guard ']')?) | ('[' guard=Guard
+	{ReactionTrigger} ((triggers+=EventSpec ("," triggers+=EventSpec)* =>('[' guard=Guard ']')?) | ('[' guard=Guard
 	']'));
 
 DefaultTrigger returns sgraph::Trigger:
@@ -150,8 +151,21 @@ ExitPointSpec:
 EventSpec:
 	RegularEventSpec | TimeEventSpec | BuiltinEventSpec;
 
+// Use SimpleFeatureCall for eventSpec to avoid guard ambiguity with array access
 RegularEventSpec:
-	event=FeatureCall;
+	event=SimpleFeatureCall;
+
+SimpleFeatureCall returns exp::Expression:
+	SimpleElementReferenceExpression ({exp::FeatureCall.owner=current} '.' feature=[ecore::EObject]
+	(=> operationCall?='('
+	(args+=Expression (',' args+=Expression)*)?
+	')')?)*;
+
+SimpleElementReferenceExpression returns exp::ElementReferenceExpression:
+	reference=[ecore::EObject|ID]
+	(=> operationCall?='('
+	(args+=Expression (',' args+=Expression)*)?
+	')')?;
 
 TimeEventSpec:
 	type=TimeEventType value=ConditionalExpression unit=TimeUnit;

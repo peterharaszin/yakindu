@@ -1,0 +1,593 @@
+GeneratorModel for sctunit::cpp {
+
+	test AllTests{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+		
+	test AlwaysOncycle{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}	
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}				
+	}
+	
+	test AssignmentAsExpression{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test BitExpressions{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}			
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}		
+	}
+	
+	test BooleanExpressions{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test Choice{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test CKeywords{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test ConditionalExpression{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test Declarations{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test DeepEntry{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	
+	test DeepHistory{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}			
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}		
+	}
+	
+	test DynamicChoice{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}			
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}		
+	}
+	
+	test EntryChoice{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}			
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}		
+	}
+	
+	test EntryExitSelfTransition{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+
+	test EnterState{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test ExitOnSelfTransition{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test ExitState{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test FeatureCalls{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test Guard{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test GuardedEntry{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test GuardedExit{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test HistoryWithExitPoint {
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test HistoryWithoutInitialStep{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test InEventLifeCycle{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test IntegerExpressions{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}	
+	
+	test InternalEventLifeCycle{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test LocalReactions{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+		 
+	test LogicalAndTests{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test LogicalOrTests{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test NamedInterfaceAccess{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test NullCheck{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+
+	test OutEventLifeCycle{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}			
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}		
+	}	
+	
+	test Parenthesis{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+		
+	test PriorityValues{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}	
+	
+	test RaiseEvent{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+		
+	test SameNameDifferentRegion{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}	
+	
+	
+	test ShallowHistory{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test SimpleEvent{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test SimpleHierachy{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test StatechartLocalReactions{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test StateIsActive{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}	
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}	
+	
+	test StaticChoice{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}			
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}		
+	}
+		
+	test STextKeywordsInStatesAndRegions{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test StringExpressions{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test SyncFork{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test SyncJoin{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}
+	
+	test TimedTransitions {
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}			
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}		
+	}	
+
+	test TransitionWithoutCondition{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}	
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}				
+	}	
+
+	test ValuedEvents{
+		
+		feature Outlet{ 
+			targetProject = "org.yakindu.sct.generator.cpp.test" 
+			targetFolder = "test-gen"			
+		}		
+		
+		feature JUnitWrapper {
+			WrapToJUnit =  "true"
+		}			
+	}	
+		
+}

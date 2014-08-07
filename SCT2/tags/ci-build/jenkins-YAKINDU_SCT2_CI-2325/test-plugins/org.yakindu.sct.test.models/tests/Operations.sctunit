@@ -1,0 +1,7 @@
+
+testgroup Operations for statechart Operations {
+	test OperationCallback {
+		enter
+	} 
+}  
+	 

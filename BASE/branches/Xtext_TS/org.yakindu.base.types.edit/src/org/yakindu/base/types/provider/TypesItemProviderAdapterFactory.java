@@ -417,26 +417,26 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.yakindu.base.types.Float} instances.
+	 * This keeps track of the one adapter used for all {@link org.yakindu.base.types.Real} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected FloatItemProvider floatItemProvider;
+	protected RealItemProvider realItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.yakindu.base.types.Float}.
+	 * This creates an adapter for a {@link org.yakindu.base.types.Real}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createFloatAdapter() {
-		if (floatItemProvider == null) {
-			floatItemProvider = new FloatItemProvider(this);
+	public Adapter createRealAdapter() {
+		if (realItemProvider == null) {
+			realItemProvider = new RealItemProvider(this);
 		}
 
-		return floatItemProvider;
+		return realItemProvider;
 	}
 
 	/**
@@ -622,7 +622,7 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
 		if (packageMemberItemProvider != null) packageMemberItemProvider.dispose();
 		if (rangeConstraintItemProvider != null) rangeConstraintItemProvider.dispose();
 		if (integerItemProvider != null) integerItemProvider.dispose();
-		if (floatItemProvider != null) floatItemProvider.dispose();
+		if (realItemProvider != null) realItemProvider.dispose();
 		if (booleanItemProvider != null) booleanItemProvider.dispose();
 		if (stringItemProvider != null) stringItemProvider.dispose();
 		if (voidItemProvider != null) voidItemProvider.dispose();

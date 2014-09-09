@@ -161,13 +161,13 @@ public interface TypesFactory extends EFactory {
 	Integer createInteger();
 
 	/**
-	 * Returns a new object of class '<em>Float</em>'.
+	 * Returns a new object of class '<em>Real</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Float</em>'.
+	 * @return a new object of class '<em>Real</em>'.
 	 * @generated
 	 */
-	Float createFloat();
+	Real createReal();
 
 	/**
 	 * Returns a new object of class '<em>Boolean</em>'.

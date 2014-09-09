@@ -182,7 +182,7 @@ public class PackageItemProvider
 		newChildDescriptors.add
 			(createChildParameter
 				(TypesPackage.Literals.PACKAGE__MEMBER,
-				 TypesFactory.eINSTANCE.createFloat()));
+				 TypesFactory.eINSTANCE.createReal()));
 
 		newChildDescriptors.add
 			(createChildParameter

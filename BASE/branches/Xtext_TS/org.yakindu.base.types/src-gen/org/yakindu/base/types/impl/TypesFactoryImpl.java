@@ -22,6 +22,7 @@ import org.yakindu.base.types.ParameterizedType;
 import org.yakindu.base.types.PrimitiveType;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.RangeConstraint;
+import org.yakindu.base.types.Real;
 import org.yakindu.base.types.TypeConstraint;
 import org.yakindu.base.types.TypeParameter;
 import org.yakindu.base.types.TypesFactory;
@@ -86,7 +87,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 			case TypesPackage.PACKAGE_MEMBER: return createPackageMember();
 			case TypesPackage.RANGE_CONSTRAINT: return createRangeConstraint();
 			case TypesPackage.INTEGER: return createInteger();
-			case TypesPackage.FLOAT: return createFloat();
+			case TypesPackage.REAL: return createReal();
 			case TypesPackage.BOOLEAN: return createBoolean();
 			case TypesPackage.STRING: return createString();
 			case TypesPackage.VOID: return createVoid();
@@ -250,9 +251,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.yakindu.base.types.Float createFloat() {
-		FloatImpl float_ = new FloatImpl();
-		return float_;
+	public Real createReal() {
+		RealImpl real = new RealImpl();
+		return real;
 	}
 
 	/**

@@ -11,20 +11,22 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
+import org.yakindu.base.types.Real;
+
 /**
- * This is the item provider adapter for a {@link org.yakindu.base.types.Float} object.
+ * This is the item provider adapter for a {@link org.yakindu.base.types.Real} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FloatItemProvider extends PrimitiveTypeItemProvider {
+public class RealItemProvider extends PrimitiveTypeItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FloatItemProvider(AdapterFactory adapterFactory) {
+	public RealItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -44,14 +46,14 @@ public class FloatItemProvider extends PrimitiveTypeItemProvider {
 	}
 
 	/**
-	 * This returns Float.gif.
+	 * This returns Real.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Float"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Real"));
 	}
 
 	/**
@@ -62,10 +64,10 @@ public class FloatItemProvider extends PrimitiveTypeItemProvider {
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((org.yakindu.base.types.Float)object).getName();
+		String label = ((Real)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Float_type") :
-			getString("_UI_Float_type") + " " + label;
+			getString("_UI_Real_type") :
+			getString("_UI_Real_type") + " " + label;
 	}
 	
 

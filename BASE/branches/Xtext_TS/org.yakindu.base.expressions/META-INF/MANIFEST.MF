@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.xtext;visibility:=reexport,
  org.eclipse.xtext.common.types,
  org.yakindu.base.types;bundle-version="2.1.2",
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
- de.itemis.xtext.typesystem;bundle-version="1.0.0"
+ de.itemis.xtext.typesystem;bundle-version="1.0.0";visibility:=reexport
 Import-Package: org.apache.log4j,
  org.eclipse.core.runtime;version="3.4.0",
  org.eclipse.xtext.xbase.lib
@@ -35,5 +35,6 @@ Export-Package: org.yakindu.base.expressions,
  org.yakindu.base.expressions.scoping,
  org.yakindu.base.expressions.serializer,
  org.yakindu.base.expressions.services,
+ org.yakindu.base.expressions.types,
  org.yakindu.base.expressions.validation
 Bundle-ClassPath: .

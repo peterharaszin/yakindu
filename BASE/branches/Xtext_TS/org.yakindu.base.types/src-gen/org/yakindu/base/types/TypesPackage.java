@@ -974,14 +974,14 @@ public interface TypesPackage extends EPackage {
 	int INTEGER_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.yakindu.base.types.impl.FloatImpl <em>Float</em>}' class.
+	 * The meta object id for the '{@link org.yakindu.base.types.impl.RealImpl <em>Real</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.yakindu.base.types.impl.FloatImpl
-	 * @see org.yakindu.base.types.impl.TypesPackageImpl#getFloat()
+	 * @see org.yakindu.base.types.impl.RealImpl
+	 * @see org.yakindu.base.types.impl.TypesPackageImpl#getReal()
 	 * @generated
 	 */
-	int FLOAT = 18;
+	int REAL = 18;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -990,7 +990,7 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOAT__NAME = PRIMITIVE_TYPE__NAME;
+	int REAL__NAME = PRIMITIVE_TYPE__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -999,7 +999,7 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOAT__CONSTRAINTS = PRIMITIVE_TYPE__CONSTRAINTS;
+	int REAL__CONSTRAINTS = PRIMITIVE_TYPE__CONSTRAINTS;
 
 	/**
 	 * The feature id for the '<em><b>Scheme</b></em>' attribute.
@@ -1008,7 +1008,7 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOAT__SCHEME = PRIMITIVE_TYPE__SCHEME;
+	int REAL__SCHEME = PRIMITIVE_TYPE__SCHEME;
 
 	/**
 	 * The feature id for the '<em><b>Base Type</b></em>' reference.
@@ -1017,16 +1017,16 @@ public interface TypesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FLOAT__BASE_TYPE = PRIMITIVE_TYPE__BASE_TYPE;
+	int REAL__BASE_TYPE = PRIMITIVE_TYPE__BASE_TYPE;
 
 	/**
-	 * The number of structural features of the '<em>Float</em>' class.
+	 * The number of structural features of the '<em>Real</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FLOAT_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
+	int REAL_FEATURE_COUNT = PRIMITIVE_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.yakindu.base.types.impl.BooleanImpl <em>Boolean</em>}' class.
@@ -1583,14 +1583,14 @@ public interface TypesPackage extends EPackage {
 	EClass getInteger();
 
 	/**
-	 * Returns the meta object for class '{@link org.yakindu.base.types.Float <em>Float</em>}'.
+	 * Returns the meta object for class '{@link org.yakindu.base.types.Real <em>Real</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Float</em>'.
-	 * @see org.yakindu.base.types.Float
+	 * @return the meta object for class '<em>Real</em>'.
+	 * @see org.yakindu.base.types.Real
 	 * @generated
 	 */
-	EClass getFloat();
+	EClass getReal();
 
 	/**
 	 * Returns the meta object for class '{@link org.yakindu.base.types.Boolean <em>Boolean</em>}'.
@@ -1977,14 +1977,14 @@ public interface TypesPackage extends EPackage {
 		EClass INTEGER = eINSTANCE.getInteger();
 
 		/**
-		 * The meta object literal for the '{@link org.yakindu.base.types.impl.FloatImpl <em>Float</em>}' class.
+		 * The meta object literal for the '{@link org.yakindu.base.types.impl.RealImpl <em>Real</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.yakindu.base.types.impl.FloatImpl
-		 * @see org.yakindu.base.types.impl.TypesPackageImpl#getFloat()
+		 * @see org.yakindu.base.types.impl.RealImpl
+		 * @see org.yakindu.base.types.impl.TypesPackageImpl#getReal()
 		 * @generated
 		 */
-		EClass FLOAT = eINSTANCE.getFloat();
+		EClass REAL = eINSTANCE.getReal();
 
 		/**
 		 * The meta object literal for the '{@link org.yakindu.base.types.impl.BooleanImpl <em>Boolean</em>}' class.

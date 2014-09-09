@@ -132,8 +132,8 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 		initializeElementReferenceExpression();
 		initializeFeatureCall();
 		initializeParenthesizedExpression();
-	}
 
+	}
 	protected void initializeParenthesizedExpression() throws Exception {
 		useTypeOfFeature(expPackage.getParenthesizedExpression(), expPackage.getParenthesizedExpression_Expression());
 	}
@@ -150,6 +150,7 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 	protected void initializeNumericalUnaryExpression() throws Exception {
 		ensureFeatureType(expPackage.getNumericalUnaryExpression(), expPackage.getNumericalUnaryExpression_Operand(),
 				typeLang.getInteger(), typeLang.getReal());
+		useTypeOfFeature(expPackage.getNumericalUnaryExpression(), expPackage.getNumericalUnaryExpression_Operand());
 	}
 
 	protected void initializePrimitiveValueExpression() throws Exception {
@@ -184,6 +185,7 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 				typeLang.getInteger());
 		ensureFeatureType(expPackage.getShiftExpression(), expPackage.getShiftExpression_RightOperand(),
 				typeLang.getInteger());
+		useFixedType(expPackage.getShiftExpression(), typeLang.getInteger());
 	}
 
 	protected void initializeBitwiseAndExpression() throws Exception {
@@ -191,6 +193,8 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 				typeLang.getInteger());
 		ensureFeatureType(expPackage.getBitwiseAndExpression(), expPackage.getBitwiseAndExpression_RightOperand(),
 				typeLang.getInteger());
+		useFixedType(expPackage.getBitwiseAndExpression(), typeLang.getInteger());
+		
 	}
 
 	protected void initializeBitwiseOrExpression() throws Exception {
@@ -198,18 +202,21 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 				typeLang.getInteger());
 		ensureFeatureType(expPackage.getBitwiseOrExpression(), expPackage.getBitwiseOrExpression_RightOperand(),
 				typeLang.getInteger());
+		useFixedType(expPackage.getBitwiseOrExpression(), typeLang.getInteger());
 	}
 
 	protected void initializeBitwiseXorExpression() throws Exception {
 		ensureFeatureType(expPackage.getBitwiseXorExpression(), expPackage.getBitwiseXorExpression_LeftOperand(),
-				typeLang.getInteger(), typeLang.getReal());
+				typeLang.getInteger());
 		ensureFeatureType(expPackage.getBitwiseXorExpression(), expPackage.getBitwiseXorExpression_RightOperand(),
-				typeLang.getInteger(), typeLang.getReal());
+				typeLang.getInteger());
+		useFixedType(expPackage.getBitwiseXorExpression(), typeLang.getInteger());
 	}
 
 	protected void initializeLogicalNotExpression() throws Exception {
 		ensureFeatureType(expPackage.getLogicalNotExpression(), expPackage.getLogicalNotExpression_Operand(),
 				typeLang.getBoolean());
+		useFixedType(expPackage.getLogicalNotExpression(), typeLang.getBoolean());
 	}
 
 	protected void initializeLogicalRelationExpression() throws Exception {

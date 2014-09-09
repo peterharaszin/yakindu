@@ -25,6 +25,7 @@ import org.yakindu.base.types.ParameterizedType;
 import org.yakindu.base.types.PrimitiveType;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.RangeConstraint;
+import org.yakindu.base.types.Real;
 import org.yakindu.base.types.Type;
 import org.yakindu.base.types.TypeConstraint;
 import org.yakindu.base.types.TypeParameter;
@@ -158,7 +159,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass floatEClass = null;
+	private EClass realEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -563,8 +564,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getFloat() {
-		return floatEClass;
+	public EClass getReal() {
+		return realEClass;
 	}
 
 	/**
@@ -675,7 +676,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
 		integerEClass = createEClass(INTEGER);
 
-		floatEClass = createEClass(FLOAT);
+		realEClass = createEClass(REAL);
 
 		booleanEClass = createEClass(BOOLEAN);
 
@@ -732,7 +733,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 		packageMemberEClass.getESuperTypes().add(theBasePackage.getNamedElement());
 		rangeConstraintEClass.getESuperTypes().add(this.getTypeConstraint());
 		integerEClass.getESuperTypes().add(this.getPrimitiveType());
-		floatEClass.getESuperTypes().add(this.getPrimitiveType());
+		realEClass.getESuperTypes().add(this.getPrimitiveType());
 		booleanEClass.getESuperTypes().add(this.getPrimitiveType());
 		stringEClass.getESuperTypes().add(this.getPrimitiveType());
 		voidEClass.getESuperTypes().add(this.getPrimitiveType());
@@ -798,7 +799,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
 		initEClass(integerEClass, org.yakindu.base.types.Integer.class, "Integer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(floatEClass, org.yakindu.base.types.Float.class, "Float", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(realEClass, Real.class, "Real", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(booleanEClass, org.yakindu.base.types.Boolean.class, "Boolean", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

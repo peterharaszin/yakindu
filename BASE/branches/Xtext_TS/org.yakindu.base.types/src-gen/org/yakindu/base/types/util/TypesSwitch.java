@@ -22,6 +22,7 @@ import org.yakindu.base.types.ParameterizedType;
 import org.yakindu.base.types.PrimitiveType;
 import org.yakindu.base.types.Property;
 import org.yakindu.base.types.RangeConstraint;
+import org.yakindu.base.types.Real;
 import org.yakindu.base.types.Type;
 import org.yakindu.base.types.TypeConstraint;
 import org.yakindu.base.types.TypeParameter;
@@ -229,13 +230,13 @@ public class TypesSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TypesPackage.FLOAT: {
-				org.yakindu.base.types.Float float_ = (org.yakindu.base.types.Float)theEObject;
-				T result = caseFloat(float_);
-				if (result == null) result = casePrimitiveType(float_);
-				if (result == null) result = caseType(float_);
-				if (result == null) result = casePackageMember(float_);
-				if (result == null) result = caseNamedElement(float_);
+			case TypesPackage.REAL: {
+				Real real = (Real)theEObject;
+				T result = caseReal(real);
+				if (result == null) result = casePrimitiveType(real);
+				if (result == null) result = caseType(real);
+				if (result == null) result = casePackageMember(real);
+				if (result == null) result = caseNamedElement(real);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -549,17 +550,17 @@ public class TypesSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Float</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Real</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Float</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Real</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseFloat(org.yakindu.base.types.Float object) {
+	public T caseReal(Real object) {
 		return null;
 	}
 

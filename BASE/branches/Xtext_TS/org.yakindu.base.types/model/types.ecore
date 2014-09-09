@@ -67,7 +67,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperBound" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Integer" eSuperTypes="#//PrimitiveType"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Float" eSuperTypes="#//PrimitiveType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Real" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Boolean" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="String" eSuperTypes="#//PrimitiveType"/>
   <eClassifiers xsi:type="ecore:EClass" name="Void" eSuperTypes="#//PrimitiveType"/>

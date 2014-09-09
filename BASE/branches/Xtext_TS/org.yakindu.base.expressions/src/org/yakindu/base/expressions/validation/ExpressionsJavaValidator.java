@@ -153,7 +153,6 @@ public class ExpressionsJavaValidator extends org.yakindu.base.expressions.valid
 	@Check
 	public void checkTypesystemRules(Expression expression) {
 		ts.checkTypesystemConstraints(expression, this);
-		
 	}
 	
 	// TODO: USE ITypeSystem

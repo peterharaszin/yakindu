@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.yakindu.base.expressions.expressions.BoolLiteral;
 import org.yakindu.base.expressions.expressions.ExpressionsPackage;
+import org.yakindu.base.expressions.expressions.HexLiteral;
 import org.yakindu.base.expressions.expressions.IntLiteral;
 import org.yakindu.base.expressions.expressions.RealLiteral;
 import org.yakindu.base.expressions.expressions.StringLiteral;
@@ -246,13 +247,16 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 		computeCommonType(expPackage.getConditionalExpression(), expPackage.getConditionalExpression_TrueCase(),
 				expPackage.getConditionalExpression_FalseCase());
 	}
-	
+
 	public EObject type(TypeCastExpression exp, TypeCalculationTrace trace) {
 		return exp.getType();
 	}
-	
 
 	public EObject type(IntLiteral l, TypeCalculationTrace trace) {
+		return INTEGER;
+	}
+
+	public EObject type(HexLiteral l, TypeCalculationTrace trace) {
 		return INTEGER;
 	}
 

@@ -147,6 +147,11 @@ public class STextJavaValidator extends AbstractSTextJavaValidator {
 	@Inject
 	private ResourceDescriptionsProvider resourceDescriptionsProvider;
 
+	@Check
+	public void checkTypesystemRules(Expression expression) {
+		typeSystem.checkTypesystemConstraints(expression, this);
+	}
+	
 	@Check(CheckType.FAST)
 	public void transitionsWithNoTrigger(Transition trans) {
 		if (trans.getSource() instanceof Entry

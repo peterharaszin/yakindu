@@ -57,9 +57,6 @@ public class ExpressionsJavaValidator extends org.yakindu.base.expressions.valid
 	@Inject
 	private GenericsPrettyPrinter printer;
 
-	@Inject
-	private ITypesystem ts;
-
 	@Check
 	public void checkIsRaw(TypedElement typedElement) {
 		Type type = typedElement.getType();
@@ -150,11 +147,6 @@ public class ExpressionsJavaValidator extends org.yakindu.base.expressions.valid
 		}
 	}
 
-	@Check
-	public void checkTypesystemRules(Expression expression) {
-		ts.checkTypesystemConstraints(expression, this);
-	}
-	
 	// TODO: USE ITypeSystem
 		private boolean isTypeCompatible(Type bound, Type argument) {
 			if (EcoreUtil.equals(bound, argument))

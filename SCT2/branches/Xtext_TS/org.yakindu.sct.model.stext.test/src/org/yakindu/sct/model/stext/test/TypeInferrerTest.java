@@ -84,10 +84,10 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void testNumericalUnaryExpressionFailure() {
-		expectIssue(inferType("~true"), "Bitwise operator '~' may only be applied on integer types, not on boolean.");
-		expectIssue(inferType("~9.0"), "Bitwise operator '~' may only be applied on integer types, not on real.");
+		expectIssue(inferType("~true"), "Arithmetic operator may only be applied on integer types, not on boolean");
+		expectIssue(inferType("~9.0"), "Arithmetic operator may only be applied on integer types, not on real");
 		expectIssue(inferType("~stringVar"),
-				"Bitwise operator '~' may only be applied on integer types, not on string.");
+				"Arithmetic operator may only be applied on integer types, not on string");
 	}
 
 	// AddSubtract
@@ -268,17 +268,21 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	@Test
 	public void testLogicalAndExpressionFailure() {
 		expectIssue(inferType("true && 5"),
-				"Logical operator '&&' may only be applied on boolean types, not on boolean and integer.");
+				"Logical operator may only be applied on boolean types, not on integer");
 		expectIssue(inferType("5 && false"),
-				"Logical operator '&&' may only be applied on boolean types, not on integer and boolean.");
+				"Logical operator may only be applied on boolean types, not on integer");
 		expectIssue(inferType("3.0 &&  true"),
-				"Logical operator '&&' may only be applied on boolean types, not on real and boolean.");
+				"Logical operator may only be applied on boolean types, not on real");
 		expectIssue(inferType("5 && boolEvent"),
-				"Logical operator '&&' may only be applied on boolean types, not on integer and boolean.");
+				"Logical operator may only be applied on boolean types, not on integer");
 		expectIssue(inferType("5 && 'string'"),
-				"Logical operator '&&' may only be applied on boolean types, not on integer and string.");
+				"Logical operator may only be applied on boolean types, not on integer");
+		expectIssue(inferType("5 && 'string'"),
+				"Logical operator may only be applied on boolean types, not on string");
 		expectIssue(inferType("5 && 1.2"),
-				"Logical operator '&&' may only be applied on boolean types, not on integer and real.");
+				"Logical operator may only be applied on boolean types, not on integer");
+		expectIssue(inferType("5 && 1.2"),
+				"Logical operator may only be applied on boolean types, not on real");
 	}
 
 	// LogicalOrExpression
@@ -302,17 +306,21 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	@Test
 	public void testLogicalOrExpressionFailure() {
 		expectIssue(inferType("false || 5"),
-				"Logical operator '||' may only be applied on boolean types, not on boolean and integer.");
+				"Logical operator may only be applied on boolean types, not on integer");
 		expectIssue(inferType("5 || true"),
-				"Logical operator '||' may only be applied on boolean types, not on integer and boolean.");
+				"Logical operator may only be applied on boolean types, not on integer");
 		expectIssue(inferType("3.0 ||  true"),
-				"Logical operator '||' may only be applied on boolean types, not on real and boolean.");
+				"Logical operator may only be applied on boolean types, not on real");
 		expectIssue(inferType("5 || boolEvent"),
-				"Logical operator '||' may only be applied on boolean types, not on integer and boolean.");
+				"Logical operator may only be applied on boolean types, not on integer");
 		expectIssue(inferType("5 || 'string'"),
-				"Logical operator '||' may only be applied on boolean types, not on integer and string.");
+				"Logical operator may only be applied on boolean types, not on integer");
+		expectIssue(inferType("5 && 'string'"),
+				"Logical operator may only be applied on boolean types, not on string");
 		expectIssue(inferType("5 || 1.2"),
-				"Logical operator '||' may only be applied on boolean types, not on integer and real.");
+				"Logical operator may only be applied on boolean types, not on integer");
+		expectIssue(inferType("5 || 1.2"),
+				"Logical operator may only be applied on boolean types, not on real");
 	}
 
 	// LogicalNotExpression
@@ -331,9 +339,9 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void testLogicalNotExpressionFailure() {
-		expectIssue(inferType("!3"), "Logical operator '!' may only be applied on boolean types, not on integer.");
-		expectIssue(inferType("!1.2"), "Logical operator '!' may only be applied on boolean types, not on real.");
-		expectIssue(inferType("!'Test'"), "Logical operator '!' may only be applied on boolean types, not on string.");
+		expectIssue(inferType("!3"), "Logical operator may only be applied on boolean types, not on integer");
+		expectIssue(inferType("!1.2"), "Logical operator may only be applied on boolean types, not on real");
+		expectIssue(inferType("!'Test'"), "Logical operator may only be applied on boolean types, not on string");
 	}
 
 	// LogicalRelation
@@ -380,82 +388,82 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	public void testLogicalRelationExpressionFailure() {
 		// smaller
 		expectIssue(inferType("3.0 < true"),
-				"Comparison operator '<' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("'string' < 5"),
-				"Comparison operator '<' may only be applied on compatible types, not on string and integer.");
+				"Comparison operator may only be applied on compatible types, not on string and integer.");
 		expectIssue(inferType("1.0 < false"),
-				"Comparison operator '<' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("1.0 < boolEvent"),
-				"Comparison operator '<' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(
 				// intEvent is a shortcut for isRaised(intEvent), thus of
 				// boolean type
 				inferType("5 < intEvent"),
-				"Comparison operator '<' may only be applied on compatible types, not on integer and boolean.");
+				"Comparison operator may only be applied on compatible types, not on integer and boolean.");
 		// smallerEqual
 		expectIssue(inferType("3.0 <= true"),
-				"Comparison operator '<=' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("'string' <= 5"),
-				"Comparison operator '<=' may only be applied on compatible types, not on string and integer.");
+				"Comparison operator may only be applied on compatible types, not on string and integer.");
 		expectIssue(inferType("1.0 <= false"),
-				"Comparison operator '<=' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("1.0 <= boolEvent"),
-				"Comparison operator '<=' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(
 				// intEvent is a shortcut for isRaised(intEvent), thus of
 				// boolean type
 				inferType("5 <= intEvent"),
-				"Comparison operator '<=' may only be applied on compatible types, not on integer and boolean.");
+				"Comparison operator may only be applied on compatible types, not on integer and boolean.");
 		// greater
 		expectIssue(inferType("3.0 > true"),
-				"Comparison operator '>' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("'string' > 5"),
-				"Comparison operator '>' may only be applied on compatible types, not on string and integer.");
+				"Comparison operator may only be applied on compatible types, not on string and integer.");
 		expectIssue(inferType("1.0 > false"),
-				"Comparison operator '>' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(
 				// intEvent is a shortcut for isRaised(intEvent), thus of
 				// boolean type
 				inferType("5 <= intEvent"),
-				"Comparison operator '<=' may only be applied on compatible types, not on integer and boolean.");
+				"Comparison operator may only be applied on compatible types, not on integer and boolean.");
 		// greaterEqual
 		expectIssue(inferType("3.0 >= true"),
-				"Comparison operator '>=' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("'string' >= 5"),
-				"Comparison operator '>=' may only be applied on compatible types, not on string and integer.");
+				"Comparison operator may only be applied on compatible types, not on string and integer.");
 		expectIssue(inferType("1.0 >= false"),
-				"Comparison operator '>=' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(
 				// intEvent is a shortcut for isRaised(intEvent), thus of
 				// boolean type
 				inferType("5 >= intEvent"),
-				"Comparison operator '>=' may only be applied on compatible types, not on integer and boolean.");
+				"Comparison operator may only be applied on compatible types, not on integer and boolean.");
 		// equal
 		expectIssue(inferType("3.0 == true"),
-				"Comparison operator '==' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("'string' == 5"),
-				"Comparison operator '==' may only be applied on compatible types, not on string and integer.");
+				"Comparison operator may only be applied on compatible types, not on string and integer.");
 		expectIssue(inferType("1.0 == false"),
-				"Comparison operator '==' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(
 				// intEvent is a shortcut for isRaised(intEvent), thus of
 				// boolean type
 				inferType("5 == intEvent"),
-				"Comparison operator '==' may only be applied on compatible types, not on integer and boolean.");
+				"Comparison operator may only be applied on compatible types, not on integer and boolean.");
 		// not equal
 		expectIssue(inferType("3.0 != true"),
-				"Comparison operator '!=' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("'string' != 5"),
-				"Comparison operator '!=' may only be applied on compatible types, not on string and integer.");
+				"Comparison operator may only be applied on compatible types, not on string and integer.");
 		expectIssue(inferType("1.0 != false"),
-				"Comparison operator '!=' may only be applied on compatible types, not on real and boolean.");
+				"Comparison operator may only be applied on compatible types, not on real and boolean.");
 		expectIssue(inferType("intVar != 'string'"),
-				"Comparison operator '!=' may only be applied on compatible types, not on integer and string.");
+				"Comparison operator may only be applied on compatible types, not on integer and string.");
 		expectIssue(
 				// intEvent is a shortcut for isRaised(intEvent), thus of
 				// boolean type
 				inferType("5 != intEvent"),
-				"Comparison operator '!=' may only be applied on compatible types, not on integer and boolean.");
+				"Comparison operator may only be applied on compatible types, not on integer and boolean.");
 	}
 
 	@Test
@@ -493,39 +501,39 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	public void testAssignmentExpressionFailure() {
 		// integer and real
 		expectIssue(inferType("intVar += 2.0"),
-				"Assignment operator '+=' may only be applied on compatible types, not on integer and real.");
+				"Assignment operator may only be applied on compatible types, not on integer and real");
 		expectIssue(inferType("intVar -= 2.0"),
-				"Assignment operator '-=' may only be applied on compatible types, not on integer and real.");
+				"Assignment operator may only be applied on compatible types, not on integer and real");
 		expectIssue(inferType("intVar /= 2.0"),
-				"Assignment operator '/=' may only be applied on compatible types, not on integer and real.");
+				"Assignment operator may only be applied on compatible types, not on integer and real");
 		expectIssue(inferType("intVar *= 2.0"),
-				"Assignment operator '*=' may only be applied on compatible types, not on integer and real.");
+				"Assignment operator may only be applied on compatible types, not on integer and real");
 		expectIssue(inferType("intVar = true"),
-				"Assignment operator '=' may only be applied on compatible types, not on integer and boolean.");
+				"Assignment operator may only be applied on compatible types, not on integer and boolean");
 		// integer and boolean
 		expectIssue(inferType("intVar = boolVar"),
-				"Assignment operator '=' may only be applied on compatible types, not on integer and boolean.");
+				"Assignment operator may only be applied on compatible types, not on integer and boolean");
 		expectIssue(inferType("intVar &= boolVar"),
-				"Bitwise operator '&=' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on integer and boolean");
 		expectIssue(inferType("intVar |= boolVar"),
-				"Bitwise operator '|=' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on integer and boolean");
 		expectIssue(inferType("intVar ^= boolVar"),
-				"Bitwise operator '^=' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on integer and boolean");
 		expectIssue(inferType("intVar >>= boolVar"),
-				"Bitwise operator '>>=' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on integer and boolean");
 		expectIssue(inferType("intVar <<= boolVar"),
-				"Bitwise operator '<<=' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on integer and boolean");
 		// integer and string
 		expectIssue(inferType("intVar &= 'string'"),
-				"Bitwise operator '&=' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on integer and string");
 		expectIssue(inferType("intVar |= 'string'"),
-				"Bitwise operator '|=' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on integer and string");
 		expectIssue(inferType("intVar ^= 'string'"),
-				"Bitwise operator '^=' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on integer and string");
 		expectIssue(inferType("intVar >>= 'string'"),
-				"Bitwise operator '>>=' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on integer and string");
 		expectIssue(inferType("intVar <<= 'string'"),
-				"Bitwise operator '<<=' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on integer and string");
 	}
 
 	/**
@@ -600,11 +608,11 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	@Test
 	public void testBitwiseAndExpressionFailure() {
 		expectIssue(inferType("5 & true"),
-				"Bitwise operator '&' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on boolean.");
 		expectIssue(inferType("5 & 1.0"),
-				"Bitwise operator '&' may only be applied on integer types, not on integer and real.");
+				"Bitwise operator may only be applied on integer types, not on real.");
 		expectIssue(inferType("5 & 'stringVar'"),
-				"Bitwise operator '&' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on string.");
 	}
 
 	@Test
@@ -618,18 +626,18 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	@Test
 	public void testShiftExpressionFailure() {
 		expectIssue(inferType("5 << true"),
-				"Bitwise operator '<<' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on boolean");
 		expectIssue(inferType("5 << 7.0"),
-				"Bitwise operator '<<' may only be applied on integer types, not on integer and real.");
+				"Bitwise operator may only be applied on integer types, not on real");
 		expectIssue(inferType("5 << stringVar"),
-				"Bitwise operator '<<' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on string");
 
 		expectIssue(inferType("5 >> true"),
-				"Bitwise operator '>>' may only be applied on integer types, not on integer and boolean.");
+				"Bitwise operator may only be applied on integer types, not on boolean");
 		expectIssue(inferType("5 >> 7.0"),
-				"Bitwise operator '>>' may only be applied on integer types, not on integer and real.");
+				"Bitwise operator may only be applied on integer types, not on real");
 		expectIssue(inferType("5 >> stringVar"),
-				"Bitwise operator '>>' may only be applied on integer types, not on integer and string.");
+				"Bitwise operator may only be applied on integer types, not on string");
 	}
 
 	@Test
@@ -821,9 +829,12 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	}
 
 	private void expectIssue(Type type, String message) {
-		assertTrue(acceptor.getErrors().size() == 1);
-		assertTrue("Expected " + message + " but was " + acceptor.getErrors().get(0), acceptor.getErrors().get(0)
-				.equals(message));
+		assertTrue(acceptor.getErrors().size() >= 1);
+		for (String string : acceptor.getErrors()) {
+			if(string.equals(message))
+				return;
+		}
+		fail("Expected " + message + " but was " + acceptor.getErrors());
 	}
 
 	public class ListBasedMessageAcceptor implements ValidationMessageAcceptor {

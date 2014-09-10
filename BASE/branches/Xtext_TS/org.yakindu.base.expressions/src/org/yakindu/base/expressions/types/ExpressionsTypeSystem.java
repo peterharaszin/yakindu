@@ -45,7 +45,7 @@ import de.itemis.xtext.typesystem.trace.TypeCalculationTrace;
  * 
  */
 @Singleton
-public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
+public abstract class ExpressionsTypeSystem extends DefaultTypesystem implements ExpressionsTypeSystemMessages {
 
 	protected TypesPackage typeLang = TypesPackage.eINSTANCE;
 	protected TypesFactory typeFactory = TypesFactory.eINSTANCE;
@@ -134,6 +134,7 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 		initializeParenthesizedExpression();
 
 	}
+
 	protected void initializeParenthesizedExpression() throws Exception {
 		useTypeOfFeature(expPackage.getParenthesizedExpression(), expPackage.getParenthesizedExpression_Expression());
 	}
@@ -142,26 +143,26 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 		useTypeOfFeature(expPackage.getFeatureCall(), expPackage.getFeatureCall_Feature());
 	}
 
+	protected void initializePrimitiveValueExpression() throws Exception {
+		useTypeOfFeature(expPackage.getPrimitiveValueExpression(), expPackage.getPrimitiveValueExpression_Value());
+	}
+
 	protected void initializeElementReferenceExpression() throws Exception {
 		useTypeOfFeature(expPackage.getElementReferenceExpression(),
 				expPackage.getElementReferenceExpression_Reference());
 	}
 
 	protected void initializeNumericalUnaryExpression() throws Exception {
-		ensureFeatureType(expPackage.getNumericalUnaryExpression(), expPackage.getNumericalUnaryExpression_Operand(),
-				typeLang.getInteger(), typeLang.getReal());
 		useTypeOfFeature(expPackage.getNumericalUnaryExpression(), expPackage.getNumericalUnaryExpression_Operand());
-	}
-
-	protected void initializePrimitiveValueExpression() throws Exception {
-		useTypeOfFeature(expPackage.getPrimitiveValueExpression(), expPackage.getPrimitiveValueExpression_Value());
+		ensureFeatureType(ARITHMETIC_OPERATORS_1, expPackage.getNumericalUnaryExpression(),
+				expPackage.getNumericalUnaryExpression_Operand(), typeLang.getInteger(), typeLang.getReal());
 	}
 
 	protected void initializeNumericalMultiplyDivideExpression() throws Exception {
-		ensureFeatureType(expPackage.getNumericalMultiplyDivideExpression(),
+		ensureFeatureType(ARITHMETIC_OPERATORS_1, expPackage.getNumericalMultiplyDivideExpression(),
 				expPackage.getNumericalMultiplyDivideExpression_LeftOperand(), typeLang.getInteger(),
 				typeLang.getReal());
-		ensureFeatureType(expPackage.getNumericalMultiplyDivideExpression(),
+		ensureFeatureType(ARITHMETIC_OPERATORS_1, expPackage.getNumericalMultiplyDivideExpression(),
 				expPackage.getNumericalMultiplyDivideExpression_RightOperand(), typeLang.getInteger(),
 				typeLang.getReal());
 		computeCommonType(expPackage.getNumericalMultiplyDivideExpression(),
@@ -170,9 +171,9 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 	}
 
 	protected void initializeNumericalAddSubtractExpression() throws Exception {
-		ensureFeatureType(expPackage.getNumericalAddSubtractExpression(),
+		ensureFeatureType(ARITHMETIC_OPERATORS_1, expPackage.getNumericalAddSubtractExpression(),
 				expPackage.getNumericalAddSubtractExpression_LeftOperand(), typeLang.getInteger(), typeLang.getReal());
-		ensureFeatureType(expPackage.getNumericalAddSubtractExpression(),
+		ensureFeatureType(ARITHMETIC_OPERATORS_1, expPackage.getNumericalAddSubtractExpression(),
 				expPackage.getNumericalAddSubtractExpression_RightOperand(), typeLang.getInteger(), typeLang.getReal());
 		computeCommonType(expPackage.getNumericalAddSubtractExpression(),
 				expPackage.getNumericalAddSubtractExpression_LeftOperand(),
@@ -181,71 +182,71 @@ public abstract class ExpressionsTypeSystem extends DefaultTypesystem {
 	}
 
 	protected void initializeShiftExpression() throws Exception {
-		ensureFeatureType(expPackage.getShiftExpression(), expPackage.getShiftExpression_LeftOperand(),
-				typeLang.getInteger());
-		ensureFeatureType(expPackage.getShiftExpression(), expPackage.getShiftExpression_RightOperand(),
-				typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getShiftExpression(),
+				expPackage.getShiftExpression_LeftOperand(), typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getShiftExpression(),
+				expPackage.getShiftExpression_RightOperand(), typeLang.getInteger());
 		useFixedType(expPackage.getShiftExpression(), typeLang.getInteger());
 	}
 
 	protected void initializeBitwiseAndExpression() throws Exception {
-		ensureFeatureType(expPackage.getBitwiseAndExpression(), expPackage.getBitwiseAndExpression_LeftOperand(),
-				typeLang.getInteger());
-		ensureFeatureType(expPackage.getBitwiseAndExpression(), expPackage.getBitwiseAndExpression_RightOperand(),
-				typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getBitwiseAndExpression(),
+				expPackage.getBitwiseAndExpression_LeftOperand(), typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getBitwiseAndExpression(),
+				expPackage.getBitwiseAndExpression_RightOperand(), typeLang.getInteger());
 		useFixedType(expPackage.getBitwiseAndExpression(), typeLang.getInteger());
-		
+
 	}
 
 	protected void initializeBitwiseOrExpression() throws Exception {
-		ensureFeatureType(expPackage.getBitwiseOrExpression(), expPackage.getBitwiseOrExpression_LeftOperand(),
-				typeLang.getInteger());
-		ensureFeatureType(expPackage.getBitwiseOrExpression(), expPackage.getBitwiseOrExpression_RightOperand(),
-				typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getBitwiseOrExpression(),
+				expPackage.getBitwiseOrExpression_LeftOperand(), typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getBitwiseOrExpression(),
+				expPackage.getBitwiseOrExpression_RightOperand(), typeLang.getInteger());
 		useFixedType(expPackage.getBitwiseOrExpression(), typeLang.getInteger());
 	}
 
 	protected void initializeBitwiseXorExpression() throws Exception {
-		ensureFeatureType(expPackage.getBitwiseXorExpression(), expPackage.getBitwiseXorExpression_LeftOperand(),
-				typeLang.getInteger());
-		ensureFeatureType(expPackage.getBitwiseXorExpression(), expPackage.getBitwiseXorExpression_RightOperand(),
-				typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getBitwiseXorExpression(),
+				expPackage.getBitwiseXorExpression_LeftOperand(), typeLang.getInteger());
+		ensureFeatureType(BITWISE_OPERATOR_1, expPackage.getBitwiseXorExpression(),
+				expPackage.getBitwiseXorExpression_RightOperand(), typeLang.getInteger());
 		useFixedType(expPackage.getBitwiseXorExpression(), typeLang.getInteger());
 	}
 
 	protected void initializeLogicalNotExpression() throws Exception {
-		ensureFeatureType(expPackage.getLogicalNotExpression(), expPackage.getLogicalNotExpression_Operand(),
-				typeLang.getBoolean());
+		ensureFeatureType(LOGICAL_OPERATORS_1, expPackage.getLogicalNotExpression(),
+				expPackage.getLogicalNotExpression_Operand(), typeLang.getBoolean());
 		useFixedType(expPackage.getLogicalNotExpression(), typeLang.getBoolean());
 	}
 
 	protected void initializeLogicalRelationExpression() throws Exception {
 		useFixedType(expPackage.getLogicalRelationExpression(), typeLang.getBoolean());
-		ensureUnorderedCompatibility(expPackage.getLogicalRelationExpression(),
+		ensureUnorderedCompatibility(COMPARSION_OPERATOR_2, expPackage.getLogicalRelationExpression(),
 				expPackage.getLogicalRelationExpression_LeftOperand(),
 				expPackage.getLogicalRelationExpression_RightOperand());
 	}
 
 	protected void initializeLogicalAndExpression() throws Exception {
-		ensureFeatureType(expPackage.getLogicalAndExpression(), expPackage.getLogicalAndExpression_LeftOperand(),
-				typeLang.getBoolean());
-		ensureFeatureType(expPackage.getLogicalAndExpression(), expPackage.getLogicalAndExpression_RightOperand(),
-				typeLang.getBoolean());
+		ensureFeatureType(LOGICAL_OPERATORS_1, expPackage.getLogicalAndExpression(),
+				expPackage.getLogicalAndExpression_LeftOperand(), typeLang.getBoolean());
+		ensureFeatureType(LOGICAL_OPERATORS_1, expPackage.getLogicalAndExpression(),
+				expPackage.getLogicalAndExpression_RightOperand(), typeLang.getBoolean());
 		useFixedType(expPackage.getLogicalAndExpression(), typeLang.getBoolean());
 	}
 
 	protected void initializeLogicalOrExpression() throws Exception {
-		ensureFeatureType(expPackage.getLogicalOrExpression(), expPackage.getLogicalOrExpression_LeftOperand(),
-				typeLang.getBoolean());
-		ensureFeatureType(expPackage.getLogicalOrExpression(), expPackage.getLogicalOrExpression_RightOperand(),
-				typeLang.getBoolean());
+		ensureFeatureType(LOGICAL_OPERATORS_1, expPackage.getLogicalOrExpression(),
+				expPackage.getLogicalOrExpression_LeftOperand(), typeLang.getBoolean());
+		ensureFeatureType(LOGICAL_OPERATORS_1, expPackage.getLogicalOrExpression(),
+				expPackage.getLogicalOrExpression_RightOperand(), typeLang.getBoolean());
 		useFixedType(expPackage.getLogicalOrExpression(), typeLang.getBoolean());
 	}
 
 	protected void initializeAssignmentExpression() throws Exception {
 		useTypeOfFeature(expPackage.getAssignmentExpression(), expPackage.getAssignmentExpression_VarRef());
-		ensureOrderedCompatibility(expPackage.getAssignmentExpression(), expPackage.getAssignmentExpression_VarRef(),
-				expPackage.getAssignmentExpression_Expression());
+		ensureOrderedCompatibility(ASSIGNMENT_OPERATOR_2, expPackage.getAssignmentExpression(),
+				expPackage.getAssignmentExpression_VarRef(), expPackage.getAssignmentExpression_Expression());
 	}
 
 	protected void initializeConditionalExpression() throws Exception {

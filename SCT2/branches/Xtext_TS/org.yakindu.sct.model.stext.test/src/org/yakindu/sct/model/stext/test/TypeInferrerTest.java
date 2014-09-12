@@ -84,10 +84,10 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void testNumericalUnaryExpressionFailure() {
-		expectIssue(inferType("~true"), "Bitwise operator '~' may only be applied on integer types, not on boolean.");
-		expectIssue(inferType("~9.0"), "Bitwise operator '~' may only be applied on integer types, not on real.");
+		expectIssue(inferType("~true"), "Operator '~' may only be applied on integer types, not on boolean.");
+		expectIssue(inferType("~9.0"), "Operator '~' may only be applied on integer types, not on real.");
 		expectIssue(inferType("~stringVar"),
-				"Bitwise operator '~' may only be applied on integer types, not on string.");
+				"Operator '~' may only be applied on integer types, not on string.");
 	}
 
 	// AddSubtract
@@ -119,38 +119,38 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	public void testNumericalAddSubtractExpressionFailure() {
 		// add
 		expectIssue(inferType("true + 5"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '+' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("false + 5"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '+' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("5 + false"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '+' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("true + (3 * 5)"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '+' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("(3 * 5) + true"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '+' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 +  true"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on real and boolean.");
+				"Operator '+' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 + 'string'"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on real and string.");
+				"Operator '+' may only be applied on numeric types, not on string.");
 		expectIssue(inferType("intVar + 'string'"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on integer and string.");
+				"Operator '+' may only be applied on numeric types, not on string.");
 		// subtract
 		expectIssue(inferType("true - 5"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '-' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("false - 5"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '-' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("5 - false"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '-' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("true - (3 * 5)"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '-' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("(3 * 5) - true"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '-' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 -  true"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on real and boolean.");
+				"Operator '-' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 -  'string'"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on real and string.");
+				"Operator '-' may only be applied on numeric types, not on string.");
 		expectIssue(inferType("intVar - 'string'"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on integer and string.");
+				"Operator '-' may only be applied on numeric types, not on string.");
 	}
 
 	// multiply
@@ -196,55 +196,49 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	public void testMultiplyDivideExpressionFailure() {
 		// multiply
 		expectIssue(inferType("true * 5"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '*' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("5 * false"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '*' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("true * (3 - 5)"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '*' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("(3 + 5) * true"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '*' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 *  true"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on real and boolean.");
+				"Operator '*' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 *  'string'"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on real and string.");
+				"Operator '*' may only be applied on numeric types, not on string.");
 		expectIssue(inferType("realVar *  'string'"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on real and string.");
+				"Operator '*' may only be applied on numeric types, not on string.");
 		// divide
 		expectIssue(inferType("true / 5"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '/' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("false / 5"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '/' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("5 / false"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '/' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("true / (3 - 5)"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '/' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("(3 + 5) / true"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '/' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 /  true"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on real and boolean.");
+				"Operator '/' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 /  'string'"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on real and string.");
-		expectIssue(inferType("realVar /  stringVar"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on real and string.");
+				"Operator '/' may only be applied on numeric types, not on string.");
 		// mod
 		expectIssue(inferType("true % 5"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '%' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("false % 5"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '%' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("5 % false"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '%' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("true % (3 - 5)"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '%' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("(3 + 5) % true"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on integer and boolean.");
+				"Operator '%' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 % true"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on real and boolean.");
+				"Operator '%' may only be applied on numeric types, not on boolean.");
 		expectIssue(inferType("3.0 % 'string'"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on real and string.");
-		expectIssue(inferType("3.0 % stringVar"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on real and string.");
-		expectIssue(inferType("realVar % stringVar"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on real and string.");
+				"Operator '%' may only be applied on numeric types, not on string.");
 	}
 
 	// LogicalAndExpression
@@ -331,9 +325,9 @@ public class TypeInferrerTest extends AbstractSTextTest {
 
 	@Test
 	public void testLogicalNotExpressionFailure() {
-		expectIssue(inferType("!3"), "Logical operator '!' may only be applied on boolean types, not on integer.");
-		expectIssue(inferType("!1.2"), "Logical operator '!' may only be applied on boolean types, not on real.");
-		expectIssue(inferType("!'Test'"), "Logical operator '!' may only be applied on boolean types, not on string.");
+		expectIssue(inferType("!3"), "Operator '!' may only be applied on boolean types, not on integer.");
+		expectIssue(inferType("!1.2"), "Operator '!' may only be applied on boolean types, not on real.");
+		expectIssue(inferType("!'Test'"), "Operator '!' may only be applied on boolean types, not on string.");
 	}
 
 	// LogicalRelation
@@ -544,15 +538,15 @@ public class TypeInferrerTest extends AbstractSTextTest {
 	@Test
 	public void testActiveStateReferenceExpressionFailure() throws Exception {
 		expectIssue(inferType("active(chart.r1.A) + 1"),
-				"Arithmetic operator '+' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '+' may only be applied on numeric types, not on boolean and integer.");
 		expectIssue(inferType("active(chart.r1.A) - 1"),
-				"Arithmetic operator '-' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '-' may only be applied on numeric types, not on boolean and integer.");
 		expectIssue(inferType("active(chart.r1.A) * 1"),
-				"Arithmetic operator '*' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '*' may only be applied on numeric types, not on boolean and integer.");
 		expectIssue(inferType("active(chart.r1.A) / 1"),
-				"Arithmetic operator '/' may only be applied on numeric types, not on boolean and integer.");
+				"Operator '/' may only be applied on numeric types, not on boolean and integer.");
 		expectIssue(inferType("active(chart.r1.A) % true"),
-				"Arithmetic operator '%' may only be applied on numeric types, not on boolean and boolean.");
+				"Operator '%' may only be applied on numeric types, not on boolean and boolean.");
 		expectIssue(inferType("active(chart.r1.A) && intVar"),
 				"Logical operator '&&' may only be applied on boolean types, not on boolean and integer.");
 		expectIssue(inferType("active(chart.r1.A) || stringVar"),

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.EcoreUtil2;
 import org.yakindu.base.expressions.types.ExpressionsTypeSystem;
+import org.yakindu.base.expressions.types.OperatorErrorMessageProvider;
 import org.yakindu.sct.model.stext.stext.EventRaisingExpression;
 import org.yakindu.sct.model.stext.stext.EventValueReferenceExpression;
 import org.yakindu.sct.model.stext.stext.StextPackage;
@@ -41,30 +42,30 @@ public class STextTypeSystem extends ExpressionsTypeSystem {
 	@Override
 	protected void initializeExpressions() throws Exception {
 		super.initializeExpressions();
-		initializeVariableDefinition();
-		initializeEventDefinition();
-		initializeEventRaisingExpression();
-		initializeEventValueReferenceExpression();
-		initializeActiveStateReferenceExpression();
+		initVariableDefinition();
+		initEventDefinition();
+		initEventRaisingExpression();
+		initEventValueReferenceExpression();
+		initActiveStateReferenceExpression();
 
 	}
 
-	protected void initializeEventDefinition() throws Exception {
+	protected void initEventDefinition() throws Exception {
 		// if an event is used within an expression, the type is boolean and the
 		// value indicates if the event is raised or not
 		useFixedType(stextLang.getEventDefinition(), typeLang.getBoolean());
 	}
 
-	protected void initializeActiveStateReferenceExpression() throws Exception {
+	protected void initActiveStateReferenceExpression() throws Exception {
 		useFixedType(stextLang.getActiveStateReferenceExpression(), typeLang.getBoolean());
 	}
 
-	protected void initializeEventValueReferenceExpression() throws Exception {
+	protected void initEventValueReferenceExpression() throws Exception {
 		useTypeOfFeature(stextLang.getEventValueReferenceExpression(),
 				stextLang.getEventValueReferenceExpression_Value());
 	}
 
-	protected void initializeEventRaisingExpression() throws Exception {
+	protected void initEventRaisingExpression() throws Exception {
 		// TODO: Is this correct or should the result of a raise expression be
 		// void?
 		useTypeOfFeature(stextLang.getEventRaisingExpression(), stextLang.getEventRaisingExpression_Value());
@@ -72,13 +73,14 @@ public class STextTypeSystem extends ExpressionsTypeSystem {
 		// typeLang.getVoid());
 	}
 
-	public EObject type(EventRaisingExpression exp, TypeCalculationTrace trace){
+	public EObject type(EventRaisingExpression exp, TypeCalculationTrace trace) {
 		return exp.getValue() != null ? typeof(exp.getValue(), trace) : VOID;
 	}
 
-	protected void initializeVariableDefinition() throws Exception {
+	protected void initVariableDefinition() throws Exception {
 		useTypeOfFeature(stextLang.getVariableDefinition(), typeLang.getTypedElement_Type());
-		ensureOrderedCompatibility(stextLang.getVariableDefinition(), typeLang.getTypedElement_Type(),
+		OperatorErrorMessageProvider msgProvider = new OperatorErrorMessageProvider(COMPATIBLE_OPERATOR_2, "=");
+		ensureOrderedCompatibility(msgProvider, stextLang.getVariableDefinition(), typeLang.getTypedElement_Type(),
 				stextLang.getVariableDefinition_InitialValue());
 	}
 

@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart LogicalAnd {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "LogicalAndTestsTest"
-		}
-	}
-}

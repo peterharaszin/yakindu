@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::c {
-	statechart EntryExitSelfTransition {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "EntryExitSelfTransition"
-		}
-	}
-}

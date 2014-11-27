@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart Declarations {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "DeclarationsTest"
-		}
-	}
-}

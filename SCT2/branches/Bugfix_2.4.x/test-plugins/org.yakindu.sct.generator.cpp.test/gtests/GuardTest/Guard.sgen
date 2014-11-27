@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart Guard {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "GuardTest"
-		}
-	}
-}

@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart BooleanExpressions {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "BooleanExpressionsTest"
-		}
-	}
-}

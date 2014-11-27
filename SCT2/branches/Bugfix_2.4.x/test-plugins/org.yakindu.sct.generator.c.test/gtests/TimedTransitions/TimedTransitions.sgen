@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::c {
-	statechart TimedTransitions {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "TimedTransitions"
-		}
-	}
-}

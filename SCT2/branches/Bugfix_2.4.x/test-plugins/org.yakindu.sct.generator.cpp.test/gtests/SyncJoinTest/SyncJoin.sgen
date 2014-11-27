@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart SyncJoin {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "SyncJoinTest"
-		}
-	}
-}

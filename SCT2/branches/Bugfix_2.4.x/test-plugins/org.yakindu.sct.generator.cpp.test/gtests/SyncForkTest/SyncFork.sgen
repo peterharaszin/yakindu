@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart SyncFork {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "SyncForkTest"
-		}
-	}
-}

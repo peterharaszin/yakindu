@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::c {
-	statechart CastExpressions {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "CastExpressions"
-		}
-	}
-}

@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart SameNameDifferentRegion {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "SameNameDifferentRegionTest"
-		}
-	}
-}

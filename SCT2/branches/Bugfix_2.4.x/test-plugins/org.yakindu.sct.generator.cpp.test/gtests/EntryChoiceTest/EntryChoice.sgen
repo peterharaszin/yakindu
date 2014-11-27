@@ -1,8 +1,0 @@
-GeneratorModel for yakindu::cpp {
-	statechart EntryChoice {
-		feature Outlet {
-			targetProject = "gtests"
-			targetFolder = "EntryChoiceTest"
-		}
-	}
-}

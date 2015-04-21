@@ -2,14 +2,14 @@
 
 = How to setup your developer workspace =
 
-  * In your eclipse configure a svn repository for http://svn.codespot.com/a/eclipselabs.org/yakindu/ (username and password are your google code credentials)
+  * In your eclipse configure a svn repository for http://svn.codespot.com/a/eclipselabs.org/yakindu/ 
   * Checkout following projects 
     * BASE/trunk/de.itemis.gmf.utils
     * BASE/trunk/de.itemis.xtext.utils
     * BASE/trunk/releng/org.yakindu.base.target    
     * all from BASE/trunk/plugins
     * all from SCT2/trunk/plugins
-  * Set the target platform to org.yakindu.base.target/kepler.target
+  * Set the target platform to org.yakindu.base.target/luna.target
     * Open the target file and click on the link for setting the target platform (takes some minutes the first time)
   * Build relevant Xtext grammars
     * Rightclick on org.yakindu.base.expressions/Expressions.xtext => Run As.. => Generate Xtext Artifacts
@@ -34,5 +34,3 @@ Here is a small overview of your workspace plugins:
    * Statechart simulation; generation of execution flow, execution context (content of simulation view); statement interpreter used to interprete expressions
  * org.yakindu.sct.simulation.ui
    * UI specific code for simulation; Context menu, debug view, simulation view, highlighting etc.
-
-

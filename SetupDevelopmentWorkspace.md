@@ -1,0 +1,34 @@
+# How to setup your developer workspace #
+
+  * In your eclipse configure a svn repository for http://svn.codespot.com/a/eclipselabs.org/yakindu/
+  * Checkout following projects
+    * BASE/trunk/de.itemis.gmf.utils
+    * BASE/trunk/de.itemis.xtext.utils
+    * BASE/trunk/releng/org.yakindu.base.target
+    * all from BASE/trunk/plugins
+    * all from SCT2/trunk/plugins
+  * Set the target platform to org.yakindu.base.target/luna.target
+    * Open the target file and click on the link for setting the target platform (takes some minutes the first time)
+  * Build relevant Xtext grammars
+    * Rightclick on org.yakindu.base.expressions/Expressions.xtext => Run As.. => Generate Xtext Artifacts
+    * Rightclick on org.yakindu.sct.stext/SText.xtext => Run As.. => Generate Xtext Artifacts
+    * For this you need either the plugin SCT2/trunk/test-plugins/org.yakindu.sct.stext.test to be in your workspace or you need to deactivate the line 'pathTestProject = "${runtimeProject}.test"' in GenerateSText.mwe2
+
+After these steps all projects should be error-free. To launch a runtime instance which has these projects as installed plugins, just right-click on a project => Run As => Eclipse Application
+
+Here is a small overview of your workspace plugins:
+
+  * org.yakindu.base.types
+    * Type system infrastructure and a default type system implementation providing primitive types, like integer, boolean etc.
+  * org.yakindu.base.expressions
+    * Expression language; Basic language for the Stext language
+  * org.yakindu.sct.model.stext
+    * SText language which is used within statecharts; Inherits from expression language
+  * org.yakindu.sct.sgraph
+    * Basic meta model for SText language
+  * org.yakindu.sct.model.sexec
+    * Execution flow model; The execution flow is created when a statechart is simulated
+  * org.yakindu.sct.simulation.core (and .exec)
+    * Statechart simulation; generation of execution flow, execution context (content of simulation view); statement interpreter used to interprete expressions
+  * org.yakindu.sct.simulation.ui
+    * UI specific code for simulation; Context menu, debug view, simulation view, highlighting etc.

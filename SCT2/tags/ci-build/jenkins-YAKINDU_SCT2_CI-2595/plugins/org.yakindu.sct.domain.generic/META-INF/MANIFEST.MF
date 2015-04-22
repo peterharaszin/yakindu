@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Generic Domain
+Bundle-SymbolicName: org.yakindu.sct.domain.generic;singleton:=true
+Bundle-Version: 2.4.1.qualifier
+Bundle-Activator: org.yakindu.sct.domain.generic.DefaultDomainActivator
+Bundle-Vendor: statecharts.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.yakindu.sct.model.stext;bundle-version="2.4.1",
+ org.yakindu.sct.domain;bundle-version="2.4.1",
+ org.yakindu.sct.simulation.core.sexec;bundle-version="2.4.1",
+ org.yakindu.sct.model.sexec;bundle-version="2.4.1",
+ org.yakindu.sct.simulation.core,
+ org.eclipse.xtext.ui,
+ org.yakindu.sct.model.stext.ui,
+ org.eclipse.xtext.ui.shared;bundle-version="2.7.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: org.yakindu.sct.domain.generic,
+ org.yakindu.sct.domain.generic.extension,
+ org.yakindu.sct.domain.generic.modules,
+ org.yakindu.sct.domain.generic.util
